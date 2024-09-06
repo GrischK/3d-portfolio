@@ -12,6 +12,7 @@ import Plane from '../models/Plane.jsx';
 
 const Home = () => {
   const [isRotating, setIsRotating] = useState(false);
+  const [currentStage, setCurrentStage] = useState(1);
 
   const adjustIslandForScreenSize = () => {
     let screenScale = null;
@@ -43,7 +44,6 @@ const Home = () => {
 
   return (
     <section className="w-full h-screen relative">
-      <p>Home</p>
       <Canvas
         className={`w-full h-screen bg-transparent ${
           isRotating ? 'cursor-grabbing' : 'cursor-grab'
@@ -72,13 +72,14 @@ const Home = () => {
             intensity={1}
           />
           <Bird />
-          <Sky />
+          <Sky isRotating={isRotating} />
           <Island
             position={islandPosition}
             scale={islandScale}
             rotation={islandRotation}
             isRotating={isRotating}
             setIsRotating={setIsRotating}
+            setCurrentStage={setCurrentStage}
           />
           <Plane
             isRotating={isRotating}
