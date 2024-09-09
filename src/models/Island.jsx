@@ -40,7 +40,6 @@ export function Island({ isRotating, setIsRotating, setCurrentStage, ...props })
   const handlePointerMove = (e) => {
     e.stopPropagation();
     e.preventDefault();
-    console.log(isRotating);
     if (isRotating) {
       const clientX = e.touches ? e.touches[0].clientX : e.clientX;
 
@@ -165,8 +164,6 @@ export function Island({ isRotating, setIsRotating, setCurrentStage, ...props })
       }
     }
   });
-
-  console.log(isRotating);
 
   return (
     <a.group
