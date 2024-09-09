@@ -24,6 +24,7 @@ import postgresql from './postgresql.svg';
 import typeorm from './typeorm.svg';
 import amiltone from './amiltone.svg';
 import consoneo from './consoneo.svg';
+import dice from './dice.svg';
 
 export {
   css,
@@ -51,5 +52,6 @@ export {
   postgresql,
   typeorm,
   amiltone,
-  consoneo
+  consoneo,
+  dice
 };
