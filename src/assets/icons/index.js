@@ -22,6 +22,8 @@ import graphql from './graphql.svg';
 import nestjs from './nestjs.svg';
 import postgresql from './postgresql.svg';
 import typeorm from './typeorm.svg';
+import amiltone from './amiltone.svg';
+import consoneo from './consoneo.svg';
 
 export {
   css,
@@ -47,5 +49,7 @@ export {
   graphql,
   nestjs,
   postgresql,
-  typeorm
+  typeorm,
+  amiltone,
+  consoneo
 };

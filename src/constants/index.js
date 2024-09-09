@@ -20,7 +20,9 @@ import {
   graphql,
   nestjs,
   postgresql,
-  typeorm
+  typeorm,
+  amiltone,
+  consoneo
 } from '../assets/icons';
 
 export const skills = [
@@ -123,10 +125,10 @@ export const skills = [
 
 export const experiences = [
   {
-    title: 'Web Developer',
+    title: 'Full stack Developer',
     company_name: 'Amiltone',
-    icon: null,
-    iconBg: '#b7e4c7',
+    icon: amiltone,
+    iconBg: '#e7ecf2',
     date: 'Oct 2023 - Present',
     points: [
       'Developing and maintaining web applications using React.js and other related technologies.',
@@ -136,10 +138,10 @@ export const experiences = [
     ]
   },
   {
-    title: 'Full stack Developer',
+    title: 'Web Developer',
     company_name: 'Consoneo',
-    icon: null,
-    iconBg: '#a2d2ff',
+    icon: consoneo,
+    iconBg: '#e7f2eb',
     date: 'Sept 2022 - Sept 2023',
     points: [
       'Developing and maintaining web applications using React.js and other related technologies.',
