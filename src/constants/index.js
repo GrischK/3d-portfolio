@@ -24,16 +24,16 @@ import {
 } from '../assets/icons';
 
 export const skills = [
-  {
-    imageUrl: css,
-    name: 'CSS',
-    type: 'Frontend'
-  },
-  {
-    imageUrl: html,
-    name: 'HTML',
-    type: 'Frontend'
-  },
+  // {
+  //   imageUrl: css,
+  //   name: 'CSS',
+  //   type: 'Frontend'
+  // },
+  // {
+  //   imageUrl: html,
+  //   name: 'HTML',
+  //   type: 'Frontend'
+  // },
   {
     imageUrl: javascript,
     name: 'JavaScript',
@@ -94,26 +94,26 @@ export const skills = [
     name: 'Motion',
     type: 'Animation'
   },
-  {
-    imageUrl: mui,
-    name: 'Material-UI',
-    type: 'Frontend'
-  },
-  {
-    imageUrl: sass,
-    name: 'Sass',
-    type: 'Frontend'
-  },
+  // {
+  //   imageUrl: mui,
+  //   name: 'Material-UI',
+  //   type: 'Frontend'
+  // },
+  // {
+  //   imageUrl: sass,
+  //   name: 'Sass',
+  //   type: 'Frontend'
+  // },
   {
     imageUrl: tailwindcss,
     name: 'Tailwind CSS',
     type: 'Frontend'
   },
-  {
-    imageUrl: git,
-    name: 'Git',
-    type: 'Version Control'
-  },
+  // {
+  //   imageUrl: git,
+  //   name: 'Git',
+  //   type: 'Version Control'
+  // },
   {
     imageUrl: github,
     name: 'GitHub',
