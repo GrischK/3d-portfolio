@@ -6,13 +6,26 @@ function Fox({ currentAnimation, ...props }) {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF(scene);
   const { actions } = useAnimations(animations, group);
+  const previousAnimation = useRef();
 
   useEffect(() => {
-    Object.values(actions).forEach((action) => action.stop());
-
-    if (actions[currentAnimation]) {
-      actions[currentAnimation].play();
+    if (previousAnimation.current && previousAnimation.current !== currentAnimation) {
+      const prevAction = actions[previousAnimation.current];
+      if (prevAction) {
+        prevAction.fadeOut(0.5);
+      }
     }
+
+    const currentAction = actions[currentAnimation];
+    if (currentAction) {
+      currentAction.reset().fadeIn(0.5).play();
+    }
+
+    previousAnimation.current = currentAnimation;
+
+    return () => {
+      if (currentAction) currentAction.fadeOut(0.5);
+    };
   }, [currentAnimation, actions]);
 
   return (
