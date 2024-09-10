@@ -24,7 +24,9 @@ import postgresql from './postgresql.svg';
 import typeorm from './typeorm.svg';
 import amiltone from './amiltone.svg';
 import consoneo from './consoneo.svg';
-import dice from './dice.svg';
+import dice from './dice.webp';
+import soccer from './soccer.svg';
+import cities from './cities.svg';
 
 export {
   css,
@@ -53,5 +55,7 @@ export {
   typeorm,
   amiltone,
   consoneo,
-  dice
+  dice,
+  soccer,
+  cities
 };

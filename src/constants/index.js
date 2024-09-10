@@ -23,7 +23,9 @@ import {
   typeorm,
   amiltone,
   consoneo,
-  dice
+  dice,
+  soccer,
+  cities
 } from '../assets/icons';
 
 export const skills = [
@@ -181,7 +183,7 @@ export const projects = [
     link: 'https://github.com/adrianhajdin/pricewise'
   },
   {
-    iconUrl: null,
+    iconUrl: soccer,
     theme: 'btn-back-green',
     name: 'Mapado',
     description:
@@ -189,7 +191,7 @@ export const projects = [
     link: 'https://github.com/adrianhajdin/threads'
   },
   {
-    iconUrl: null,
+    iconUrl: cities,
     theme: 'btn-back-blue',
     name: 'Les fous du Catane',
     description:
