@@ -1,6 +1,7 @@
 import { projects } from '../constants/index.js';
 import { Link } from 'react-router-dom';
 import { arrow } from '../assets/icons/index.js';
+import CTA from '../components/CTA.jsx';
 
 const Projects = () => {
   return (
@@ -17,7 +18,10 @@ const Projects = () => {
         </p>
         <div className="flex flex-wrap my-20 gap-16">
           {projects.map((project) => (
-            <div className="lg:w[400px] w-full">
+            <div
+              className="lg:w-[400px] w-1/3"
+              key={project.name}
+            >
               <div className="block-container w-12 h-12">
                 <div className={`btn-back rounded-xl ${project.theme}`} />
                 <div className="btn-front rounded-xl flex justify-center items-center">
@@ -28,10 +32,10 @@ const Projects = () => {
                   />
                 </div>
               </div>
-              <div className="mt-5 flex flex-col">
-                <h4>{project.name}</h4>
-                <p>{project.description}</p>
-                <div>
+              <div className="mt-5 flex flex-col gap-4">
+                <h4 className="text-2xl font-poppins font-semibold">{project.name}</h4>
+                <p className="mt2 text-slate-500">{project.description}</p>
+                <div className="mt5 flex items-center gap-2 font-poppins">
                   <Link
                     to={project.link}
                     target="_blank"
@@ -51,6 +55,8 @@ const Projects = () => {
           ))}{' '}
         </div>
       </div>
+      <hr className="border-slate-200 " />
+      <CTA />
     </section>
   );
 };

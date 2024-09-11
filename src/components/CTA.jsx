@@ -6,7 +6,7 @@ const CTA = () => {
       <p className="cta-text">
         Have a project in mind?&nbsp;
         <br className="sm:block hidden" />
-        Let's something together!
+        Let's build something together!
       </p>
       <Link
         to={'/contact'}
