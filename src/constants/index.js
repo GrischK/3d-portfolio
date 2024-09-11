@@ -39,11 +39,11 @@ export const skills = [
   //   name: 'HTML',
   //   type: 'Frontend'
   // },
-  {
-    imageUrl: javascript,
-    name: 'JavaScript',
-    type: 'Frontend'
-  },
+  // {
+  //   imageUrl: javascript,
+  //   name: 'JavaScript',
+  //   type: 'Frontend'
+  // },
   {
     imageUrl: typescript,
     name: 'TypeScript',
@@ -134,10 +134,18 @@ export const experiences = [
     iconBg: '#e7ecf2',
     date: 'Oct 2023 - Present',
     points: [
-      'Developing and maintaining web applications using React.js and other related technologies.',
-      'Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.',
-      'Implementing responsive design and ensuring cross-browser compatibility.',
-      'Participating in code reviews and providing constructive feedback to other developers.'
+      'Developing and maintaining Flotto, a fleet management application using Nest.js and other related technologies.',
+      'Implementing a user document management solution with Minio.',
+      'Configuring Keycloak for sending registration confirmation emails, password recovery, etc. Integrating custom' +
+        ' themes and creating templates. Deploying on the dedicated server.',
+      'Integrating Stripe for managing subscriptions with trial periods and payments.',
+      'CRUD operations and backend ticket resolution in Nest.js, including bug fixes, performance optimizations, and' +
+        ' functional enhancements.',
+      'Updating and maintaining Docker containers for the development environment.',
+      'Setting up a proof of concept (POC) with Apisix, including Docker container configuration.',
+      'Actively participating in code reviews to ensure code quality and adherence to best practices (DOD, Commit' +
+        ' trailer, etc.).',
+      'Preparing for a hackathon and conducting pentesting activities to identify and resolve vulnerabilities.'
     ]
   },
   {
@@ -148,9 +156,12 @@ export const experiences = [
     date: 'Sept 2022 - Sept 2023',
     points: [
       'Developing and maintaining web applications using React.js and other related technologies.',
-      'Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.',
-      'Implementing responsive design and ensuring cross-browser compatibility.',
-      'Participating in code reviews and providing constructive feedback to other developers.'
+      'Redefining and improving the Design System using React, JavaScript, and Storybook to ensure visual consistency' +
+        ' across different components.',
+      'Enhancing an internal application by integrating the new components from the Design System.',
+      'Writing and executing unit tests using Jest.js.',
+      'Implementing containerization solutions with Docker to simplify POC deployment.',
+      'Developing full-stack POCs using various technologies such as Nest.js / Next.js / PHP / Symfony / MySQL / PostgreSQL'
     ]
   }
 ];
@@ -164,38 +175,39 @@ export const socialLinks = [
   {
     name: 'GitHub',
     iconUrl: github,
-    link: 'https://github.com/YourGitHubUsername'
+    link: 'https://github.com/GrischK'
   },
   {
     name: 'LinkedIn',
     iconUrl: linkedin,
-    link: 'https://www.linkedin.com/in/YourLinkedInUsername'
+    link: 'https://www.linkedin.com/in/grischka-gorski-gg'
   }
 ];
 
 export const projects = [
   {
-    iconUrl: dice,
+    iconUrl: soccer,
     theme: 'btn-back-red',
     name: 'Pronos des potos',
     description:
-      'Developed a web application that tracks and notifies users of price changes for products on Amazon, helping users find the best deals.',
-    link: 'https://github.com/adrianhajdin/pricewise'
+      'Responsive web application that allows users to make predictions about Euro 2024 matches. Generation of a' +
+      ' dynamic leaderboard in real-time.',
+    link: 'https://github.com/GrischK/Pronos-euro-des-potos'
   },
   {
     iconUrl: soccer,
     theme: 'btn-back-green',
     name: 'Mapado',
     description:
-      'Created a full-stack replica of the popular discussion platform "Threads," enabling users to post and engage in threaded conversations.',
-    link: 'https://github.com/adrianhajdin/threads'
+      "Web and native application offering the ability to view a city's points of interest. Role creation with an admin dashboard to assign permissions and manage cities and points of interest..",
+    link: 'https://github.com/WildCodeSchool/2209-wns-adleman-mapado'
   },
   {
-    iconUrl: cities,
+    iconUrl: dice,
     theme: 'btn-back-blue',
     name: 'Les fous du Catane',
     description:
-      'Designed and built a mobile app for finding and comparing cars on the market, streamlining the car-buying process.',
-    link: 'https://github.com/adrianhajdin/project_next13_car_showcase'
+      'Responsive web application themed around the board game Catan. Random avatar creation using the Avataaars API, game score recording, leaderboard generation, dynamic podium with animations.',
+    link: ''
   }
 ];
