@@ -19,7 +19,7 @@ const Projects = () => {
         <div className="flex flex-wrap my-20 gap-16">
           {projects.map((project) => (
             <div
-              className="lg:w-[400px] w-1/3"
+              className="lg:w-[400px] w-full"
               key={project.name}
             >
               <div className="block-container w-12 h-12">
