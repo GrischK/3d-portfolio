@@ -1,6 +1,7 @@
-import { OrbitControls, Text } from '@react-three/drei';
+import { Environment, OrbitControls, Text } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { Winter } from '../models/Winter.jsx';
+import { degToRad } from 'maath/misc';
 
 const HeroSection = () => {
   return (
@@ -21,10 +22,18 @@ const HeroSection = () => {
         lineHeight={0.8}
         textAlign="center"
         color="white"
+        rotation-y={degToRad(30)}
+        // anchorY={'bottom'}
       >
         GRISCHKA{'\n'}GORSKI
       </Text>
-      <Winter />
+      <group
+        rotation-y={degToRad(160)}
+        position-x={3}
+      >
+        <Winter scale={0.7} />
+      </group>
+      <Environment preset="sunset" />
     </Canvas>
   );
 };
