@@ -11,30 +11,31 @@ import { Winter } from '../models/Winter.jsx';
 import { degToRad } from 'maath/misc';
 import { Suspense, useEffect, useRef, useState } from 'react';
 import Loader from './Loader.jsx';
+import Husky from '../models/Husky.jsx';
 
 const HeroSection = () => {
   const controls = useRef();
-  const [isActive, setIsActive] = useState(true); // Comment for testing
+  const [isActive, setIsActive] = useState(false); // Comment for testing
 
   // Comment for testing
 
-  // const intro = async () => {
-  //   controls.current.dolly(-22);
-  //   controls.current.smoothTime = 1.6;
-  //   controls.current.dolly(22, true);
-  // };
-  //
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     if (controls.current) {
-  //       console.log('Controls:', controls.current);
-  //       setIsActive(true);
-  //       intro();
-  //     } else {
-  //       console.log('controls.current est toujours undefined');
-  //     }
-  //   }, 400);
-  // }, []);
+  const intro = async () => {
+    controls.current.dolly(-22);
+    controls.current.smoothTime = 1.6;
+    controls.current.dolly(22, true);
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (controls.current) {
+        console.log('Controls:', controls.current);
+        setIsActive(true);
+        intro();
+      } else {
+        console.log('controls.current est toujours undefined');
+      }
+    }, 400);
+  }, []);
 
   return (
     <Canvas
@@ -76,10 +77,14 @@ const HeroSection = () => {
                   />
                   <Environment preset="sunset" />
                   <Float
-                    floatIntensity={4}
-                    rotationIntensity={5}
+                    floatIntensity={8}
+                    rotationIntensity={1}
                   >
-                    <Winter scale={1.6} />
+                    <Husky
+                      scale={0.8}
+                      position={[0, -0.6, 1]}
+                      rotation={[0, -5, 0]}
+                    />
                   </Float>
                 </RenderTexture>
               </meshBasicMaterial>
