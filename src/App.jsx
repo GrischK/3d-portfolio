@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Home, About, Projects, Contact } from './pages';
 import NavBar from './components/NavBar.jsx';
+import HeroSection from './components/HeroSection.jsx';
 
 const App = () => {
   return (
@@ -23,6 +24,10 @@ const App = () => {
           <Route
             path="/contact"
             element={<Contact />}
+          />
+          <Route
+            path="/test"
+            element={<HeroSection />}
           />
         </Routes>
       </BrowserRouter>
