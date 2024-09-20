@@ -1,5 +1,6 @@
 import { OrbitControls, Text } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
+import { Winter } from '../models/Winter.jsx';
 
 const HeroSection = () => {
   return (
@@ -23,6 +24,7 @@ const HeroSection = () => {
       >
         GRISCHKA{'\n'}GORSKI
       </Text>
+      <Winter />
     </Canvas>
   );
 };
