@@ -12,46 +12,35 @@ const Husky = (props) => {
   console.log(actions);
 
   useEffect(() => {
-    const walkAction = actions['Walk'];
-    const gallopAction = actions['Gallop'];
-    const eatingAction = actions['Eating'];
+    const actionsArray = [
+      actions['Walk'],
+      actions['Gallop'],
+      actions['Eating'],
+      actions['Idle_2_HeadLow']
+    ]; // Ajoute les
+    // actions ici
+    let currentIndex = 0;
 
-    if (!walkAction || !gallopAction) {
-      console.log('Les actions Walk ou Gallop ne sont pas trouvées');
-      return;
-    }
+    const switchAction = () => {
+      const currentAction = actionsArray[currentIndex];
+      const nextAction = actionsArray[(currentIndex + 1) % actionsArray.length];
 
-    // Démarrer l'animation "Walk" avec un fondu d'entrée
-    walkAction.reset().fadeIn(0.5).play();
+      currentAction.fadeOut(0.5);
+      nextAction.reset().fadeIn(0.5).play();
 
-    // Après 5 secondes, passer à "Gallop"
-    const switchToGallop = setTimeout(() => {
-      walkAction.fadeOut(0.5);
-      gallopAction.reset().fadeIn(0.5).play();
-    }, 5000);
+      currentIndex = (currentIndex + 1) % actionsArray.length;
+    };
 
-    // const switchToEating = setTimeout(() => {
-    //   eatingAction.fadeOut(0.5);
-    //   eatingAction.reset().fadeIn(0.5).play();
-    // }, 10000);
+    // Démarrer la première action
+    actionsArray[currentIndex].reset().fadeIn(0.5).play();
 
-    // Répéter l'alternance toutes les 10 secondes
-    const interval = setInterval(() => {
-      if (walkAction.isRunning()) {
-        walkAction.fadeOut(0.5);
-        gallopAction.reset().fadeIn(0.5).play();
-      } else {
-        gallopAction.fadeOut(0.5);
-        walkAction.reset().fadeIn(0.5).play();
-      }
-    }, 10000);
+    // Alterner toutes les 5 secondes
+    const interval = setInterval(switchAction, 5000);
 
     // Nettoyage à la fin
     return () => {
-      clearTimeout(switchToGallop);
       clearInterval(interval);
-      walkAction.stop();
-      gallopAction.stop();
+      actionsArray.forEach((action) => action.stop());
     };
   }, [actions]);
 

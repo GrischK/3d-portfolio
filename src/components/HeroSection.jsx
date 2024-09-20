@@ -75,7 +75,7 @@ const HeroSection = () => {
                     attach="background"
                     args={['#fff']}
                   />
-                  <Environment preset="sunset" />
+                  <Environment preset="forest" />
                   <Float
                     floatIntensity={8}
                     rotationIntensity={1}
@@ -101,7 +101,7 @@ const HeroSection = () => {
             >
               <planeGeometry args={[100, 100]} />
               <MeshReflectorMaterial
-                mirror={1}
+                // mirror={1}
                 blur={[100, 50]}
                 resolution={2048}
                 mixBlur={1}
