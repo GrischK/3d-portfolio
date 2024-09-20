@@ -7,6 +7,7 @@ import Loader from './Loader.jsx';
 
 const HeroSection = () => {
   const controls = useRef();
+  const [isActive, setIsActive] = useState(false);
 
   const intro = async () => {
     controls.current.dolly(-22);
@@ -18,11 +19,12 @@ const HeroSection = () => {
     setTimeout(() => {
       if (controls.current) {
         console.log('Controls:', controls.current);
+        setIsActive(true);
         intro();
       } else {
         console.log('controls.current est toujours undefined');
       }
-    }, 500);
+    }, 400);
   }, []);
 
   return (
@@ -44,24 +46,29 @@ const HeroSection = () => {
           args={['#171720', 8, 20]}
         />
         <CameraControls ref={controls} />
-        <Text
-          font="fonts/Poppins-Black.ttf"
-          fontSize={0.8}
-          position={[-1.3, -0.5, 1]}
-          lineHeight={0.8}
-          textAlign="center"
-          color="white"
-          rotation-y={degToRad(30)}
-          // anchorY={'bottom'}
-        >
-          GRISCHKA{'\n'}GORSKI
-        </Text>
-        <group
-          rotation-y={degToRad(160)}
-          position-x={3}
-        >
-          <Winter scale={0.7} />
-        </group>
+        {isActive && (
+          <>
+            <Text
+              font="fonts/Poppins-Black.ttf"
+              fontSize={0.8}
+              position={[-1.3, -0.5, 1]}
+              lineHeight={0.8}
+              textAlign="center"
+              color="white"
+              rotation-y={degToRad(30)}
+              // anchorY={'bottom'}
+            >
+              GRISCHKA{'\n'}GORSKI
+            </Text>
+            <group
+              rotation-y={degToRad(160)}
+              position-x={3}
+            >
+              <Winter scale={0.7} />
+            </group>
+          </>
+        )}
+
         <Environment preset="sunset" />
       </Suspense>
     </Canvas>
