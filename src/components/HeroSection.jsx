@@ -15,17 +15,15 @@ const HeroSection = () => {
   };
 
   useEffect(() => {
-    // Utiliser un setTimeout pour vérifier la disponibilité du ref après un petit délai
     setTimeout(() => {
       if (controls.current) {
         console.log('Controls:', controls.current);
-        // Appeler la fonction intro ici si nécessaire
         intro();
       } else {
         console.log('controls.current est toujours undefined');
       }
-    }, 500); // 100ms pour laisser le temps à CameraControls de se monter
-  }, []); // Pas besoin d'ajouter une dépendance sur controls.current ici
+    }, 500);
+  }, []);
 
   return (
     <Canvas
@@ -40,6 +38,10 @@ const HeroSection = () => {
         <color
           attach="background"
           args={['#171720']}
+        />
+        <fog
+          attach="fog"
+          args={['#171720', 8, 20]}
         />
         <CameraControls ref={controls} />
         <Text
