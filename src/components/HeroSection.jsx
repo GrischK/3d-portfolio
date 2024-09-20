@@ -1,4 +1,11 @@
-import { CameraControls, Environment, MeshReflectorMaterial, Text } from '@react-three/drei';
+import {
+  CameraControls,
+  Environment,
+  Float,
+  MeshReflectorMaterial,
+  RenderTexture,
+  Text
+} from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { Winter } from '../models/Winter.jsx';
 import { degToRad } from 'maath/misc';
@@ -61,6 +68,21 @@ const HeroSection = () => {
               // anchorY={'bottom'}
             >
               GRISCHKA{'\n'}GORSKI
+              <meshBasicMaterial color="white">
+                <RenderTexture attach={'map'}>
+                  <color
+                    attach="background"
+                    args={['#fff']}
+                  />
+                  <Environment preset="sunset" />
+                  <Float
+                    floatIntensity={4}
+                    rotationIntensity={5}
+                  >
+                    <Winter scale={1.6} />
+                  </Float>
+                </RenderTexture>
+              </meshBasicMaterial>
             </Text>
             <group
               rotation-y={degToRad(160)}
