@@ -1,4 +1,4 @@
-import { CameraControls, Environment, Text } from '@react-three/drei';
+import { CameraControls, Environment, MeshReflectorMaterial, Text } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { Winter } from '../models/Winter.jsx';
 import { degToRad } from 'maath/misc';
@@ -7,25 +7,27 @@ import Loader from './Loader.jsx';
 
 const HeroSection = () => {
   const controls = useRef();
-  const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState(true); // Comment for testing
 
-  const intro = async () => {
-    controls.current.dolly(-22);
-    controls.current.smoothTime = 1.6;
-    controls.current.dolly(22, true);
-  };
+  // Comment for testing
 
-  useEffect(() => {
-    setTimeout(() => {
-      if (controls.current) {
-        console.log('Controls:', controls.current);
-        setIsActive(true);
-        intro();
-      } else {
-        console.log('controls.current est toujours undefined');
-      }
-    }, 400);
-  }, []);
+  // const intro = async () => {
+  //   controls.current.dolly(-22);
+  //   controls.current.smoothTime = 1.6;
+  //   controls.current.dolly(22, true);
+  // };
+  //
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     if (controls.current) {
+  //       console.log('Controls:', controls.current);
+  //       setIsActive(true);
+  //       intro();
+  //     } else {
+  //       console.log('controls.current est toujours undefined');
+  //     }
+  //   }, 400);
+  // }, []);
 
   return (
     <Canvas
@@ -43,7 +45,7 @@ const HeroSection = () => {
         />
         <fog
           attach="fog"
-          args={['#171720', 8, 20]}
+          args={['#171720', 10, 20]}
         />
         <CameraControls ref={controls} />
         {isActive && (
@@ -66,6 +68,27 @@ const HeroSection = () => {
             >
               <Winter scale={0.7} />
             </group>
+            <mesh
+              position-y={-1.1}
+              rotation-x={-Math.PI / 2}
+            >
+              <planeGeometry args={[100, 100]} />
+              <MeshReflectorMaterial
+                mirror={1}
+                blur={[100, 50]}
+                resolution={2048}
+                mixBlur={1}
+                mixStrength={10}
+                roughness={1}
+                depthScale={1}
+                opacity={0.5}
+                transparent
+                minDepthThreshold={0.4}
+                maxDepthThreshold={1.4}
+                color="#333"
+                metalness={0.5}
+              />
+            </mesh>
           </>
         )}
 
