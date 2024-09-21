@@ -2,7 +2,6 @@ import huskyScene from '../assets/3d/husky.glb';
 
 import React, { useEffect, useRef } from 'react';
 import { useGLTF, useAnimations } from '@react-three/drei';
-import Plane from './Plane.jsx';
 
 const Husky = (props) => {
   const group = useRef();
