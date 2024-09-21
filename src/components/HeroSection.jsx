@@ -61,7 +61,7 @@ const HeroSection = () => {
             <Text
               font="fonts/Poppins-Black.ttf"
               fontSize={0.8}
-              position={[-1.3, -0.5, 1]}
+              position={[-2.3, -0.5, 1]}
               lineHeight={0.8}
               textAlign="center"
               color="white"
@@ -93,7 +93,7 @@ const HeroSection = () => {
               rotation-y={degToRad(160)}
               position-x={3}
             >
-              <Winter scale={0.7} />
+              <Winter scale={0.9} />
             </group>
             <mesh
               position-y={-1.1}

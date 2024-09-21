@@ -16,7 +16,8 @@ const Husky = (props) => {
       actions['Walk'],
       actions['Gallop'],
       actions['Eating'],
-      actions['Idle_2_HeadLow']
+      actions['Idle_2_HeadLow'],
+      actions['Jump_ToIdle']
     ]; // Ajoute les
     // actions ici
     let currentIndex = 0;
