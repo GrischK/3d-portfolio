@@ -17,8 +17,7 @@ const Husky = (props) => {
       actions['Eating'],
       actions['Idle_2_HeadLow'],
       actions['Jump_ToIdle']
-    ]; // Ajoute les
-    // actions ici
+    ];
     let currentIndex = 0;
 
     const switchAction = () => {
@@ -29,6 +28,15 @@ const Husky = (props) => {
       nextAction.reset().fadeIn(0.5).play();
 
       currentIndex = (currentIndex + 1) % actionsArray.length;
+
+      if (nextAction === actions['Jump_ToIdle']) {
+        setTimeout(() => {
+          nextAction.fadeOut(0.5);
+          const nextAfterJump = actionsArray[(currentIndex + 1) % actionsArray.length];
+          nextAfterJump.reset().fadeIn(0.5).play();
+          currentIndex = (currentIndex + 1) % actionsArray.length;
+        }, 1100); // 2,5 secondes
+      }
     };
 
     // Démarrer la première action

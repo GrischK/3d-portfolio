@@ -1,4 +1,5 @@
 import {
+  Box,
   CameraControls,
   Environment,
   Float,
@@ -12,18 +13,23 @@ import { degToRad } from 'maath/misc';
 import { Suspense, useEffect, useRef, useState } from 'react';
 import Loader from './Loader.jsx';
 import Husky from '../models/Husky.jsx';
+import { Bloom, EffectComposer } from '@react-three/postprocessing';
+import { Color } from 'three';
+import { mx_gradient_float_1 } from 'three/src/nodes/materialx/lib/mx_noise.js';
 
 const HeroSection = () => {
   const controls = useRef();
-  const [isActive, setIsActive] = useState(false); // Comment for testing
+  const [isActive, setIsActive] = useState(true); // True for testing
+  const meshFitCameraHeroSection = useRef();
 
   // Comment for testing
-
-  const intro = async () => {
-    controls.current.dolly(-22);
-    controls.current.smoothTime = 1.6;
-    controls.current.dolly(22, true);
-  };
+  // const intro = async () => {
+  //   controls.current.dolly(-22);
+  //   controls.current.smoothTime = 1.6;
+  //
+  //   // controls.current.dolly(22, true);
+  //   // fitCamera();
+  // };
 
   useEffect(() => {
     setTimeout(() => {
@@ -35,6 +41,33 @@ const HeroSection = () => {
         console.log('controls.current est toujours undefined');
       }
     }, 400);
+  }, []);
+
+  const bloomColor = new Color('#fff');
+  bloomColor.multiplyScalar(1.5);
+
+  const fitCamera = async () => {
+    controls.current.fitToBox(meshFitCameraHeroSection.current, true);
+  };
+
+  //TODO: Il va surement devoir faire un unique timeOut
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (meshFitCameraHeroSection.current && controls.current) {
+        console.log('Controls:', meshFitCameraHeroSection.current);
+        fitCamera(); // Appelle fitToBox seulement quand les refs sont prêtes
+      }
+    }, 800);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('resize', fitCamera);
+
+    return () => {
+      window.removeEventListener('resize', fitCamera);
+    };
   }, []);
 
   return (
@@ -53,11 +86,24 @@ const HeroSection = () => {
         />
         <fog
           attach="fog"
-          args={['#171720', 10, 20]}
+          args={['#171720', 10, 30]}
         />
+
         <CameraControls ref={controls} />
         {isActive && (
           <>
+            <mesh
+              ref={meshFitCameraHeroSection}
+              position-x={-0.3}
+              visible={false}
+            >
+              <boxGeometry
+                color="orange"
+                transparent
+                opacity={0.5}
+                args={[10.5, 2, 2]}
+              />
+            </mesh>
             <Text
               font="fonts/Poppins-Black.ttf"
               fontSize={0.8}
@@ -68,8 +114,11 @@ const HeroSection = () => {
               rotation-y={degToRad(30)}
               // anchorY={'bottom'}
             >
-              GRISCHKA{'\n'}GORSKI
-              <meshBasicMaterial color="white">
+              DIVE IN{'\n'}MY WORLD
+              <meshBasicMaterial
+                color={bloomColor}
+                toneMapped={false}
+              >
                 <RenderTexture attach={'map'}>
                   <color
                     attach="background"
@@ -96,7 +145,7 @@ const HeroSection = () => {
               <Winter scale={0.9} />
             </group>
             <mesh
-              position-y={-1.1}
+              position-y={-1.2}
               rotation-x={-Math.PI / 2}
             >
               <planeGeometry args={[100, 100]} />
