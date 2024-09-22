@@ -114,6 +114,6 @@ const Husky = (props) => {
   );
 };
 
-useGLTF.preload('/Husky.glb');
+useGLTF.preload('../assets/3d/husky.glb');
 
 export default Husky;
