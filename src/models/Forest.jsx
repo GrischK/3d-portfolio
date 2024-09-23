@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { useAnimations, useGLTF } from '@react-three/drei';
 import camping from '../assets/3d/camping.glb';
 import spaceCampingScene from '../assets/3d/space_camping.glb';
-import { useThree } from '@react-three/fiber';
+import { useFrame, useThree } from '@react-three/fiber';
 
 export function Forest({ isRotating, setIsRotating, setCurrentStage, ...props }) {
   const forest = useRef();
@@ -11,6 +11,7 @@ export function Forest({ isRotating, setIsRotating, setCurrentStage, ...props })
   const { gl, viewport } = useThree();
   const lastX = useRef(0);
   const rotationSpeed = useRef(0);
+  const dampingFactor = 0.95;
 
   useEffect(() => {
     console.log(actions);
@@ -72,6 +73,43 @@ export function Forest({ isRotating, setIsRotating, setCurrentStage, ...props })
       canvas.removeEventListener('touchstart', handlePointerDown);
     };
   }, [gl, handlePointerDown, handlePointerUp, handlePointerMove]);
+
+  useFrame(() => {
+    // If not rotating, apply damping to slow down the rotation (smoothly)
+    if (!isRotating) {
+      // Apply damping factor
+      rotationSpeed.current *= dampingFactor;
+
+      // Stop rotation when speed is very small
+      if (Math.abs(rotationSpeed.current) < 0.001) {
+        rotationSpeed.current = 0;
+      }
+
+      forest.current.rotation.y += rotationSpeed.current;
+    } else {
+      // When rotating, determine the current stage based on island's orientation
+      const rotation = forest.current.rotation.y;
+
+      const normalizedRotation = ((rotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+      // Set the current stage based on the island's orientation
+      switch (true) {
+        case normalizedRotation >= 1.1 && normalizedRotation <= 1.5:
+          setCurrentStage(4);
+          break;
+        case normalizedRotation >= 2.35 && normalizedRotation <= 2.75:
+          setCurrentStage(3);
+          break;
+        case normalizedRotation >= 3.8 && normalizedRotation <= 4.2:
+          setCurrentStage(2);
+          break;
+        case normalizedRotation >= 5.15 && normalizedRotation <= 5.55:
+          setCurrentStage(1);
+          break;
+        default:
+          setCurrentStage(null);
+      }
+    }
+  });
 
   return (
     <group

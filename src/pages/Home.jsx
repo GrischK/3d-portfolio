@@ -17,6 +17,40 @@ const Home = () => {
   const [isRotating, setIsRotating] = useState(false);
   const [currentStage, setCurrentStage] = useState(1);
   const [isPlayingMusic, setIsPlayingMusic] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [speed, setSpeed] = useState(0);
+
+  useEffect(() => {
+    console.log(isRotating);
+    if (!isRotating) return; // Ne calcule pas la vitesse si la forêt ne tourne pas
+
+    let lastPositionX = 0;
+    let lastTime = Date.now();
+
+    const handleMouseMove = (event) => {
+      const currentPositionX = event.clientX;
+      const currentTime = Date.now();
+
+      // Calcule la distance parcourue sur l'axe X
+      const distanceX = currentPositionX - lastPositionX;
+
+      // Calcule la vitesse (distance / temps écoulé)
+      const timeElapsed = (currentTime - lastTime) / 1000; // en secondes
+      const currentSpeed = Math.abs(distanceX) / timeElapsed;
+
+      setMousePosition({ x: currentPositionX });
+      setSpeed(currentSpeed);
+
+      lastPositionX = currentPositionX;
+      lastTime = currentTime;
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, [isRotating, speed]);
 
   useEffect(() => {
     if (isPlayingMusic) {
@@ -46,7 +80,7 @@ const Home = () => {
       screenPosition = [0, -1.5, 0];
     } else {
       screenScale = [0.4, 0.4, 0.4];
-      screenPosition = [0, -4, -1.5];
+      screenPosition = [0, -4, -0.7];
     }
     return [screenScale, screenPosition];
   };
@@ -56,8 +90,8 @@ const Home = () => {
   const [planeScale, planePosition] = adjustPlaneForScreenSize();
 
   return (
-    <section className="w-full h-screen relative">
-      <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center">
+    <section className="w-full h-screen relative bg-[#dfd6c6]">
+      <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center ">
         {currentStage && <HomeInfo currentStage={currentStage} />}
       </div>
       <Canvas
@@ -102,6 +136,7 @@ const Home = () => {
             position={planePosition}
             scale={planeScale}
             rotation={[0, 20.5, 0]}
+            speed={speed}
           />
         </Suspense>
       </Canvas>
