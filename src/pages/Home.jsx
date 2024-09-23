@@ -8,6 +8,7 @@ import soundoff from '../assets/icons/soundoff.png';
 import Forest from '../models/Forest.jsx';
 import Eagle from '../models/Eagle.jsx';
 import GermanShepard from '../models/GermanShepard.jsx';
+import Kayak from '../models/Kayak.jsx';
 
 const Home = () => {
   const audioRef = useRef(new Audio(sakura));
@@ -88,6 +89,7 @@ const Home = () => {
   const [islandScale, islandPosition, islandRotation] = adjustIslandForScreenSize();
 
   const [planeScale, planePosition] = adjustPlaneForScreenSize();
+  console.log(speed);
 
   return (
     <section className="w-full h-screen relative bg-[#dfd6c6]">
@@ -138,7 +140,7 @@ const Home = () => {
             isRotating={isRotating}
             setIsRotating={setIsRotating}
             setCurrentStage={setCurrentStage}
-          ></Forest>
+          />
           <GermanShepard
             isRotating={isRotating}
             position={planePosition}

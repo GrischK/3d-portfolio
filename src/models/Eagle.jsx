@@ -20,7 +20,7 @@ export function Eagle(props) {
     // Check if the bird reached a certain endpoint relative to the camera
     if (eagleRef.current.position.x > camera.position.x + 10) {
       // Change direction to backward and rotate the bird 180 degrees on the y-axis
-      eagleRef.current.rotation.y = Math.PI / 2;
+      eagleRef.current.rotation.y = Math.PI;
     } else if (eagleRef.current.position.x < camera.position.x - 10) {
       // Change direction to forward and reset the bird's rotation
       eagleRef.current.rotation.y = 0;

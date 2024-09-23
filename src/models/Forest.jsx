@@ -5,6 +5,7 @@ import { useFrame, useThree } from '@react-three/fiber';
 import BackPack from './BackPack.jsx';
 import ChairMugLamp from './ChairMugLamp.jsx';
 import { Stag } from './Stag.jsx';
+import Kayak from './Kayak.jsx';
 
 export function Forest({ isRotating, setIsRotating, setCurrentStage, ...props }) {
   const forest = useRef();
@@ -56,9 +57,11 @@ export function Forest({ isRotating, setIsRotating, setCurrentStage, ...props })
       const delta = (clientX - lastX.current) / viewport.width;
 
       // Ne permettre que la rotation vers la droite (si delta est positif)
-      if (delta < 0) {
-        forest.current.rotation.y += delta * 0.01 * Math.PI;
-      }
+
+      // TODO: uncomment to lock rotation
+      // if (delta < 0) {
+      forest.current.rotation.y += delta * 0.01 * Math.PI;
+      // }
 
       lastX.current = clientX;
       rotationSpeed.current = delta * 0.01 * Math.PI;
@@ -3967,6 +3970,11 @@ export function Forest({ isRotating, setIsRotating, setCurrentStage, ...props })
             <Stag
               position={[-13.5, -1.5, 5.5]}
               rotation={[0, -2.8, 0]}
+            />
+            <Kayak
+              scale={1.8}
+              position={[-4.2, 0, 11.2]}
+              rotation={[6.6, 20.1, 0]}
             />
           </group>
         </group>

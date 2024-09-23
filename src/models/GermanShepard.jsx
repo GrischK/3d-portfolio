@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { useGLTF, useAnimations } from '@react-three/drei';
 import germanShepardScene from '../assets/3d/german_shepard.glb';
 
-export function GermanShepard({ isRotating, ...props }) {
+export function GermanShepard({ isRotating, speed, ...props }) {
   const germanShepardRef = useRef();
   const { nodes, materials, animations } = useGLTF(germanShepardScene);
   const { actions } = useAnimations(animations, germanShepardRef);
@@ -20,7 +20,9 @@ export function GermanShepard({ isRotating, ...props }) {
       walkAction.fadeOut(0.5);
       idleAction.reset().fadeIn(0.5).play();
     }
-  }, [actions, isRotating]);
+
+    console.log(speed);
+  }, [actions, isRotating, speed]);
 
   return (
     <group
