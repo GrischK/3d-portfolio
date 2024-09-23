@@ -1,11 +1,16 @@
 import React, { useEffect, useRef } from 'react';
 import { useAnimations, useGLTF } from '@react-three/drei';
-import scene from '../assets/3d/camping.glb';
+import camping from '../assets/3d/camping.glb';
+import spaceCampingScene from '../assets/3d/space_camping.glb';
+import { useThree } from '@react-three/fiber';
 
-export function Forest(props) {
-  const group = useRef();
-  const { nodes, materials, animations } = useGLTF(scene);
-  const { actions } = useAnimations(animations, group);
+export function Forest({ isRotating, setIsRotating, setCurrentStage, ...props }) {
+  const forest = useRef();
+  const { nodes, materials, animations } = useGLTF(camping);
+  const { actions } = useAnimations(animations, forest);
+  const { gl, viewport } = useThree();
+  const lastX = useRef(0);
+  const rotationSpeed = useRef(0);
 
   useEffect(() => {
     console.log(actions);
@@ -22,9 +27,55 @@ export function Forest(props) {
     };
   }, [actions]);
 
+  const handlePointerDown = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    setIsRotating(true);
+
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+
+    lastX.current = clientX;
+  };
+
+  const handlePointerUp = (event) => {
+    event.stopPropagation();
+    event.preventDefault();
+    setIsRotating(false);
+  };
+
+  const handlePointerMove = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    if (isRotating) {
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+
+      const delta = (clientX - lastX.current) / viewport.width;
+
+      forest.current.rotation.y += delta * 0.01 * Math.PI;
+
+      lastX.current = clientX;
+
+      rotationSpeed.current = delta * 0.01 * Math.PI;
+    }
+  };
+
+  useEffect(() => {
+    const canvas = gl.domElement;
+    canvas.addEventListener('pointerdown', handlePointerDown);
+    canvas.addEventListener('pointerup', handlePointerUp);
+    canvas.addEventListener('pointermove', handlePointerMove);
+
+    return () => {
+      canvas.removeEventListener('pointerdown', handlePointerDown);
+      canvas.removeEventListener('pointerup', handlePointerUp);
+      canvas.removeEventListener('pointermove', handlePointerMove);
+      canvas.removeEventListener('touchstart', handlePointerDown);
+    };
+  }, [gl, handlePointerDown, handlePointerUp, handlePointerMove]);
+
   return (
     <group
-      ref={group}
+      ref={forest}
       {...props}
       dispose={null}
     >

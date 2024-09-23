@@ -6,6 +6,8 @@ import sakura from '../assets/sakura.mp3';
 import soundon from '../assets/icons/soundon.png';
 import soundoff from '../assets/icons/soundoff.png';
 import SpaceCamping from '../models/SpaceCamping.jsx';
+import Forest from '../models/Forest.jsx';
+import Wolf from '../models/Wolf.jsx';
 
 const Home = () => {
   const audioRef = useRef(new Audio(sakura));
@@ -27,8 +29,8 @@ const Home = () => {
 
   const adjustIslandForScreenSize = () => {
     let screenScale = null;
-    let screenPosition = [0, 0, 0];
-    let rotation = [0, 0, 0];
+    let screenPosition = [0, -2, -20];
+    let rotation = [0.2, -1.1, 0];
     if (window.innerWidth < 768) {
       screenScale = [0.8, 0.8, 0.8];
     } else {
@@ -43,8 +45,8 @@ const Home = () => {
       screenScale = [1.5, 1.5, 1.5];
       screenPosition = [0, -1.5, 0];
     } else {
-      screenScale = [3, 3, 3];
-      screenPosition = [0, -4, -4];
+      screenScale = [0.4, 0.4, 0.4];
+      screenPosition = [0, -4, -1.5];
     }
     return [screenScale, screenPosition];
   };
@@ -87,7 +89,7 @@ const Home = () => {
           />
           {/*<Bird />*/}
           {/*<Sky isRotating={isRotating} />*/}
-          <SpaceCamping
+          <Forest
             position={islandPosition}
             scale={islandScale}
             rotation={islandRotation}
@@ -95,12 +97,12 @@ const Home = () => {
             setIsRotating={setIsRotating}
             setCurrentStage={setCurrentStage}
           />
-          {/*<Plane*/}
-          {/*  isRotating={isRotating}*/}
-          {/*  position={planePosition}*/}
-          {/*  scale={planeScale}*/}
-          {/*  rotation={[0, 20, 0]}*/}
-          {/*/>*/}
+          <Wolf
+            isRotating={isRotating}
+            position={planePosition}
+            scale={planeScale}
+            rotation={[0, 20.5, 0]}
+          />
         </Suspense>
       </Canvas>
       <div className="absolute bottom-2 left-2">

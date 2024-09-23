@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import { useAnimations, useGLTF } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
 
-const SpaceCamping = ({ isRotating, setIsRotating, setCurrentStage, ...props}) => {
+const SpaceCamping = ({ isRotating, setIsRotating, setCurrentStage, ...props }) => {
   const spaceCampingRef = useRef();
   const { nodes, materials, animations } = useGLTF(spaceCampingScene);
   const { actions } = useAnimations(animations, spaceCampingRef);
@@ -116,6 +116,7 @@ const SpaceCamping = ({ isRotating, setIsRotating, setCurrentStage, ...props}) =
                   receiveShadow
                   geometry={nodes.Object_6.geometry}
                   material={materials.moon}
+                  rotation={[-0.107, 0, 0]}
                 />
               </group>
               <group
