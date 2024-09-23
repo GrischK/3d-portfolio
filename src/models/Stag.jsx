@@ -57,6 +57,8 @@ export function Stag(props) {
               geometry={nodes.Stag_2.geometry}
               material={materials.Material}
               skeleton={nodes.Stag_2.skeleton}
+              material-roughness={0.8} // Augmenter la rugosité pour réduire la brillance
+              material-metalness={0.1}
             />
             <skinnedMesh
               name="Stag_3"
