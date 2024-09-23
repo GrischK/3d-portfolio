@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from 'react';
-import { useAnimations, useGLTF } from '@react-three/drei';
+import { Environment, useAnimations, useGLTF } from '@react-three/drei';
 import camping from '../assets/3d/camping.glb';
-import spaceCampingScene from '../assets/3d/space_camping.glb';
 import { useFrame, useThree } from '@react-three/fiber';
+import BackPack from './BackPack.jsx';
+import ChairMugLamp from './ChairMugLamp.jsx';
 
 export function Forest({ isRotating, setIsRotating, setCurrentStage, ...props }) {
   const forest = useRef();
@@ -96,7 +97,7 @@ export function Forest({ isRotating, setIsRotating, setCurrentStage, ...props })
         case normalizedRotation >= 1.1 && normalizedRotation <= 1.5:
           setCurrentStage(4);
           break;
-        case normalizedRotation >= 2.35 && normalizedRotation <= 2.75:
+        case normalizedRotation >= 2.75 && normalizedRotation <= 3.15:
           setCurrentStage(3);
           break;
         case normalizedRotation >= 3.8 && normalizedRotation <= 4.2:
@@ -3949,6 +3950,16 @@ export function Forest({ isRotating, setIsRotating, setCurrentStage, ...props })
                 </group>
               </group>
             </group>
+            <BackPack
+              position={[10, -0.5, -8]}
+              rotation={[0, 2, 0]}
+              scale={1.4}
+            />
+            <ChairMugLamp
+              position={[-8, -1.5, -12]}
+              rotation={[0, -2, 0]}
+              scale={0.01}
+            />
           </group>
         </group>
       </group>
@@ -3956,5 +3967,5 @@ export function Forest({ isRotating, setIsRotating, setCurrentStage, ...props })
   );
 }
 
-useGLTF.preload('/camping_buscraft_ambience.glb');
+useGLTF.preload('../assets/3d/camping.glb');
 export default Forest;

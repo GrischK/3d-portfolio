@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber';
-import { Suspense, useEffect, useRef, useState } from 'react';
+import React, { Suspense, useEffect, useRef, useState } from 'react';
 import Loader from '../components/Loader.jsx';
 import HomeInfo from '../components/HomeInfo.jsx';
 import sakura from '../assets/sakura.mp3';
@@ -8,6 +8,8 @@ import soundoff from '../assets/icons/soundoff.png';
 import SpaceCamping from '../models/SpaceCamping.jsx';
 import Forest from '../models/Forest.jsx';
 import Wolf from '../models/Wolf.jsx';
+import BackPack from '../models/BackPack.jsx';
+import { Environment } from '@react-three/drei';
 
 const Home = () => {
   const audioRef = useRef(new Audio(sakura));
@@ -130,7 +132,7 @@ const Home = () => {
             isRotating={isRotating}
             setIsRotating={setIsRotating}
             setCurrentStage={setCurrentStage}
-          />
+          ></Forest>
           <Wolf
             isRotating={isRotating}
             position={planePosition}
