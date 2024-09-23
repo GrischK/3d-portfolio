@@ -10,6 +10,7 @@ export function Eagle(props) {
   console.log('action', actions);
   useEffect(() => {
     actions['Armature|ArmatureAction'].play();
+    actions['Armature|ArmatureAction'].setEffectiveTimeScale(2);
   }, []);
 
   useFrame(({ clock, camera }) => {
