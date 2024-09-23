@@ -10,6 +10,7 @@ import Forest from '../models/Forest.jsx';
 import Wolf from '../models/Wolf.jsx';
 import BackPack from '../models/BackPack.jsx';
 import { Environment } from '@react-three/drei';
+import Eagle from '../models/Eagle.jsx';
 
 const Home = () => {
   const audioRef = useRef(new Audio(sakura));
@@ -123,7 +124,7 @@ const Home = () => {
             groundColor="#000000"
             intensity={1}
           />
-          {/*<Bird />*/}
+          <Eagle scale={[0.01, 0.01, 0.01]} />
           {/*<Sky isRotating={isRotating} />*/}
           <Forest
             position={islandPosition}
