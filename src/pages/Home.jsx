@@ -82,8 +82,8 @@ const Home = () => {
       screenScale = [1.5, 1.5, 1.5];
       screenPosition = [0, -1.5, 0];
     } else {
-      screenScale = [0.4, 0.4, 0.4];
-      screenPosition = [0, -4, -0.7];
+      screenScale = [0.5, 0.5, 0.5];
+      screenPosition = [0, -4, 3.6];
     }
     return [screenScale, screenPosition];
   };
@@ -101,7 +101,12 @@ const Home = () => {
         className={`w-full h-screen bg-transparent ${
           isRotating ? 'cursor-grabbing' : 'cursor-grab'
         }`}
-        camera={{ near: 0.1, far: 1000 }}
+        // camera={{ near: 0.1, far: 1000 }}
+        shadows
+        camera={{
+          position: [0, 0, 14],
+          fov: 47
+        }}
       >
         <Suspense fallback={<Loader />}>
           <directionalLight
@@ -123,6 +128,10 @@ const Home = () => {
             skyColor="#b1e1ff"
             groundColor="#000000"
             intensity={1}
+          />
+          <fog
+            attach="fog"
+            args={['#dfd6c6', 40, 50]}
           />
           <Eagle scale={[0.01, 0.01, 0.01]} />
           {/*<Sky isRotating={isRotating} />*/}

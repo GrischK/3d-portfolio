@@ -1,5 +1,4 @@
 import {
-  Box,
   CameraControls,
   Environment,
   Float,
@@ -14,9 +13,6 @@ import { degToRad } from 'maath/misc';
 import { Suspense, useEffect, useRef, useState } from 'react';
 import Loader from './Loader.jsx';
 import Husky from '../models/Husky.jsx';
-import { Bloom, EffectComposer } from '@react-three/postprocessing';
-import { Color } from 'three';
-import { mx_gradient_float_1 } from 'three/src/nodes/materialx/lib/mx_noise.js';
 
 const HeroSection = () => {
   const controls = useRef();
