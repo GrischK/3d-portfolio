@@ -6,19 +6,37 @@ export function Stag(props) {
   const stagRef = useRef();
   const { nodes, materials, animations } = useGLTF(stagScene);
   const { actions } = useAnimations(animations, stagRef);
-
+  console.log(actions);
   useEffect(() => {
-    console.log(actions);
-    const currentAction = actions['Idle'];
+    const actionsArray = [
+      actions['Idle'],
+      actions['Eating'],
+      actions['Idle_2'],
+      actions['Idle_Headlow'],
+      actions['Idle_2']
+    ];
+    let currentIndex = 0;
 
-    if (currentAction) {
-      // Lancer l'animation
-      currentAction.reset().fadeIn(0.5).play();
-    }
+    const switchAction = () => {
+      const currentAction = actionsArray[currentIndex];
+      const nextAction = actionsArray[(currentIndex + 1) % actionsArray.length];
 
+      currentAction.fadeOut(0.5);
+      nextAction.reset().fadeIn(0.5).play();
+
+      currentIndex = (currentIndex + 1) % actionsArray.length;
+    };
+
+    // Démarrer la première action
+    actionsArray[currentIndex].reset().fadeIn(0.5).play();
+
+    // Alterner toutes les 5 secondes
+    const interval = setInterval(switchAction, 5000);
+
+    // Nettoyage à la fin
     return () => {
-      // Arrêter l'animation proprement lors du démontage du composant
-      if (currentAction) currentAction.fadeOut(0.5);
+      clearInterval(interval);
+      actionsArray.forEach((action) => action.stop());
     };
   }, [actions]);
 
