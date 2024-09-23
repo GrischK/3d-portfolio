@@ -4,6 +4,7 @@ import camping from '../assets/3d/camping.glb';
 import { useFrame, useThree } from '@react-three/fiber';
 import BackPack from './BackPack.jsx';
 import ChairMugLamp from './ChairMugLamp.jsx';
+import { Stag } from './Stag.jsx';
 
 export function Forest({ isRotating, setIsRotating, setCurrentStage, ...props }) {
   const forest = useRef();
@@ -3959,6 +3960,10 @@ export function Forest({ isRotating, setIsRotating, setCurrentStage, ...props })
               position={[-8, -1.5, -12]}
               rotation={[0, -2, 0]}
               scale={0.01}
+            />
+            <Stag
+              position={[-13.5, -1.5, 5.5]}
+              rotation={[0, -2.8, 0]}
             />
           </group>
         </group>
