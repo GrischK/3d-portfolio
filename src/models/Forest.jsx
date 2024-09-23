@@ -52,12 +52,15 @@ export function Forest({ isRotating, setIsRotating, setCurrentStage, ...props })
     if (isRotating) {
       const clientX = e.touches ? e.touches[0].clientX : e.clientX;
 
+      // Déterminer le delta de mouvement
       const delta = (clientX - lastX.current) / viewport.width;
 
-      forest.current.rotation.y += delta * 0.01 * Math.PI;
+      // Ne permettre que la rotation vers la droite (si delta est positif)
+      if (delta < 0) {
+        forest.current.rotation.y += delta * 0.01 * Math.PI;
+      }
 
       lastX.current = clientX;
-
       rotationSpeed.current = delta * 0.01 * Math.PI;
     }
   };

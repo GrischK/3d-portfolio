@@ -5,11 +5,7 @@ import HomeInfo from '../components/HomeInfo.jsx';
 import sakura from '../assets/sakura.mp3';
 import soundon from '../assets/icons/soundon.png';
 import soundoff from '../assets/icons/soundoff.png';
-import SpaceCamping from '../models/SpaceCamping.jsx';
 import Forest from '../models/Forest.jsx';
-import Wolf from '../models/Wolf.jsx';
-import BackPack from '../models/BackPack.jsx';
-import { Environment } from '@react-three/drei';
 import Eagle from '../models/Eagle.jsx';
 import GermanShepard from '../models/GermanShepard.jsx';
 
@@ -135,7 +131,6 @@ const Home = () => {
             args={['#dfd6c6', 40, 50]}
           />
           <Eagle scale={[0.01, 0.01, 0.01]} />
-          {/*<Sky isRotating={isRotating} />*/}
           <Forest
             position={islandPosition}
             scale={islandScale}
