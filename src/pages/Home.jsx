@@ -11,6 +11,7 @@ import Wolf from '../models/Wolf.jsx';
 import BackPack from '../models/BackPack.jsx';
 import { Environment } from '@react-three/drei';
 import Eagle from '../models/Eagle.jsx';
+import GermanShepard from '../models/GermanShepard.jsx';
 
 const Home = () => {
   const audioRef = useRef(new Audio(sakura));
@@ -82,7 +83,7 @@ const Home = () => {
       screenScale = [1.5, 1.5, 1.5];
       screenPosition = [0, -1.5, 0];
     } else {
-      screenScale = [0.5, 0.5, 0.5];
+      screenScale = [1.2, 1.2, 1.2];
       screenPosition = [0, -4, 3.6];
     }
     return [screenScale, screenPosition];
@@ -143,7 +144,7 @@ const Home = () => {
             setIsRotating={setIsRotating}
             setCurrentStage={setCurrentStage}
           ></Forest>
-          <Wolf
+          <GermanShepard
             isRotating={isRotating}
             position={planePosition}
             scale={planeScale}

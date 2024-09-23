@@ -43,7 +43,7 @@ export function Eagle(props) {
       ref={eagleRef}
       {...props}
       dispose={null}
-      position={[-5, 2, 1]}
+      position={[-5, 15, 10]}
     >
       <group name="Sketchfab_Scene">
         <group
