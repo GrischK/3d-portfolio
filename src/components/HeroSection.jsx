@@ -5,7 +5,8 @@ import {
   Float,
   MeshReflectorMaterial,
   RenderTexture,
-  Text
+  Text,
+  useFont
 } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { Winter } from '../models/Winter.jsx';
@@ -24,11 +25,11 @@ const HeroSection = () => {
 
   // Comment for testing
   // const intro = async () => {
-  //   controls.current.dolly(-22);
+  //   controls.current.dolly(-42);
   //   controls.current.smoothTime = 1.6;
-  //
-  //   // controls.current.dolly(22, true);
-  //   // fitCamera();
+
+  // controls.current.dolly(22, true);
+  // fitCamera();
   // };
 
   useEffect(() => {
@@ -42,9 +43,6 @@ const HeroSection = () => {
       }
     }, 400);
   }, []);
-
-  const bloomColor = new Color('#fff');
-  bloomColor.multiplyScalar(1.5);
 
   const fitCamera = async () => {
     controls.current.fitToBox(meshFitCameraHeroSection.current, true);
@@ -89,7 +87,11 @@ const HeroSection = () => {
           args={['#171720', 10, 30]}
         />
 
-        <CameraControls ref={controls} />
+        <CameraControls
+          ref={controls}
+          minPolarAngle={degToRad(20)}
+          maxPolarAngle={degToRad(90)}
+        />
         {isActive && (
           <>
             <mesh
@@ -114,9 +116,9 @@ const HeroSection = () => {
               rotation-y={degToRad(30)}
               // anchorY={'bottom'}
             >
-              DIVE IN{'\n'}MY WORLD
+              DIVE INTO{'\n'}MY WORLD
               <meshBasicMaterial
-                color={bloomColor}
+                color={'#fff'}
                 toneMapped={false}
               >
                 <RenderTexture attach={'map'}>
@@ -173,5 +175,7 @@ const HeroSection = () => {
     </Canvas>
   );
 };
+
+useFont.preload('fonts/Poppins-Black.ttf');
 
 export default HeroSection;
