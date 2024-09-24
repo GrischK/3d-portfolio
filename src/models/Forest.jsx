@@ -14,6 +14,7 @@ import Smoke from './Smoke.jsx';
 import Pug from './Pug.jsx';
 import Raccoon from './Racoon.jsx';
 import StaticFox, { AnimatedFox } from './AnimatedFox.jsx';
+import Mailbox from './MailBox.jsx';
 
 export function Forest({ isRotating, setIsRotating, setCurrentStage, ...props }) {
   const forest = useRef();
@@ -3991,8 +3992,13 @@ export function Forest({ isRotating, setIsRotating, setCurrentStage, ...props })
               scale={0.03}
             />
             <Stag
-              position={[-13.5, -1.5, 5.5]}
+              position={[-14, -2, 5.5]}
               rotation={[0, -2.8, 0]}
+            />
+            <Mailbox
+              position={[-12.5, -2, 8.5]}
+              rotation={[0, -1, 0]}
+              scale={2.8}
             />
             <Kayak
               scale={1.8}
