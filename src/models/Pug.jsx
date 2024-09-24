@@ -6,7 +6,6 @@ export function Pug(props) {
   const pugRef = useRef();
   const { nodes, materials, animations } = useGLTF(pugScene);
   const { actions } = useAnimations(animations, pugRef);
-  console.log(actions);
 
   useEffect(() => {
     const actionsArray = [

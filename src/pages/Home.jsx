@@ -2,7 +2,7 @@ import { Canvas } from '@react-three/fiber';
 import React, { Suspense, useEffect, useRef, useState } from 'react';
 import Loader from '../components/Loader.jsx';
 import HomeInfo from '../components/HomeInfo.jsx';
-import sakura from '../assets/sakura.mp3';
+import acoustic from '../assets/acoustic_journey.mp3';
 import soundon from '../assets/icons/soundon.png';
 import soundoff from '../assets/icons/soundoff.png';
 import Forest from '../models/Forest.jsx';
@@ -12,7 +12,7 @@ import Kayak from '../models/Kayak.jsx';
 import Frog from '../models/Frog.jsx';
 
 const Home = () => {
-  const audioRef = useRef(new Audio(sakura));
+  const audioRef = useRef(new Audio(acoustic));
   audioRef.current.volume = 0.4;
   audioRef.current.loop = true;
 
