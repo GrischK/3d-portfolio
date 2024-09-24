@@ -112,7 +112,7 @@ export function Forest({ isRotating, setIsRotating, setCurrentStage, ...props })
         case normalizedRotation >= 2.4 && normalizedRotation <= 2.8:
           setCurrentStage(3);
           break;
-        case normalizedRotation >= 3.8 && normalizedRotation <= 4.2:
+        case normalizedRotation >= 3.9 && normalizedRotation <= 4.3:
           setCurrentStage(2);
           break;
         case normalizedRotation >= 5.15 && normalizedRotation <= 5.55:
@@ -3963,7 +3963,7 @@ export function Forest({ isRotating, setIsRotating, setCurrentStage, ...props })
               </group>
             </group>
             <BackPack
-              position={[10, -0.5, -8]}
+              position={[12, -1.5, -8]}
               rotation={[0, 2, 0]}
               scale={1.4}
             />
