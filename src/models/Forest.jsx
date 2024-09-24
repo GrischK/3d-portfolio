@@ -109,7 +109,7 @@ export function Forest({ isRotating, setIsRotating, setCurrentStage, ...props })
         case normalizedRotation >= 1.1 && normalizedRotation <= 1.5:
           setCurrentStage(4);
           break;
-        case normalizedRotation >= 2.75 && normalizedRotation <= 3.15:
+        case normalizedRotation >= 2.4 && normalizedRotation <= 2.8:
           setCurrentStage(3);
           break;
         case normalizedRotation >= 3.8 && normalizedRotation <= 4.2:
