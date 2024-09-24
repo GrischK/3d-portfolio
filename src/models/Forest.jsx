@@ -15,6 +15,7 @@ import Pug from './Pug.jsx';
 import Raccoon from './Racoon.jsx';
 import StaticFox, { AnimatedFox } from './AnimatedFox.jsx';
 import Mailbox from './MailBox.jsx';
+import LogAxe from './LogAxe.jsx';
 
 export function Forest({ isRotating, setIsRotating, setCurrentStage, ...props }) {
   const forest = useRef();
@@ -3967,9 +3968,14 @@ export function Forest({ isRotating, setIsRotating, setCurrentStage, ...props })
               </group>
             </group>
             <BackPack
-              position={[12, -1.5, -8]}
+              position={[12.5, -2, -8]}
               rotation={[0, 2, 0]}
               scale={1.4}
+            />
+            <LogAxe
+              position={[11.5, -1.5, -9.5]}
+              rotation={[0, 0, 0]}
+              scale={8}
             />
             <ChairMugLamp
               position={[-8, -1.5, -12]}
