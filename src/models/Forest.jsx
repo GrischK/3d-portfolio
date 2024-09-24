@@ -3999,7 +3999,7 @@ export function Forest({ isRotating, setIsRotating, setCurrentStage, ...props })
             <Frog
               scale={0.17}
               position={[-3, -1.6, 14.2]}
-              rotation={[0, -1, 0]}
+              rotation={[0, -1.6, 0]}
             />
             <Smoke
               scale={5}

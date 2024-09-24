@@ -1,11 +1,15 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useGLTF, useAnimations } from '@react-three/drei';
 import frogScene from '../assets/3d/frog.glb';
+import { useFrame } from '@react-three/fiber';
+import * as THREE from 'three';
 
 export function Frog(props) {
   const frogRef = useRef();
   const { nodes, materials, animations } = useGLTF(frogScene);
   const { actions } = useAnimations(animations, frogRef);
+  const [direction, setDirection] = useState(1); // 1 = vers la gauche, -1 = vers la droite
+  const [targetRotation, setTargetRotation] = useState(-1.6); // Rotation initiale de la grenouille
 
   useEffect(() => {
     const currentAction = actions['FrogArmature|Frog_Jump'];
@@ -18,6 +22,31 @@ export function Frog(props) {
       if (currentAction) currentAction.fadeOut(0.5);
     };
   }, [actions]);
+
+  useFrame(() => {
+    if (frogRef.current) {
+      const posX = frogRef.current.position.x;
+
+      // Vérifie les limites du mouvement
+      if (posX <= -6) {
+        setDirection(1); // Change de direction vers la droite
+        setTargetRotation(1.6); // Définir la rotation cible vers la droite
+      } else if (posX >= -3) {
+        setDirection(-1); // Change de direction vers la gauche
+        setTargetRotation(-1.6); // Définir la rotation cible vers la gauche
+      }
+
+      // Interpolation fluide de la rotation
+      frogRef.current.rotation.y = THREE.MathUtils.lerp(
+        frogRef.current.rotation.y,
+        targetRotation,
+        0.1 // Modifier ce facteur pour une interpolation plus ou moins rapide
+      );
+
+      // Mise à jour la position de la grenouille
+      frogRef.current.position.x += 0.01 * direction;
+    }
+  });
 
   return (
     <group
