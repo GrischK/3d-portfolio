@@ -6,6 +6,11 @@ import BackPack from './BackPack.jsx';
 import ChairMugLamp from './ChairMugLamp.jsx';
 import { Stag } from './Stag.jsx';
 import Kayak from './Kayak.jsx';
+import Frog from './Frog.jsx';
+import WoodLog from './WoodLog.jsx';
+import SaladBowl from './SaladBowl.jsx';
+import SodaCan from './SodaCan.jsx';
+import Smoke from './Smoke.jsx';
 
 export function Forest({ isRotating, setIsRotating, setCurrentStage, ...props }) {
   const forest = useRef();
@@ -3967,6 +3972,21 @@ export function Forest({ isRotating, setIsRotating, setCurrentStage, ...props })
               rotation={[0, -2, 0]}
               scale={0.01}
             />
+            <WoodLog
+              position={[-10, -1.5, -10]}
+              rotation={[0, -2, 0]}
+              scale={1}
+            />
+            <SaladBowl
+              position={[-9.7, -0.4, -10.7]}
+              rotation={[0, -2, 0]}
+              scale={0.5}
+            />
+            <SodaCan
+              position={[-9.3, -0.45, -11.4]}
+              rotation={[0, -2, 0]}
+              scale={0.03}
+            />
             <Stag
               position={[-13.5, -1.5, 5.5]}
               rotation={[0, -2.8, 0]}
@@ -3975,6 +3995,15 @@ export function Forest({ isRotating, setIsRotating, setCurrentStage, ...props })
               scale={1.8}
               position={[-4.2, 0, 11.2]}
               rotation={[6.6, 20.1, 0]}
+            />
+            <Frog
+              scale={0.17}
+              position={[-3, -1.6, 14.2]}
+              rotation={[0, -1, 0]}
+            />
+            <Smoke
+              scale={5}
+              position={[2, 2.6, 2]}
             />
           </group>
         </group>

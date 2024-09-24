@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useGLTF, useAnimations } from '@react-three/drei';
 import backPackScene from '../assets/3d/backPack.glb';
 
@@ -6,6 +6,19 @@ export function BackPack(props) {
   const backPackRef = useRef();
   const { nodes, materials, animations } = useGLTF(backPackScene);
   const { actions } = useAnimations(animations, backPackRef);
+
+  useEffect(() => {
+    const currentAction = actions['Take 001'];
+
+    if (currentAction) {
+      currentAction.reset().fadeIn(0.5).play();
+    }
+
+    return () => {
+      if (currentAction) currentAction.fadeOut(0.5);
+    };
+  }, [actions]);
+
   return (
     <group
       ref={backPackRef}

@@ -21,7 +21,7 @@ export function GermanShepard({ isRotating, speed, ...props }) {
       idleAction.reset().fadeIn(0.5).play();
     }
 
-    console.log(speed);
+    // console.log(speed);
   }, [actions, isRotating, speed]);
 
   return (

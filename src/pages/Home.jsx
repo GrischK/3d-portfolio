@@ -9,6 +9,7 @@ import Forest from '../models/Forest.jsx';
 import Eagle from '../models/Eagle.jsx';
 import GermanShepard from '../models/GermanShepard.jsx';
 import Kayak from '../models/Kayak.jsx';
+import Frog from '../models/Frog.jsx';
 
 const Home = () => {
   const audioRef = useRef(new Audio(sakura));
