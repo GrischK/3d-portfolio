@@ -10,12 +10,14 @@ export function Frog(props) {
   const { actions } = useAnimations(animations, frogRef);
   const [direction, setDirection] = useState(1); // 1 = vers la gauche, -1 = vers la droite
   const [targetRotation, setTargetRotation] = useState(-1.6); // Rotation initiale de la grenouille
+  const [isJumping, setIsJumping] = useState(false);
 
   useEffect(() => {
     const currentAction = actions['FrogArmature|Frog_Jump'];
 
     if (currentAction) {
       currentAction.reset().fadeIn(0.5).play();
+      currentAction.setLoop(THREE.LoopRepeat, Infinity);
     }
 
     return () => {
@@ -24,27 +26,39 @@ export function Frog(props) {
   }, [actions]);
 
   useFrame(() => {
-    if (frogRef.current) {
+    const currentAction = actions['FrogArmature|Frog_Jump'];
+    if (frogRef.current && currentAction) {
+      const progress = currentAction.time / currentAction.getClip().duration; // Progression de l'animation (entre 0 et 1)
+
+      // La grenouille saute entre 0.2 et 0.8 de l'animation
+      if (progress > 0.2 && progress < 0.8) {
+        setIsJumping(true);
+      } else {
+        setIsJumping(false);
+      }
+
       const posX = frogRef.current.position.x;
 
-      // Vérifie les limites du mouvement
-      if (posX <= -6) {
+      // Vérifie les limites du mouvement et change la direction
+      if (posX <= -6.5) {
         setDirection(1); // Change de direction vers la droite
-        setTargetRotation(1.6); // Définir la rotation cible vers la droite
+        setTargetRotation(1.6); // Tourner à droite
       } else if (posX >= -3) {
         setDirection(-1); // Change de direction vers la gauche
-        setTargetRotation(-1.6); // Définir la rotation cible vers la gauche
+        setTargetRotation(-1.6); // Tourner à gauche
       }
 
       // Interpolation fluide de la rotation
       frogRef.current.rotation.y = THREE.MathUtils.lerp(
         frogRef.current.rotation.y,
         targetRotation,
-        0.1 // Modifier ce facteur pour une interpolation plus ou moins rapide
+        0.1 // Ajuste la vitesse de rotation
       );
 
-      // Mise à jour la position de la grenouille
-      frogRef.current.position.x += 0.01 * direction;
+      // La grenouille n'avance que lorsque l'animation de saut est active
+      if (isJumping) {
+        frogRef.current.position.x += 0.01 * direction;
+      }
     }
   });
 
