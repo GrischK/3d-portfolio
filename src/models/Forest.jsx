@@ -11,6 +11,7 @@ import WoodLog from './WoodLog.jsx';
 import SaladBowl from './SaladBowl.jsx';
 import SodaCan from './SodaCan.jsx';
 import Smoke from './Smoke.jsx';
+import Pug from './Pug.jsx';
 
 export function Forest({ isRotating, setIsRotating, setCurrentStage, ...props }) {
   const forest = useRef();
@@ -4004,6 +4005,11 @@ export function Forest({ isRotating, setIsRotating, setCurrentStage, ...props })
             <Smoke
               scale={5}
               position={[3, 3, 1]}
+            />
+            <Pug
+              scale={1.6}
+              position={[9, 0, 5]}
+              rotation={[0, 1.1, 0]}
             />
           </group>
         </group>

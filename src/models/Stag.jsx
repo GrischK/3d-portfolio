@@ -6,7 +6,7 @@ export function Stag(props) {
   const stagRef = useRef();
   const { nodes, materials, animations } = useGLTF(stagScene);
   const { actions } = useAnimations(animations, stagRef);
-  console.log(actions);
+
   useEffect(() => {
     const actionsArray = [
       actions['Idle'],
