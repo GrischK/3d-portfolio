@@ -4003,7 +4003,7 @@ export function Forest({ isRotating, setIsRotating, setCurrentStage, ...props })
             />
             <Smoke
               scale={5}
-              position={[2, 2.6, 2]}
+              position={[3, 3, 1]}
             />
           </group>
         </group>
