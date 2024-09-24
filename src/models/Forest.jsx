@@ -12,6 +12,8 @@ import SaladBowl from './SaladBowl.jsx';
 import SodaCan from './SodaCan.jsx';
 import Smoke from './Smoke.jsx';
 import Pug from './Pug.jsx';
+import Raccoon from './Racoon.jsx';
+import StaticFox, { AnimatedFox } from './AnimatedFox.jsx';
 
 export function Forest({ isRotating, setIsRotating, setCurrentStage, ...props }) {
   const forest = useRef();
@@ -4010,6 +4012,16 @@ export function Forest({ isRotating, setIsRotating, setCurrentStage, ...props })
               scale={1.6}
               position={[9, 0, 5]}
               rotation={[0, 1.1, 0]}
+            />
+            <Raccoon
+              scale={0.4}
+              position={[3, 0, -8]}
+              rotation={[0, 2.8, 0]}
+            />
+            <AnimatedFox
+              scale={0.5}
+              position={[-2, 0, -7]}
+              rotation={[0.2, 3.6, 0.1]}
             />
           </group>
         </group>
