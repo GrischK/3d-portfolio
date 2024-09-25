@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Environment, useAnimations, useGLTF } from '@react-three/drei';
+import { useAnimations, useGLTF } from '@react-three/drei';
 import camping from '../assets/3d/camping.glb';
 import { useFrame, useThree } from '@react-three/fiber';
 import BackPack from './BackPack.jsx';
@@ -109,12 +109,16 @@ export function Forest({ isRotating, setIsRotating, setCurrentStage, ...props })
       const rotation = forest.current.rotation.y;
 
       const normalizedRotation = ((rotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+      console.log('normalizedRotation', normalizedRotation);
       // Set the current stage based on the island's orientation
       switch (true) {
-        case normalizedRotation >= 1.1 && normalizedRotation <= 1.5:
+        case normalizedRotation >= 0.2 && normalizedRotation <= 0.6:
+          setCurrentStage(5);
+          break;
+        case normalizedRotation >= 1.4 && normalizedRotation <= 1.8:
           setCurrentStage(4);
           break;
-        case normalizedRotation >= 2.4 && normalizedRotation <= 2.8:
+        case normalizedRotation >= 2.6 && normalizedRotation <= 3:
           setCurrentStage(3);
           break;
         case normalizedRotation >= 3.9 && normalizedRotation <= 4.3:
@@ -3978,32 +3982,32 @@ export function Forest({ isRotating, setIsRotating, setCurrentStage, ...props })
               scale={8}
             />
             <ChairMugLamp
-              position={[-8, -1.5, -12]}
-              rotation={[0, -2, 0]}
+              position={[-3, -1.5, -15]}
+              rotation={[0, -2.2, 0]}
               scale={0.01}
             />
             <WoodLog
-              position={[-10, -1.5, -10]}
-              rotation={[0, -2, 0]}
+              position={[-5.7, -1.5, -14.2]}
+              rotation={[0, -2.7, 0]}
               scale={1}
             />
             <SaladBowl
-              position={[-9.7, -0.4, -10.7]}
+              position={[-4.7, -0.4, -14.7]}
               rotation={[0, -2, 0]}
               scale={0.5}
             />
             <SodaCan
-              position={[-9.3, -0.45, -11.4]}
+              position={[-5.3, -0.6, -14.4]}
               rotation={[0, -2, 0]}
               scale={0.03}
             />
             <Stag
-              position={[-14, -2, 5.5]}
-              rotation={[0, -2.8, 0]}
+              position={[-14.8, -2, 0.5]}
+              rotation={[0, -3.2, 0]}
             />
             <Mailbox
-              position={[-12.5, -2, 8.5]}
-              rotation={[0, -1, 0]}
+              position={[-14.5, -2, 4]}
+              rotation={[0, -1.5, 0]}
               scale={2.8}
             />
             <Kayak

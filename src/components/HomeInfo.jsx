@@ -46,6 +46,13 @@ const renderContent = {
       link="/contact"
       btnText="Let's talk"
     />
+  ),
+  5: (
+    <InfoBox
+      text="Looking to experiment with some fun animations and interactive 3D? Here is my playground..."
+      link="/lab"
+      btnText="Dive into my lab"
+    />
   )
 };
 

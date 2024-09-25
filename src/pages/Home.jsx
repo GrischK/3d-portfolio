@@ -23,7 +23,6 @@ const Home = () => {
   const [speed, setSpeed] = useState(0);
 
   useEffect(() => {
-    console.log(isRotating);
     if (!isRotating) return; // Ne calcule pas la vitesse si la forêt ne tourne pas
 
     let lastPositionX = 0;
@@ -90,8 +89,8 @@ const Home = () => {
   const [islandScale, islandPosition, islandRotation] = adjustIslandForScreenSize();
 
   const [planeScale, planePosition] = adjustPlaneForScreenSize();
-  console.log(speed);
-
+  // console.log(speed);
+  console.log(currentStage);
   return (
     <section className="w-full h-screen relative bg-[#dfd6c6]">
       <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center ">
