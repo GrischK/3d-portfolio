@@ -1,4 +1,3 @@
-import { Html } from '@react-three/drei';
 import { useProgress } from '@react-three/drei';
 
 const Loader = ({ started, onStarted, isPlaying }) => {
@@ -7,7 +6,7 @@ const Loader = ({ started, onStarted, isPlaying }) => {
     isPlaying();
   };
 
-  const progress = useProgress;
+  const { progress } = useProgress();
   return (
     <div className={`loadingScreen ${started ? 'loadingScreen--started' : ''}`}>
       <div className="loadingScreen__board flex flex-col">
@@ -19,14 +18,6 @@ const Loader = ({ started, onStarted, isPlaying }) => {
           I'm Grischka, a Full-stack developer passionate about building efficient and intuitive
           applications with JavaScript, from React to Node, with TypeScript along the way.
         </p>
-        {/*<div className="loadingScreen__progress">*/}
-        {/*  <div*/}
-        {/*    className="loadingScreen__progress__value"*/}
-        {/*    style={{*/}
-        {/*      width: `${progress}%`*/}
-        {/*    }}*/}
-        {/*  />*/}
-        {/*</div>*/}
         <button
           className={`loadingScreen__button ${progress < 100 ? 'loadingScreen__button--isLoading' : ''}`}
           disabled={progress < 100}
