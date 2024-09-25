@@ -12,7 +12,7 @@ const About = () => {
       <div>
         <p className="mt-5 flex flex-col gap-3 text-slate-500">
           Software engineer based in Bordeaux (France), developing Javascript skills in Front-end &
-          back-end.
+          Back-end.
         </p>
       </div>
       <div className="py-10 flex flex-col">

@@ -12,6 +12,7 @@ import { Winter } from '../models/Winter.jsx';
 import { degToRad } from 'maath/misc';
 import { Suspense, useEffect, useRef, useState } from 'react';
 import Husky from '../models/Husky.jsx';
+import SpinLoader from './SpinLoader.jsx';
 
 const HeroSection = () => {
   const controls = useRef();
@@ -72,7 +73,7 @@ const HeroSection = () => {
       }}
       style={{ height: '100vh', width: '100vw' }}
     >
-      <Suspense fallback={null}>
+      <Suspense fallback={<SpinLoader />}>
         <color
           attach="background"
           args={['#171720']}
@@ -164,7 +165,6 @@ const HeroSection = () => {
             </mesh>
           </>
         )}
-
         <Environment preset="sunset" />
       </Suspense>
     </Canvas>
