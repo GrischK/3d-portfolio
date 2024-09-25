@@ -52,22 +52,22 @@ const Home = () => {
     };
   }, [isRotating, speed]);
 
-  useEffect(() => {
-    if (isPlayingMusic) {
-      audioRef.current.play();
-    }
-    return () => {
-      audioRef.current.pause();
-    };
-  }, [isPlayingMusic]);
+  // useEffect(() => {
+  //   if (isPlayingMusic) {
+  //     audioRef.current.play();
+  //   }
+  //   return () => {
+  //     audioRef.current.pause();
+  //   };
+  // }, [isPlayingMusic]);
 
-  useEffect(() => {
-    if (start) {
-      audioRef.current.play();
-    }
-  }, [start]);
+  // useEffect(() => {
+  //   if (start) {
+  //     audioRef.current.play();
+  //   }
+  // }, [start]);
 
-  const adjustIslandForScreenSize = () => {
+  const adjustCampingForScreenSize = () => {
     let screenScale = null;
     let screenPosition = [0, -2, -20];
     let rotation = [0.2, -1.1, 0];
@@ -79,7 +79,7 @@ const Home = () => {
     return [screenScale, screenPosition, rotation];
   };
 
-  const adjustPlaneForScreenSize = () => {
+  const adjustDogForScreenSize = () => {
     let screenScale, screenPosition;
     if (window.innerWidth < 768) {
       screenScale = [1.5, 1.5, 1.5];
@@ -91,9 +91,9 @@ const Home = () => {
     return [screenScale, screenPosition];
   };
 
-  const [islandScale, islandPosition, islandRotation] = adjustIslandForScreenSize();
+  const [campingScale, campingPosition, campingRotation] = adjustCampingForScreenSize();
 
-  const [planeScale, planePosition] = adjustPlaneForScreenSize();
+  const [dogScale, dogPosition] = adjustDogForScreenSize();
   // console.log(speed);
   console.log(currentStage);
   return (
@@ -141,17 +141,17 @@ const Home = () => {
               />
               <Eagle scale={[0.01, 0.01, 0.01]} />
               <Forest
-                position={islandPosition}
-                scale={islandScale}
-                rotation={islandRotation}
+                position={campingPosition}
+                scale={campingScale}
+                rotation={campingRotation}
                 isRotating={isRotating}
                 setIsRotating={setIsRotating}
                 setCurrentStage={setCurrentStage}
               />
               <GermanShepard
                 isRotating={isRotating}
-                position={planePosition}
-                scale={planeScale}
+                position={dogPosition}
+                scale={dogScale}
                 rotation={[0, 20.5, 0]}
                 speed={speed}
               />
