@@ -8,16 +8,15 @@ import soundoff from '../assets/icons/soundoff.png';
 import Forest from '../models/Forest.jsx';
 import Eagle from '../models/Eagle.jsx';
 import GermanShepard from '../models/GermanShepard.jsx';
-import Kayak from '../models/Kayak.jsx';
-import Frog from '../models/Frog.jsx';
 
 const Home = () => {
   const audioRef = useRef(new Audio(acoustic));
-  audioRef.current.volume = 0.4;
+  audioRef.current.volume = 0.3;
   audioRef.current.loop = true;
 
   const [isRotating, setIsRotating] = useState(false);
   const [currentStage, setCurrentStage] = useState(1);
+  const [start, setStart] = useState(false);
   const [isPlayingMusic, setIsPlayingMusic] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [speed, setSpeed] = useState(0);
@@ -61,6 +60,12 @@ const Home = () => {
       audioRef.current.pause();
     };
   }, [isPlayingMusic]);
+
+  useEffect(() => {
+    if (start) {
+      audioRef.current.play();
+    }
+  }, [start]);
 
   const adjustIslandForScreenSize = () => {
     let screenScale = null;
@@ -107,49 +112,58 @@ const Home = () => {
           fov: 47
         }}
       >
-        <Suspense fallback={<Loader />}>
-          <directionalLight
-            position={[1, 1, 1]}
-            intensity={2}
-          />
-          <ambientLight intensity={0.5} />
-          <pointLight
-            position={[10, 5, 10]}
-            intensity={2}
-          />
-          <spotLight
-            position={[0, 50, 10]}
-            angle={0.15}
-            penumbra={1}
-            intensity={2}
-          />
-          <hemisphereLight
-            skyColor="#b1e1ff"
-            groundColor="#000000"
-            intensity={1}
-          />
-          <fog
-            attach="fog"
-            args={['#dfd6c6', 40, 50]}
-          />
-          <Eagle scale={[0.01, 0.01, 0.01]} />
-          <Forest
-            position={islandPosition}
-            scale={islandScale}
-            rotation={islandRotation}
-            isRotating={isRotating}
-            setIsRotating={setIsRotating}
-            setCurrentStage={setCurrentStage}
-          />
-          <GermanShepard
-            isRotating={isRotating}
-            position={planePosition}
-            scale={planeScale}
-            rotation={[0, 20.5, 0]}
-            speed={speed}
-          />
+        <Suspense fallback={null}>
+          {start && (
+            <>
+              <directionalLight
+                position={[1, 1, 1]}
+                intensity={2}
+              />
+              <ambientLight intensity={0.5} />
+              <pointLight
+                position={[10, 5, 10]}
+                intensity={2}
+              />
+              <spotLight
+                position={[0, 50, 10]}
+                angle={0.15}
+                penumbra={1}
+                intensity={2}
+              />
+              <hemisphereLight
+                skyColor="#b1e1ff"
+                groundColor="#000000"
+                intensity={1}
+              />
+              <fog
+                attach="fog"
+                args={['#dfd6c6', 40, 50]}
+              />
+              <Eagle scale={[0.01, 0.01, 0.01]} />
+              <Forest
+                position={islandPosition}
+                scale={islandScale}
+                rotation={islandRotation}
+                isRotating={isRotating}
+                setIsRotating={setIsRotating}
+                setCurrentStage={setCurrentStage}
+              />
+              <GermanShepard
+                isRotating={isRotating}
+                position={planePosition}
+                scale={planeScale}
+                rotation={[0, 20.5, 0]}
+                speed={speed}
+              />
+            </>
+          )}
         </Suspense>
       </Canvas>
+      <Loader
+        started={start}
+        onStarted={() => setStart(true)}
+        isPlaying={() => setIsPlayingMusic(true)}
+      />
       <div className="absolute bottom-2 left-2">
         <img
           className="w-10 h-10 cursor-pointer object-contain"

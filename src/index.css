@@ -189,3 +189,69 @@ body:has(.card[data-color="green"]:hover) {
     box-shadow: 0.6vmin 0.6vmin #fff, 1vmin 1vmin #d2e4ff, 1vmin 1vmin #d2e4ff,
     0.65vmin 1vmin #d2e4ff, 1vmin 0.65vmin #d2e4ff;
 }
+
+.loadingScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #dfd6c6;
+    background-image: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 8s;
+    transition-delay: 1s;
+    z-index: 10;
+    font-family: "Poppins", serif;
+}
+
+.loadingScreen__board {
+    position: absolute;
+    width: 90%;
+    max-width: 1080px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+    justify-content: space-between;
+}
+
+.loadingScreen__button {
+    background: #1d3b16;
+    padding: 8px 32px;
+    color: white;
+    border: none;
+    font-weight: bold;
+    font-size: 2rem;
+    border-radius: 32px;
+    width: fit-content;
+    /*transition: background-color 0.4s;*/
+}
+
+.loadingScreen__button:hover {
+    background: #ef9d29;
+    color: #1d3b16;
+}
+
+.loadingScreen__button--isLoading:hover {
+    background-color: rgba(0, 0, 0, 0.42);
+    cursor: pointer;
+}
+
+.loadingScreen__board > button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.loadingScreen--started {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loadingScreen--started .loadingScreen__board {
+    opacity: 0;
+}
