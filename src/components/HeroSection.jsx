@@ -11,7 +11,6 @@ import { Canvas } from '@react-three/fiber';
 import { Winter } from '../models/Winter.jsx';
 import { degToRad } from 'maath/misc';
 import { Suspense, useEffect, useRef, useState } from 'react';
-import Loader from './Loader.jsx';
 import Husky from '../models/Husky.jsx';
 
 const HeroSection = () => {
@@ -73,7 +72,7 @@ const HeroSection = () => {
       }}
       style={{ height: '100vh', width: '100vw' }}
     >
-      <Suspense fallback={<Loader />}>
+      <Suspense fallback={null}>
         <color
           attach="background"
           args={['#171720']}
