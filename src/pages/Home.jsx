@@ -52,6 +52,7 @@ const Home = () => {
     };
   }, [isRotating, speed]);
 
+  // TODO: commented for test, uncomment when deploying
   // useEffect(() => {
   //   if (isPlayingMusic) {
   //     audioRef.current.play();
