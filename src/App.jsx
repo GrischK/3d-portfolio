@@ -26,7 +26,7 @@ const App = () => {
             element={<Contact />}
           />
           <Route
-            path="/test"
+            path="/lab"
             element={<HeroSection />}
           />
         </Routes>

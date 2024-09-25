@@ -112,7 +112,7 @@ const HeroSection = () => {
               rotation-y={degToRad(30)}
               // anchorY={'bottom'}
             >
-              DIVE INTO{'\n'}MY WORLD
+              DIVE INTO{'\n'}MY LAB
               <meshBasicMaterial
                 color={'#fff'}
                 toneMapped={false}
