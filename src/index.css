@@ -221,7 +221,7 @@ body:has(.card[data-color="green"]:hover) {
 }
 
 .loadingScreen__button {
-    background: #1d3b16;
+    background-color: #1d3b16;
     padding: 8px 32px;
     color: white;
     border: none;
@@ -229,11 +229,11 @@ body:has(.card[data-color="green"]:hover) {
     font-size: 2rem;
     border-radius: 32px;
     width: fit-content;
-    /*transition: background-color 0.4s;*/
+    transition: background-color 0.2s, color 0.2s;
 }
 
 .loadingScreen__button:hover {
-    background: #ef9d29;
+    background-color: #ef9d29;
     color: #1d3b16;
 }
 
