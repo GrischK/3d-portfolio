@@ -8,6 +8,7 @@ import soundoff from '../assets/icons/soundoff.png';
 import Forest from '../models/Forest.jsx';
 import Eagle from '../models/Eagle.jsx';
 import GermanShepard from '../models/GermanShepard.jsx';
+import GrabAnimation from '../components/GrabAnimation.jsx';
 
 const Home = () => {
   const audioRef = useRef(new Audio(acoustic));
@@ -20,6 +21,7 @@ const Home = () => {
   const [isPlayingMusic, setIsPlayingMusic] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [speed, setSpeed] = useState(0);
+  const [showGrabAnimation, setShowGrabAnimation] = useState(true);
 
   useEffect(() => {
     if (!isRotating) return; // Ne calcule pas la vitesse si la forêt ne tourne pas
@@ -99,6 +101,7 @@ const Home = () => {
   console.log(currentStage);
   return (
     <section className="w-full h-screen relative bg-[#dfd6c6]">
+      {showGrabAnimation && start && <GrabAnimation />}
       <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center ">
         {currentStage && <HomeInfo currentStage={currentStage} />}
       </div>
@@ -148,6 +151,7 @@ const Home = () => {
                 isRotating={isRotating}
                 setIsRotating={setIsRotating}
                 setCurrentStage={setCurrentStage}
+                setShowGrabAnimation={setShowGrabAnimation}
               />
               <GermanShepard
                 isRotating={isRotating}

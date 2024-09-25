@@ -17,7 +17,13 @@ import StaticFox, { AnimatedFox } from './AnimatedFox.jsx';
 import Mailbox from './MailBox.jsx';
 import LogAxe from './LogAxe.jsx';
 
-export function Forest({ isRotating, setIsRotating, setCurrentStage, ...props }) {
+export function Forest({
+  isRotating,
+  setIsRotating,
+  setCurrentStage,
+  setShowGrabAnimation,
+  ...props
+}) {
   const forest = useRef();
   const { nodes, materials, animations } = useGLTF(camping);
   const { actions } = useAnimations(animations, forest);
@@ -45,7 +51,7 @@ export function Forest({ isRotating, setIsRotating, setCurrentStage, ...props })
     e.stopPropagation();
     e.preventDefault();
     setIsRotating(true);
-
+    setShowGrabAnimation(false);
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
 
     lastX.current = clientX;
