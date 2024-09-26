@@ -23,7 +23,7 @@ const GrabAnimation = () => {
       <div
         className={`handIcon_circle transform translate-x-[-50%] left-1/2 top-0 ${isGrabbing ? 'handIcon_circle--displaying' : ''}`}
       />
-      <span className="absolute top-10">Drap to explore</span>
+      <span className="absolute top-10">Drag to explore</span>
     </div>
   );
 };

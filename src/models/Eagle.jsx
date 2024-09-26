@@ -7,34 +7,56 @@ export function Eagle(props) {
   const eagleRef = useRef();
   const { nodes, materials, animations } = useGLTF(eagleScene);
   const { actions } = useAnimations(animations, eagleRef);
-  console.log('action', actions);
+
   useEffect(() => {
     actions['Armature|ArmatureAction'].play();
     actions['Armature|ArmatureAction'].setEffectiveTimeScale(2);
   }, []);
 
   useFrame(({ clock, camera }) => {
+    console.log(eagleRef.current.position.z);
+    console.log('X POSITION ', eagleRef.current.position.x);
+    console.log('Z POSITION ', eagleRef.current.position.z);
+    console.log('Y POSITION ', eagleRef.current.position.y);
+    console.log('ROTATION ', eagleRef.current.rotation.y);
+
     // Update the Y position to simulate bird-like motion using a sine wave
     eagleRef.current.position.y = Math.sin(clock.elapsedTime) * 0.2 + 2;
 
     // Check if the bird reached a certain endpoint relative to the camera
-    if (eagleRef.current.position.x > camera.position.x + 10) {
+    if (eagleRef.current.position.x > camera.position.x + 15 && eagleRef.current.rotation.y === 0) {
       // Change direction to backward and rotate the bird 180 degrees on the y-axis
-      eagleRef.current.rotation.y = Math.PI;
-    } else if (eagleRef.current.position.x < camera.position.x - 10) {
+      eagleRef.current.rotation.y = 0.9;
+    } else if (eagleRef.current.position.x < camera.position.x - 15) {
       // Change direction to forward and reset the bird's rotation
-      eagleRef.current.rotation.y = 0;
+      eagleRef.current.rotation.y = 3.9;
     }
 
-    // Update the X and Z positions based on the direction
     if (eagleRef.current.rotation.y === 0) {
-      // Moving forward
+      // Moving forward on the X axis
       eagleRef.current.position.x += 0.01;
+      eagleRef.current.position.z -= 0.01; // Move forward on Z as well
+    } else if (eagleRef.current.rotation.y === 0.9) {
+      // When facing backward
+      eagleRef.current.position.x += 0.00009; // Slow right movement
       eagleRef.current.position.z -= 0.01;
-    } else {
-      // Moving backward
+    }
+    if (eagleRef.current.position.z <= -50 && eagleRef.current.rotation.y === 0.9) {
+      eagleRef.current.rotation.y = 2; // Turn around
+    }
+    if (eagleRef.current.rotation.y === 2) {
       eagleRef.current.position.x -= 0.01;
       eagleRef.current.position.z += 0.01;
+    }
+    if (eagleRef.current.rotation.y === 3.9) {
+      eagleRef.current.position.y += 0.001;
+      eagleRef.current.position.z += 0.02;
+    }
+    if (eagleRef.current.position.z > 10) {
+      eagleRef.current.rotation.y = 0;
+      eagleRef.current.position.x = -5;
+      eagleRef.current.position.y = 15;
+      eagleRef.current.position.z = 10;
     }
   });
 
