@@ -22,6 +22,7 @@ export function Forest({
   setIsRotating,
   setCurrentStage,
   setShowGrabAnimation,
+  setSpeed,
   ...props
 }) {
   const forest = useRef();
@@ -33,7 +34,6 @@ export function Forest({
   const dampingFactor = 0.95;
 
   useEffect(() => {
-    console.log(actions);
     const currentAction = actions['Take 001'];
 
     if (currentAction) {
@@ -81,6 +81,7 @@ export function Forest({
 
       lastX.current = clientX;
       rotationSpeed.current = delta * 0.01 * Math.PI;
+      setSpeed(delta * 0.01 * Math.PI);
     }
   };
 
@@ -94,7 +95,6 @@ export function Forest({
       canvas.removeEventListener('pointerdown', handlePointerDown);
       canvas.removeEventListener('pointerup', handlePointerUp);
       canvas.removeEventListener('pointermove', handlePointerMove);
-      canvas.removeEventListener('touchstart', handlePointerDown);
     };
   }, [gl, handlePointerDown, handlePointerUp, handlePointerMove]);
 
@@ -115,7 +115,6 @@ export function Forest({
       const rotation = forest.current.rotation.y;
 
       const normalizedRotation = ((rotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
-      console.log('normalizedRotation', normalizedRotation);
       // Set the current stage based on the island's orientation
       switch (true) {
         case normalizedRotation >= 0.2 && normalizedRotation <= 0.6:

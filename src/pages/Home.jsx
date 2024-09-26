@@ -19,40 +19,8 @@ const Home = () => {
   const [currentStage, setCurrentStage] = useState(1);
   const [start, setStart] = useState(false);
   const [isPlayingMusic, setIsPlayingMusic] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [speed, setSpeed] = useState(0);
   const [showGrabAnimation, setShowGrabAnimation] = useState(true);
-
-  useEffect(() => {
-    if (!isRotating) return; // Ne calcule pas la vitesse si la forêt ne tourne pas
-
-    let lastPositionX = 0;
-    let lastTime = Date.now();
-
-    const handleMouseMove = (event) => {
-      const currentPositionX = event.clientX;
-      const currentTime = Date.now();
-
-      // Calcule la distance parcourue sur l'axe X
-      const distanceX = currentPositionX - lastPositionX;
-
-      // Calcule la vitesse (distance / temps écoulé)
-      const timeElapsed = (currentTime - lastTime) / 1000; // en secondes
-      const currentSpeed = Math.abs(distanceX) / timeElapsed;
-
-      setMousePosition({ x: currentPositionX });
-      setSpeed(currentSpeed);
-
-      lastPositionX = currentPositionX;
-      lastTime = currentTime;
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, [isRotating, speed]);
 
   // TODO: commented for test, uncomment when deploying
   // useEffect(() => {
@@ -63,7 +31,7 @@ const Home = () => {
   //     audioRef.current.pause();
   //   };
   // }, [isPlayingMusic]);
-
+  //
   // useEffect(() => {
   //   if (start) {
   //     audioRef.current.play();
@@ -97,8 +65,7 @@ const Home = () => {
   const [campingScale, campingPosition, campingRotation] = adjustCampingForScreenSize();
 
   const [dogScale, dogPosition] = adjustDogForScreenSize();
-  // console.log(speed);
-  console.log(currentStage);
+
   return (
     <section className="w-full h-screen relative bg-[#dfd6c6]">
       {showGrabAnimation && start && <GrabAnimation />}
@@ -152,6 +119,7 @@ const Home = () => {
                 setIsRotating={setIsRotating}
                 setCurrentStage={setCurrentStage}
                 setShowGrabAnimation={setShowGrabAnimation}
+                setSpeed={setSpeed}
               />
               <GermanShepard
                 isRotating={isRotating}
