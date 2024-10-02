@@ -9,6 +9,7 @@ import Forest from '../models/Forest.jsx';
 import Eagle from '../models/Eagle.jsx';
 import GermanShepard from '../models/GermanShepard.jsx';
 import GrabAnimation from '../components/GrabAnimation.jsx';
+import { useMediaQuery } from 'react-responsive'
 
 const Home = () => {
   const audioRef = useRef(new Audio(acoustic));
@@ -21,6 +22,7 @@ const Home = () => {
   const [isPlayingMusic, setIsPlayingMusic] = useState(false);
   const [speed, setSpeed] = useState(0);
   const [showGrabAnimation, setShowGrabAnimation] = useState(true);
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
 
   // TODO: commented for test, uncomment when deploying
   useEffect(() => {
@@ -53,8 +55,8 @@ const Home = () => {
   const adjustDogForScreenSize = () => {
     let screenScale, screenPosition;
     if (window.innerWidth < 768) {
-      screenScale = [1.5, 1.5, 1.5];
-      screenPosition = [0, -1.5, 0];
+      screenScale = [1.2, 1.2, 1.2];
+      screenPosition = [0, -4.5, 0];
     } else {
       screenScale = [1.2, 1.2, 1.2];
       screenPosition = [0, -4, 3.6];
@@ -137,7 +139,7 @@ const Home = () => {
         onStarted={() => setStart(true)}
         isPlaying={() => setIsPlayingMusic(true)}
       />
-      <div className="absolute bottom-2 left-2">
+      <div className={`absolute ${isTabletOrMobile ? 'bottom-8 left-4' : 'bottom-2 left-2'}`}>
         <img
           className="w-10 h-10 cursor-pointer object-contain"
           src={!isPlayingMusic ? soundoff : soundon}

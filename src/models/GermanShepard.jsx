@@ -65,9 +65,6 @@ export function GermanShepard({ isRotating, speed, ...props }) {
     }
   });
 
-  if (speed < -0.03) {
-    console.log('Hello SPEED');
-  }
   return (
     <group
       ref={germanShepardRef}

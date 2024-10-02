@@ -79,6 +79,6 @@ export function Wolf({ isRotating, ...props }) {
   );
 }
 
-useGLTF.preload('../assets/3d/wolf.glb');
+useGLTF.preload(wolfScene);
 
 export default Wolf;

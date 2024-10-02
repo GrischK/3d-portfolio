@@ -123,5 +123,5 @@ export function BackPack(props) {
   );
 }
 
-useGLTF.preload('../assets/3d/backPack.glb');
+useGLTF.preload(backPackScene);
 export default BackPack;
