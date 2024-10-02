@@ -262,7 +262,7 @@ body:has(.card[data-color="green"]:hover) {
     z-index: 20;
 }
 
-.handIcon--grabbing{
+.handIcon--grabbing {
     left: 0;
 }
 
@@ -274,7 +274,7 @@ body:has(.card[data-color="green"]:hover) {
     background-color: white;
     border-radius: 50%;
     opacity: 0;
-    transition: width 0.25s, height 0.25s,left 0.5s, opacity 0.3s ease-in-out;
+    transition: width 0.25s, height 0.25s, left 0.5s, opacity 0.3s ease-in-out;
     transform: translate(-50%, -50%);
 }
 
@@ -284,4 +284,10 @@ body:has(.card[data-color="green"]:hover) {
     height: 35px;
     background-color: white;
     left: 0;
+}
+
+@media only screen and (max-width: 768px) {
+    .loadingScreen__button {
+        font-size: 1rem;
+    }
 }
