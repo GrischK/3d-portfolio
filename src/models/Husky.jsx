@@ -8,8 +8,6 @@ const Husky = (props) => {
   const { nodes, materials, animations } = useGLTF(huskyScene);
   const { actions } = useAnimations(animations, group);
 
-  console.log(actions);
-
   useEffect(() => {
     const actionsArray = [
       actions['Walk'],
@@ -114,6 +112,6 @@ const Husky = (props) => {
   );
 };
 
-useGLTF.preload('../assets/3d/husky.glb');
+useGLTF.preload(huskyScene);
 
 export default Husky;

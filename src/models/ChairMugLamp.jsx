@@ -8,7 +8,6 @@ export function ChairMugLamp(props) {
   const { actions } = useAnimations(animations, chairMugLampRef);
 
   useEffect(() => {
-    console.log(actions);
     const currentAction = actions['Take 001'];
 
     if (currentAction) {

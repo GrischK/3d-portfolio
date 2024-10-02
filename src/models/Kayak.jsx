@@ -22,5 +22,5 @@ export function Kayak(props) {
   );
 }
 
-useGLTF.preload('/Kayak.glb');
+useGLTF.preload(kayakScene);
 export default Kayak;

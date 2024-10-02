@@ -2000,4 +2000,4 @@ export function Winter(props) {
   );
 }
 
-useGLTF.preload('../assets/3d/winter.glb');
+useGLTF.preload(winterScene);

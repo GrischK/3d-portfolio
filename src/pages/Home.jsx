@@ -23,20 +23,20 @@ const Home = () => {
   const [showGrabAnimation, setShowGrabAnimation] = useState(true);
 
   // TODO: commented for test, uncomment when deploying
-  useEffect(() => {
-    if (isPlayingMusic) {
-      audioRef.current.play();
-    }
-    return () => {
-      audioRef.current.pause();
-    };
-  }, [isPlayingMusic]);
-
-  useEffect(() => {
-    if (start) {
-      audioRef.current.play();
-    }
-  }, [start]);
+  // useEffect(() => {
+  //   if (isPlayingMusic) {
+  //     audioRef.current.play();
+  //   }
+  //   return () => {
+  //     audioRef.current.pause();
+  //   };
+  // }, [isPlayingMusic]);
+  //
+  // useEffect(() => {
+  //   if (start) {
+  //     audioRef.current.play();
+  //   }
+  // }, [start]);
 
   const adjustCampingForScreenSize = () => {
     let screenScale = null;
@@ -53,8 +53,8 @@ const Home = () => {
   const adjustDogForScreenSize = () => {
     let screenScale, screenPosition;
     if (window.innerWidth < 768) {
-      screenScale = [1.5, 1.5, 1.5];
-      screenPosition = [0, -1.5, 0];
+      screenScale = [1.2, 1.2, 1.2];
+      screenPosition = [0, -4.5, 0];
     } else {
       screenScale = [1.2, 1.2, 1.2];
       screenPosition = [0, -4, 3.6];

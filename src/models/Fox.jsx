@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { useGLTF, useAnimations } from '@react-three/drei';
-import scene from '../assets/3d/fox.glb';
+import foxScene from '../assets/3d/fox.glb';
 
 function Fox({ currentAnimation, ...props }) {
   const group = useRef();
-  const { nodes, materials, animations } = useGLTF(scene);
+  const { nodes, materials, animations } = useGLTF(foxScene);
   const { actions } = useAnimations(animations, group);
   const previousAnimation = useRef();
 
@@ -71,6 +71,6 @@ function Fox({ currentAnimation, ...props }) {
   );
 }
 
-useGLTF.preload('/fox.glb');
+useGLTF.preload(foxScene);
 
 export default Fox;
