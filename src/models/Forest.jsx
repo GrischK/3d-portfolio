@@ -33,6 +33,8 @@ export function Forest({
   const rotationSpeed = useRef(0);
   const dampingFactor = 0.95;
 
+  console.log();
+
   useEffect(() => {
     const currentAction = actions['Take 001'];
 
@@ -90,13 +92,13 @@ export function Forest({
       if (!isRotating) {
         setIsRotating(true);
       }
-      islandRef.current.rotation.y += 0.01 * Math.PI;
+      forest.current.rotation.y += 0.01 * Math.PI;
       rotationSpeed.current = 0.0125;
     } else if (e.key === 'ArrowRight') {
       if (!isRotating) {
         setIsRotating(true);
       }
-      islandRef.current.rotation.y -= 0.01 * Math.PI;
+      forest.current.rotation.y -= 0.01 * Math.PI;
       rotationSpeed.current = -0.0125;
     }
   };
@@ -130,7 +132,7 @@ export function Forest({
       const clientX = e.touches ? e.touches[0].clientX : e.clientX;
       const delta = (clientX - lastX.current) / viewport.width;
 
-      islandRef.current.rotation.y += delta * 0.01 * Math.PI;
+      forest.current.rotation.y += delta * 0.01 * Math.PI;
       lastX.current = clientX;
       rotationSpeed.current = delta * 0.01 * Math.PI;
     }
