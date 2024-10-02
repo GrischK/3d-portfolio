@@ -4,26 +4,29 @@ import {
   Float,
   MeshReflectorMaterial,
   RenderTexture,
-  Text
+  Text,
+  useFont
 } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { Winter } from '../models/Winter.jsx';
 import { degToRad } from 'maath/misc';
 import { Suspense, useEffect, useRef, useState } from 'react';
-import Loader from './Loader.jsx';
 import Husky from '../models/Husky.jsx';
+import SpinLoader from './SpinLoader.jsx';
 
 const HeroSection = () => {
   const controls = useRef();
-  const [isActive, setIsActive] = useState(false); // Comment for testing
+  const [isActive, setIsActive] = useState(true); // True for testing
+  const meshFitCameraHeroSection = useRef();
 
   // Comment for testing
+  // const intro = async () => {
+  //   controls.current.dolly(-42);
+  //   controls.current.smoothTime = 1.6;
 
-  const intro = async () => {
-    controls.current.dolly(-22);
-    controls.current.smoothTime = 1.6;
-    controls.current.dolly(22, true);
-  };
+  // controls.current.dolly(22, true);
+  // fitCamera();
+  // };
 
   useEffect(() => {
     setTimeout(() => {
@@ -37,6 +40,30 @@ const HeroSection = () => {
     }, 400);
   }, []);
 
+  const fitCamera = async () => {
+    controls.current.fitToBox(meshFitCameraHeroSection.current, true);
+  };
+
+  //TODO: Il va surement devoir faire un unique timeOut
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (meshFitCameraHeroSection.current && controls.current) {
+        console.log('Controls:', meshFitCameraHeroSection.current);
+        fitCamera(); // Appelle fitToBox seulement quand les refs sont prêtes
+      }
+    }, 800);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('resize', fitCamera);
+
+    return () => {
+      window.removeEventListener('resize', fitCamera);
+    };
+  }, []);
+
   return (
     <Canvas
       shadows
@@ -46,18 +73,35 @@ const HeroSection = () => {
       }}
       style={{ height: '100vh', width: '100vw' }}
     >
-      <Suspense fallback={<Loader />}>
+      <Suspense fallback={<SpinLoader />}>
         <color
           attach="background"
           args={['#171720']}
         />
         <fog
           attach="fog"
-          args={['#171720', 10, 20]}
+          args={['#171720', 10, 30]}
         />
-        <CameraControls ref={controls} />
+
+        <CameraControls
+          ref={controls}
+          minPolarAngle={degToRad(20)}
+          maxPolarAngle={degToRad(90)}
+        />
         {isActive && (
           <>
+            <mesh
+              ref={meshFitCameraHeroSection}
+              position-x={-0.3}
+              visible={false}
+            >
+              <boxGeometry
+                color="orange"
+                transparent
+                opacity={0.5}
+                args={[10.5, 2, 2]}
+              />
+            </mesh>
             <Text
               font="fonts/Poppins-Black.ttf"
               fontSize={0.8}
@@ -68,8 +112,11 @@ const HeroSection = () => {
               rotation-y={degToRad(30)}
               // anchorY={'bottom'}
             >
-              GRISCHKA{'\n'}GORSKI
-              <meshBasicMaterial color="white">
+              DIVE INTO{'\n'}MY LAB
+              <meshBasicMaterial
+                color={'#fff'}
+                toneMapped={false}
+              >
                 <RenderTexture attach={'map'}>
                   <color
                     attach="background"
@@ -96,7 +143,7 @@ const HeroSection = () => {
               <Winter scale={0.9} />
             </group>
             <mesh
-              position-y={-1.1}
+              position-y={-1.2}
               rotation-x={-Math.PI / 2}
             >
               <planeGeometry args={[100, 100]} />
@@ -118,11 +165,12 @@ const HeroSection = () => {
             </mesh>
           </>
         )}
-
         <Environment preset="sunset" />
       </Suspense>
     </Canvas>
   );
 };
+
+useFont.preload('fonts/Poppins-Black.ttf');
 
 export default HeroSection;

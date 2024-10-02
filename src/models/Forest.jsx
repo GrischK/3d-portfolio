@@ -1,14 +1,39 @@
 import React, { useEffect, useRef } from 'react';
 import { useAnimations, useGLTF } from '@react-three/drei';
-import scene from '../assets/3d/camping.glb';
+import camping from '../assets/3d/camping.glb';
+import { useFrame, useThree } from '@react-three/fiber';
+import BackPack from './BackPack.jsx';
+import ChairMugLamp from './ChairMugLamp.jsx';
+import { Stag } from './Stag.jsx';
+import Kayak from './Kayak.jsx';
+import Frog from './Frog.jsx';
+import WoodLog from './WoodLog.jsx';
+import SaladBowl from './SaladBowl.jsx';
+import SodaCan from './SodaCan.jsx';
+import Smoke from './Smoke.jsx';
+import Pug from './Pug.jsx';
+import Raccoon from './Racoon.jsx';
+import StaticFox, { AnimatedFox } from './AnimatedFox.jsx';
+import Mailbox from './MailBox.jsx';
+import LogAxe from './LogAxe.jsx';
 
-export function Forest(props) {
-  const group = useRef();
-  const { nodes, materials, animations } = useGLTF(scene);
-  const { actions } = useAnimations(animations, group);
+export function Forest({
+  isRotating,
+  setIsRotating,
+  setCurrentStage,
+  setShowGrabAnimation,
+  setSpeed,
+  ...props
+}) {
+  const forest = useRef();
+  const { nodes, materials, animations } = useGLTF(camping);
+  const { actions } = useAnimations(animations, forest);
+  const { gl, viewport } = useThree();
+  const lastX = useRef(0);
+  const rotationSpeed = useRef(0);
+  const dampingFactor = 0.95;
 
   useEffect(() => {
-    console.log(actions);
     const currentAction = actions['Take 001'];
 
     if (currentAction) {
@@ -22,9 +47,100 @@ export function Forest(props) {
     };
   }, [actions]);
 
+  const handlePointerDown = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    setIsRotating(true);
+    setShowGrabAnimation(false);
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+
+    lastX.current = clientX;
+  };
+
+  const handlePointerUp = (event) => {
+    event.stopPropagation();
+    event.preventDefault();
+    setIsRotating(false);
+  };
+
+  const handlePointerMove = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    if (isRotating) {
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+
+      // Déterminer le delta de mouvement
+      const delta = (clientX - lastX.current) / viewport.width;
+
+      // Ne permettre que la rotation vers la droite (si delta est positif)
+
+      // TODO: uncomment to lock rotation
+      // if (delta < 0) {
+      forest.current.rotation.y += delta * 0.01 * Math.PI;
+      // }
+
+      lastX.current = clientX;
+      rotationSpeed.current = delta * 0.01 * Math.PI;
+      setSpeed(delta * 0.01 * Math.PI);
+    }
+  };
+
+  useEffect(() => {
+    const canvas = gl.domElement;
+    canvas.addEventListener('pointerdown', handlePointerDown);
+    canvas.addEventListener('pointerup', handlePointerUp);
+    canvas.addEventListener('pointermove', handlePointerMove);
+
+    return () => {
+      canvas.removeEventListener('pointerdown', handlePointerDown);
+      canvas.removeEventListener('pointerup', handlePointerUp);
+      canvas.removeEventListener('pointermove', handlePointerMove);
+    };
+  }, [gl, handlePointerDown, handlePointerUp, handlePointerMove]);
+
+  useFrame(() => {
+    // If not rotating, apply damping to slow down the rotation (smoothly)
+    if (!isRotating) {
+      // Apply damping factor
+      rotationSpeed.current *= dampingFactor;
+
+      // Stop rotation when speed is very small
+      if (Math.abs(rotationSpeed.current) < 0.001) {
+        rotationSpeed.current = 0;
+      }
+
+      forest.current.rotation.y += rotationSpeed.current;
+    } else {
+      // When rotating, determine the current stage based on island's orientation
+      const rotation = forest.current.rotation.y;
+
+      const normalizedRotation = ((rotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+      // Set the current stage based on the island's orientation
+      switch (true) {
+        case normalizedRotation >= 0.2 && normalizedRotation <= 0.6:
+          setCurrentStage(5);
+          break;
+        case normalizedRotation >= 1.4 && normalizedRotation <= 1.8:
+          setCurrentStage(4);
+          break;
+        case normalizedRotation >= 2.6 && normalizedRotation <= 3:
+          setCurrentStage(3);
+          break;
+        case normalizedRotation >= 3.9 && normalizedRotation <= 4.3:
+          setCurrentStage(2);
+          break;
+        case normalizedRotation >= 5.15 && normalizedRotation <= 5.55:
+          setCurrentStage(1);
+          break;
+        default:
+          setCurrentStage(null);
+      }
+    }
+  });
+
   return (
     <group
-      ref={group}
+      ref={forest}
       {...props}
       dispose={null}
     >
@@ -3860,6 +3976,74 @@ export function Forest(props) {
                 </group>
               </group>
             </group>
+            <BackPack
+              position={[12.5, -2, -8]}
+              rotation={[0, 2, 0]}
+              scale={1.4}
+            />
+            <LogAxe
+              position={[11.5, -1.5, -9.5]}
+              rotation={[0, 0, 0]}
+              scale={8}
+            />
+            <ChairMugLamp
+              position={[-3, -1.5, -15]}
+              rotation={[0, -2.2, 0]}
+              scale={0.01}
+            />
+            <WoodLog
+              position={[-5.7, -1.5, -14.2]}
+              rotation={[0, -2.7, 0]}
+              scale={1}
+            />
+            <SaladBowl
+              position={[-4.7, -0.4, -14.7]}
+              rotation={[0, -2, 0]}
+              scale={0.5}
+            />
+            <SodaCan
+              position={[-5.3, -0.6, -14.4]}
+              rotation={[0, -2, 0]}
+              scale={0.03}
+            />
+            <Stag
+              position={[-14.8, -2, 0.5]}
+              rotation={[0, -3.2, 0]}
+            />
+            <Mailbox
+              position={[-14.5, -2, 4]}
+              rotation={[0, -1.5, 0]}
+              scale={2.8}
+            />
+            <Kayak
+              scale={1.8}
+              position={[-4.2, 0, 11.2]}
+              rotation={[6.6, 20.1, 0]}
+            />
+            <Frog
+              scale={0.17}
+              position={[-3, -1.6, 14.2]}
+              rotation={[0, -1.6, 0]}
+            />
+            <Smoke
+              scale={5}
+              position={[3, 3, 1]}
+            />
+            <Pug
+              scale={1.6}
+              position={[9, 0, 5]}
+              rotation={[0, 1.1, 0]}
+            />
+            <Raccoon
+              scale={0.4}
+              position={[3, 0, -8]}
+              rotation={[0, 2.8, 0]}
+            />
+            <AnimatedFox
+              scale={0.5}
+              position={[-2, 0, -7]}
+              rotation={[0.2, 3.6, 0.1]}
+            />
           </group>
         </group>
       </group>
@@ -3867,5 +4051,5 @@ export function Forest(props) {
   );
 }
 
-useGLTF.preload('/camping_buscraft_ambience.glb');
+useGLTF.preload('../assets/3d/camping.glb');
 export default Forest;

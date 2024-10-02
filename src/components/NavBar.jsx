@@ -23,10 +23,10 @@ const NavBar = () => {
           Projects
         </NavLink>
         <NavLink
-          to="/test"
+          to="/lab"
           className={({ isActive }) => (isActive ? 'text-blue-500' : 'text-black')}
         >
-          Test
+          Lab
         </NavLink>
       </nav>
     </header>
