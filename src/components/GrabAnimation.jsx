@@ -14,7 +14,7 @@ const GrabAnimation = () => {
   }, []);
 
   return (
-    <div className="grab absolute h-20 w-40 transform translate-x-[-50%] left-1/2 flex items-center justify-center bottom-44 z-9">
+    <div className="grab absolute h-20 w-40 transform translate-x-[-50%] left-1/2 flex items-center justify-center bottom-44 z-20">
       <img
         className={`handIcon h-10 w-10 transform translate-x-[-50%] left-1/2 top-0 ${isGrabbing ? 'handIcon--grabbing' : ''}`}
         src={isGrabbing ? grabbingHand : grabHand}
