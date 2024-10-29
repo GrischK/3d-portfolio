@@ -6,11 +6,14 @@ import {
   Color,
   Float32BufferAttribute,
   MeshStandardMaterial,
-  Skeleton,
+  Skeleton, SkeletonHelper,
   SkinnedMesh,
   Uint16BufferAttribute,
   Vector3
 } from 'three';
+import { useHelper } from '@react-three/drei';
+import { useFrame } from '@react-three/fiber';
+import { degToRad } from 'maath/misc';
 
 const PAGE_WIDTH = 1.28;
 const PAGE_HEIGHT = 1.71;
@@ -96,6 +99,17 @@ const Page = ({ number, front, back, ...props }) => {
     mesh.bind(skeleton);
     return mesh;
   }, []);
+
+  // useHelper(skinnedMeshRef, SkeletonHelper, "red")
+
+  useFrame(()=>{
+    if(!skinnedMeshRef.current){
+      return
+    }
+
+    const bones = skinnedMeshRef.current.skeleton.bones
+    bones[2].rotation.y=degToRad(20)
+  })
 
   return (
     <group
