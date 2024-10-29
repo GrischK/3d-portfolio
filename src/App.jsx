@@ -3,6 +3,7 @@ import { Home, About, Projects, Contact } from './pages';
 import NavBar from './components/NavBar.jsx';
 import HeroSection from './components/HeroSection.jsx';
 import Lab from './pages/Lab.jsx';
+import { BookContainer } from './components/BookContainer.jsx';
 
 const App = () => {
   return (
@@ -29,6 +30,10 @@ const App = () => {
           <Route
             path="/lab"
             element={<Lab />}
+          />
+          <Route
+            path="/test"
+            element={<BookContainer />}
           />
         </Routes>
       </BrowserRouter>

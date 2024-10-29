@@ -10,7 +10,7 @@ const Page = ({ number, front, back, ...props }) => {
     >
       <mesh scale={0.1}>
         <boxGeometry />
-        <mashBasicMaterial color="red" />
+        <meshBasicMaterial color="red" />
       </mesh>
     </group>
   );
@@ -19,13 +19,16 @@ const Page = ({ number, front, back, ...props }) => {
 export const Book = ({ ...props }) => {
   return (
     <group {...props}>
-      {[...pages].map((pageData, index) => {
-        <Page
-          key={index}
-          number={index}
-          {...pageData}
-        />;
-      })}
+      {[...pages].map((pageData, index) =>
+        index === 0 ? (
+          <Page
+            position-x={index * 0.15}
+            key={index}
+            number={index}
+            {...pageData}
+          />
+        ) : null
+      )}
     </group>
   );
 };

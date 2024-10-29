@@ -8,6 +8,7 @@ export const BookContainer = () => {
     <Canvas
       shadows
       camera={{ position: [-0.5, 1, 4], fov: 45 }}
+      style={{ height: '100vh', width: '100vw' }}
     >
       <group position-y={0}>
         <Suspense fallback={null}>
