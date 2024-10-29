@@ -1,5 +1,14 @@
 import { pages } from './UI.jsx';
 import { useRef } from 'react';
+import { BoxGeometry } from 'three';
+
+const PAGE_WIDTH = 1.28;
+const PAGE_HEIGHT = 1.71;
+const PAGE_DEPTH = 0.003;
+const PAGE_SEGMENTS = 30;
+const SEGMENT_WIDTH = PAGE_WIDTH / PAGE_SEGMENTS;
+
+const pageGeometry = new BoxGeometry(PAGE_WIDTH, PAGE_HEIGHT, PAGE_DEPTH, 2);
 
 const Page = ({ number, front, back, ...props }) => {
   const group = useRef();
@@ -9,7 +18,7 @@ const Page = ({ number, front, back, ...props }) => {
       ref={group}
     >
       <mesh scale={0.1}>
-        <boxGeometry />
+        <primitive object={pageGeometry} attach="geometry" />
         <meshBasicMaterial color="red" />
       </mesh>
     </group>
