@@ -46,13 +46,7 @@ const whiteColor = new Color('white');
 
 const pageMaterials = [
   new MeshStandardMaterial({
-    color: "#111"
-  }),
-  new MeshStandardMaterial({
-    color: "#111"
-  }),
-  new MeshStandardMaterial({
-    color: "#111"
+    color: whiteColor
   }),
   new MeshStandardMaterial({
     color: "#111"
@@ -62,6 +56,12 @@ const pageMaterials = [
   }),
   new MeshStandardMaterial({
     color: whiteColor
+  }),
+  new MeshStandardMaterial({
+    color: "blue"
+  }),
+  new MeshStandardMaterial({
+    color: "red"
   })
 ];
 
