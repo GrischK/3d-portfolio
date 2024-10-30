@@ -6,14 +6,13 @@ import {
   Color,
   Float32BufferAttribute,
   MeshStandardMaterial,
-  Skeleton, SkeletonHelper,
+  Skeleton,
   SkinnedMesh,
   Uint16BufferAttribute,
   Vector3
 } from 'three';
-import { useHelper } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
-import { degToRad } from 'maath/misc';
+import { useTexture } from '@react-three/drei';
 
 const PAGE_WIDTH = 1.28;
 const PAGE_HEIGHT = 1.71;
@@ -52,31 +51,30 @@ const pageMaterials = [
     color: whiteColor
   }),
   new MeshStandardMaterial({
-    color: "#111"
+    color: '#111'
   }),
   new MeshStandardMaterial({
     color: whiteColor
   }),
   new MeshStandardMaterial({
     color: whiteColor
-  }),
-  new MeshStandardMaterial({
-    color: "blue"
-  }),
-  new MeshStandardMaterial({
-    color: "red"
   })
 ];
 
-console.log(pageMaterials);
 
 const Page = ({ number, front, back, ...props }) => {
   const group = useRef();
+  const [picture, picture2, pictureRoughness] = useTexture([
+    `/textures/${front}.jpg`,
+    `/textures/${back}.jpg`,
+    ...(number === 1 || number === pages.length - 1 ? [`/textures/book-cover-roughness.jpg`] : [])
+  ]);
 
   const skinnedMeshRef = useRef();
 
   const manualSkinnedMesh = useMemo(() => {
     const bones = [];
+
     for (let i = 0; i <= PAGE_SEGMENTS; i++) {
       let bone = new Bone();
       bones.push(bone);
@@ -89,27 +87,53 @@ const Page = ({ number, front, back, ...props }) => {
         bones[i - 1].add(bone);
       }
     }
+
     const skeleton = new Skeleton(bones);
-    const materials = pageMaterials;
+
+    const materials = [
+      ...pageMaterials,
+      new MeshStandardMaterial({
+        color: whiteColor,
+        map: picture,
+        ...(number === 0
+          ? {
+              roughnessMap: pictureRoughness ? pictureRoughness : null
+            }
+          : { roughness: 0.1 })
+      }),
+      new MeshStandardMaterial({
+        color: whiteColor,
+        map: picture2,
+        ...(number === pages.length - 1
+          ? {
+              roughnessMap: pictureRoughness ? pictureRoughness : null
+            }
+          : { roughness: 0.1 })
+      })
+    ];
+
+    console.log(materials);
+
+
     const mesh = new SkinnedMesh(pageGeometry, materials);
     mesh.castShadow = true;
     mesh.receiveShadow = true;
     mesh.frustumCulled = false;
     mesh.add(skeleton.bones[0]);
     mesh.bind(skeleton);
+
     return mesh;
   }, []);
 
   // useHelper(skinnedMeshRef, SkeletonHelper, "red")
 
-  useFrame(()=>{
-    if(!skinnedMeshRef.current){
-      return
+  useFrame(() => {
+    if (!skinnedMeshRef.current) {
+      return;
     }
 
-    const bones = skinnedMeshRef.current.skeleton.bones
-    bones[2].rotation.y=degToRad(20)
-  })
+    const bones = skinnedMeshRef.current.skeleton.bones;
+  });
 
   return (
     <group
