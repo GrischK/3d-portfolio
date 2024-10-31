@@ -67,7 +67,7 @@ const Page = ({ number, front, back, ...props }) => {
   const [picture, picture2, pictureRoughness] = useTexture([
     `/textures/${front}.jpg`,
     `/textures/${back}.jpg`,
-    ...(number === 1 || number === pages.length - 1 ? [`/textures/book-cover-roughness.jpg`] : [])
+    ...(number === 0 || number === pages.length - 1 ? [`/textures/book-cover-roughness.jpg`] : [])
   ]);
 
   const skinnedMeshRef = useRef();
