@@ -74,9 +74,14 @@ const Page = ({ number, front, back, page, ...props }) => {
   const [picture, picture2, pictureRoughness] = useTexture([
     `/textures/${front}.jpg`,
     `/textures/${back}.jpg`,
-    ...(number === 0 ? [`/textures/book-cover-roughness.jpg`] : number === pages.length - 1 ? [`/textures/book-back-roughness.jpg`] : [])
+    ...(number === 0
+      ? [`/textures/book-cover-roughness.jpg`]
+      : number === pages.length - 1
+        ? [`/textures/book-back-roughness.jpg`]
+        : [])
   ]);
   picture.colorSpace = picture2.colorSpace = SRGBColorSpace;
+
   const skinnedMeshRef = useRef();
 
   const manualSkinnedMesh = useMemo(() => {
@@ -156,17 +161,17 @@ const Page = ({ number, front, back, page, ...props }) => {
 };
 
 export const Book = ({ ...props }) => {
-  const [page] = useAtom(pageAtom)
+  const [page] = useAtom(pageAtom);
   return (
     <group {...props}>
-      {[...pages].map((pageData, index) =>
-          <Page
-            key={index}
-            number={index}
-            page={page}
-            {...pageData}
-          />
-      )}
+      {[...pages].map((pageData, index) => (
+        <Page
+          key={index}
+          number={index}
+          page={page}
+          {...pageData}
+        />
+      ))}
     </group>
   );
 };
