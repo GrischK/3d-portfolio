@@ -8,6 +8,7 @@ import {
   MeshStandardMaterial,
   Skeleton,
   SkinnedMesh,
+  SRGBColorSpace,
   Uint16BufferAttribute,
   Vector3
 } from 'three';
@@ -61,6 +62,11 @@ const pageMaterials = [
   })
 ];
 
+pages.forEach((page) => {
+  useTexture.preload(`/textures/${page.front}.jpg`);
+  useTexture.preload(`/textures/${page.back}.jpg`);
+  useTexture.preload(`/textures/book-cover-roughness.jpg`);
+});
 
 const Page = ({ number, front, back, ...props }) => {
   const group = useRef();
@@ -69,7 +75,7 @@ const Page = ({ number, front, back, ...props }) => {
     `/textures/${back}.jpg`,
     ...(number === 0 || number === pages.length - 1 ? [`/textures/book-cover-roughness.jpg`] : [])
   ]);
-
+  picture.colorSpace = picture2.colorSpace = SRGBColorSpace;
   const skinnedMeshRef = useRef();
 
   const manualSkinnedMesh = useMemo(() => {
@@ -113,7 +119,6 @@ const Page = ({ number, front, back, ...props }) => {
     ];
 
     console.log(materials);
-
 
     const mesh = new SkinnedMesh(pageGeometry, materials);
     mesh.castShadow = true;
