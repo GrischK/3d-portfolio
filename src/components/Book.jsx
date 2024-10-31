@@ -1,4 +1,4 @@
-import { pages } from './UI.jsx';
+import { pageAtom, pages } from './UI.jsx';
 import { useMemo, useRef } from 'react';
 import {
   Bone,
@@ -14,6 +14,7 @@ import {
 } from 'three';
 import { useFrame } from '@react-three/fiber';
 import { useTexture } from '@react-three/drei';
+import { useAtom } from 'jotai';
 
 const PAGE_WIDTH = 1.28;
 const PAGE_HEIGHT = 1.71;
@@ -68,12 +69,12 @@ pages.forEach((page) => {
   useTexture.preload(`/textures/book-cover-roughness.jpg`);
 });
 
-const Page = ({ number, front, back, ...props }) => {
+const Page = ({ number, front, back, page, ...props }) => {
   const group = useRef();
   const [picture, picture2, pictureRoughness] = useTexture([
     `/textures/${front}.jpg`,
     `/textures/${back}.jpg`,
-    ...(number === 0 || number === pages.length - 1 ? [`/textures/book-cover-roughness.jpg`] : [])
+    ...(number === 0 ? [`/textures/book-cover-roughness.jpg`] : number === pages.length - 1 ? [`/textures/book-back-roughness.jpg`] : [])
   ]);
   picture.colorSpace = picture2.colorSpace = SRGBColorSpace;
   const skinnedMeshRef = useRef();
@@ -118,7 +119,7 @@ const Page = ({ number, front, back, ...props }) => {
       })
     ];
 
-    console.log(materials);
+    console.log('page : ', page);
 
     const mesh = new SkinnedMesh(pageGeometry, materials);
     mesh.castShadow = true;
@@ -148,23 +149,23 @@ const Page = ({ number, front, back, ...props }) => {
       <primitive
         object={manualSkinnedMesh}
         ref={skinnedMeshRef}
+        position-z={-number * PAGE_DEPTH + page * PAGE_DEPTH}
       />
     </group>
   );
 };
 
 export const Book = ({ ...props }) => {
+  const [page] = useAtom(pageAtom)
   return (
     <group {...props}>
       {[...pages].map((pageData, index) =>
-        index === 0 ? (
           <Page
-            position-x={index * 0.15}
             key={index}
             number={index}
+            page={page}
             {...pageData}
           />
-        ) : null
       )}
     </group>
   );

@@ -2,10 +2,12 @@ import { Book } from './Book.jsx';
 import { Environment, Loader, OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { Suspense } from 'react';
+import { UI } from './UI.jsx';
 
 export const BookContainer = () => {
   return (
     <>
+      <UI />
       <Loader />
       <Canvas
         shadows
@@ -13,8 +15,9 @@ export const BookContainer = () => {
         style={{
           height: '100vh',
           width: '100vw',
-          background:
-            'radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 0%, rgba(9,9,121,1) 87%)'
+          zIndex: 2,
+          // background:
+          //   'radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 0%, rgba(9,9,121,1) 87%)'
         }}
       >
         <group position-y={0}>
