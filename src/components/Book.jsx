@@ -19,6 +19,7 @@ import { degToRad } from 'maath/misc';
 import { easing } from 'maath';
 
 const easingFactor = 0.5;
+const easingFactorFold = 0.3;
 const insideCurveStrength = 0.18;
 const outsideCurveStrength = 0.04;
 const turningCurveStrength = 0.09;
@@ -178,14 +179,30 @@ const Page = ({ number, front, back, page, opened, bookClosed, ...props }) => {
         outsideCurveStrength * outsideCurveIntensity * targetRotation +
         turningCurveStrength * turningIntensity * targetRotation;
 
+      let foldRotationAngle = degToRad(Math.sign(targetRotation) * 2);
+
       if (bookClosed) {
         if (i === 0) {
           rotationAngle = targetRotation;
+          foldRotationAngle = 0;
         } else {
           rotationAngle = 0;
+          foldRotationAngle = 0;
         }
       }
+
       easing.dampAngle(target.rotation, 'y', rotationAngle, easingFactor, delta);
+
+      const foldIntensity =
+        i > 8 ? Math.sin(i * Math.PI * (1 / bones.length) - 0.5) * turningTime : 0;
+
+      easing.dampAngle(
+        target.rotation,
+        'x',
+        foldRotationAngle * foldIntensity,
+        easingFactorFold,
+        delta
+      );
     }
   });
 
