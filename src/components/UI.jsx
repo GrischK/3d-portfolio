@@ -43,7 +43,7 @@ export const UI = () => {
   const [page, setPage] = useAtom(pageAtom);
 
   useEffect(() => {
-    const audio = new Audio('/audios/page-flip-01a.mp3');
+    const audio = new Audio('/audio/page-flip.mp3');
     audio.play();
   }, [page]);
 

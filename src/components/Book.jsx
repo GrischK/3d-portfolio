@@ -16,6 +16,12 @@ import { useFrame } from '@react-three/fiber';
 import { useTexture } from '@react-three/drei';
 import { useAtom } from 'jotai';
 import { degToRad } from 'maath/misc';
+import { easing } from 'maath';
+
+const easingFactor = 0.5;
+const insideCurveStrength = 0.18;
+const outsideCurveStrength = 0.04;
+const turningCurveStrength = 0.09;
 
 const PAGE_WIDTH = 1.28;
 const PAGE_HEIGHT = 1.71;
@@ -139,7 +145,7 @@ const Page = ({ number, front, back, page, opened, bookClosed, ...props }) => {
 
   // useHelper(skinnedMeshRef, SkeletonHelper, "red")
 
-  useFrame(() => {
+  useFrame(({ _, delta }) => {
     if (!skinnedMeshRef.current) {
       return;
     }
@@ -150,7 +156,19 @@ const Page = ({ number, front, back, page, opened, bookClosed, ...props }) => {
     }
 
     const bones = skinnedMeshRef.current.skeleton.bones;
-    bones[0].rotation.y = targetRotation;
+
+    for (let i = 0; i < bones.length; i++) {
+      const target = i === 0 ? group.current : bones[i];
+
+      const insideCurveIntensity = i < 8 ? Math.sin(i * 0.2 + 0.25) : 0;
+      const outsideCurveIntensity = i >= 8 ? Math.cos(i * 0.4 + 0.09) : 0;
+      let rotationAngle =
+        insideCurveStrength * insideCurveIntensity * targetRotation -
+        outsideCurveStrength * outsideCurveIntensity * targetRotation;
+
+      easing.dampAngle(target.rotation, 'y', rotationAngle, easingFactor, delta);
+    }
+    // bones[0].rotation.y = targetRotation;
   });
 
   return (
@@ -177,7 +195,7 @@ export const Book = ({ ...props }) => {
           number={index}
           page={page}
           opened={page > index}
-          bookClosed = {page === 0 || page === pages.length}
+          bookClosed={page === 0 || page === pages.length}
           {...pageData}
         />
       ))}
