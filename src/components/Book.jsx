@@ -1,5 +1,5 @@
 import { pageAtom, pages } from './UI.jsx';
-import { useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   Bone,
   BoxGeometry,
@@ -222,15 +222,45 @@ const Page = ({ number, front, back, page, opened, bookClosed, ...props }) => {
 
 export const Book = ({ ...props }) => {
   const [page] = useAtom(pageAtom);
+  const [delayedPage, setDelayedPage] = useState(page);
+
+  useEffect(() => {
+    let timeout;
+    const goToPage = () => {
+      setDelayedPage((delayedPage) => {
+        if (page === delayedPage) {
+          return delayedPage;
+        } else {
+          timeout = setTimeout(
+            () => {
+              goToPage();
+            },
+            Math.abs(page - delayedPage) > 2 ? 50 : 150
+          );
+          if (page > delayedPage) {
+            return delayedPage + 1;
+          }
+          if (page < delayedPage) {
+            return delayedPage - 1;
+          }
+        }
+      });
+    };
+    goToPage();
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [page]);
+
   return (
     <group {...props}>
       {[...pages].map((pageData, index) => (
         <Page
           key={index}
           number={index}
-          page={page}
-          opened={page > index}
-          bookClosed={page === 0 || page === pages.length}
+          page={delayedPage}
+          opened={delayedPage > index}
+          bookClosed={delayedPage === 0 || delayedPage === pages.length}
           {...pageData}
         />
       ))}
