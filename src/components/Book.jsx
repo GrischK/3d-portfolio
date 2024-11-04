@@ -131,8 +131,6 @@ const Page = ({ number, front, back, page, opened, bookClosed, ...props }) => {
       })
     ];
 
-    console.log('page : ', page);
-
     const mesh = new SkinnedMesh(pageGeometry, materials);
     mesh.castShadow = true;
     mesh.receiveShadow = true;
@@ -162,13 +160,20 @@ const Page = ({ number, front, back, page, opened, bookClosed, ...props }) => {
 
       const insideCurveIntensity = i < 8 ? Math.sin(i * 0.2 + 0.25) : 0;
       const outsideCurveIntensity = i >= 8 ? Math.cos(i * 0.4 + 0.09) : 0;
+
       let rotationAngle =
         insideCurveStrength * insideCurveIntensity * targetRotation -
         outsideCurveStrength * outsideCurveIntensity * targetRotation;
 
+      if(bookClosed){
+        if(i===0){
+          rotationAngle = targetRotation
+        }else{
+          rotationAngle = 0
+        }
+      }
       easing.dampAngle(target.rotation, 'y', rotationAngle, easingFactor, delta);
     }
-    // bones[0].rotation.y = targetRotation;
   });
 
   return (

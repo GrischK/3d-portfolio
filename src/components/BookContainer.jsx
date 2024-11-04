@@ -27,7 +27,7 @@ export const BookContainer = () => {
             <Environment preset="studio"></Environment>
             <directionalLight
               position={[2, 5, 2]}
-              instensity={2.5}
+              intensity={10}
               castShadow
               shadow-mapSize-width={2040}
               shadow-mapSize-height={2040}
