@@ -15,6 +15,7 @@ import {
 import { useFrame } from '@react-three/fiber';
 import { useTexture } from '@react-three/drei';
 import { useAtom } from 'jotai';
+import { degToRad } from 'maath/misc';
 
 const PAGE_WIDTH = 1.28;
 const PAGE_HEIGHT = 1.71;
@@ -69,7 +70,7 @@ pages.forEach((page) => {
   useTexture.preload(`/textures/book-cover-roughness.jpg`);
 });
 
-const Page = ({ number, front, back, page, ...props }) => {
+const Page = ({ number, front, back, page, opened, bookClosed, ...props }) => {
   const group = useRef();
   const [picture, picture2, pictureRoughness] = useTexture([
     `/textures/${front}.jpg`,
@@ -143,7 +144,13 @@ const Page = ({ number, front, back, page, ...props }) => {
       return;
     }
 
+    let targetRotation = opened ? -Math.PI / 2 : Math.PI / 2;
+    if (!bookClosed) {
+      targetRotation += degToRad(number * 0.8);
+    }
+
     const bones = skinnedMeshRef.current.skeleton.bones;
+    bones[0].rotation.y = targetRotation;
   });
 
   return (
@@ -169,6 +176,8 @@ export const Book = ({ ...props }) => {
           key={index}
           number={index}
           page={page}
+          opened={page > index}
+          bookClosed = {page === 0 || page === pages.length}
           {...pageData}
         />
       ))}
