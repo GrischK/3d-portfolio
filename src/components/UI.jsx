@@ -79,7 +79,7 @@ export const UI = () => {
         className="fixed inset-0 flex items-center select-none"
         style={{
           background:
-            'radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 0%, rgba(9,9,121,1) 87%)'
+            'radial-gradient(circle, rgba(44,83,100,1) 0%, rgba(32,58,67,1) 87%)'
         }}
       >
         <div className="relative -rotate-2">

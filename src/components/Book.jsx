@@ -78,6 +78,7 @@ pages.forEach((page) => {
 
 const Page = ({ number, front, back, page, opened, bookClosed, ...props }) => {
   const group = useRef();
+
   const [picture, picture2, pictureRoughness] = useTexture([
     `/textures/${front}.jpg`,
     `/textures/${back}.jpg`,
@@ -89,6 +90,8 @@ const Page = ({ number, front, back, page, opened, bookClosed, ...props }) => {
   ]);
   picture.colorSpace = picture2.colorSpace = SRGBColorSpace;
 
+  const turnedAt = useRef(0);
+  const lasOpened = useRef(opened);
   const skinnedMeshRef = useRef();
 
   const manualSkinnedMesh = useMemo(() => {
@@ -148,6 +151,14 @@ const Page = ({ number, front, back, page, opened, bookClosed, ...props }) => {
       return;
     }
 
+    if (lasOpened.current !== opened) {
+      turnedAt.current = +new Date();
+      lasOpened.current = opened;
+    }
+
+    let turningTime = Math.min(400, new Date() - turnedAt.current) / 400;
+    turningTime = Math.sin(turningTime * Math.PI);
+
     let targetRotation = opened ? -Math.PI / 2 : Math.PI / 2;
     if (!bookClosed) {
       targetRotation += degToRad(number * 0.8);
@@ -160,16 +171,18 @@ const Page = ({ number, front, back, page, opened, bookClosed, ...props }) => {
 
       const insideCurveIntensity = i < 8 ? Math.sin(i * 0.2 + 0.25) : 0;
       const outsideCurveIntensity = i >= 8 ? Math.cos(i * 0.4 + 0.09) : 0;
+      const turningIntensity = Math.sin(i * Math.PI * (1 / bones.length)) * turningTime;
 
       let rotationAngle =
         insideCurveStrength * insideCurveIntensity * targetRotation -
-        outsideCurveStrength * outsideCurveIntensity * targetRotation;
+        outsideCurveStrength * outsideCurveIntensity * targetRotation +
+        turningCurveStrength * turningIntensity * targetRotation;
 
-      if(bookClosed){
-        if(i===0){
-          rotationAngle = targetRotation
-        }else{
-          rotationAngle = 0
+      if (bookClosed) {
+        if (i === 0) {
+          rotationAngle = targetRotation;
+        } else {
+          rotationAngle = 0;
         }
       }
       easing.dampAngle(target.rotation, 'y', rotationAngle, easingFactor, delta);
