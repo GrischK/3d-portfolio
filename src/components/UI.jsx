@@ -43,7 +43,7 @@ export const UI = () => {
   const [page, setPage] = useAtom(pageAtom);
 
   useEffect(() => {
-    const audio = new Audio('/audio/page-flip.mp3');
+    const audio = new Audio('/audio/turning-book-page.mp3');
     audio.play();
   }, [page]);
 
@@ -76,7 +76,7 @@ export const UI = () => {
       </main>
 
       <div
-        className="fixed inset-0 flex items-center select-none hidden"
+        className="fixed inset-0 flex items-center select-none"
         style={{
           background:
             'radial-gradient(circle, rgba(44,83,100,1) 0%, rgba(32,58,67,1) 87%)'
