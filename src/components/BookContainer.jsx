@@ -3,21 +3,22 @@ import { Environment, Float, Loader, OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { Suspense } from 'react';
 import { UI } from './UI.jsx';
+import { useMediaQuery } from 'react-responsive';
 
 export const BookContainer = () => {
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
+
   return (
     <>
       <UI />
       <Loader />
       <Canvas
         shadows
-        camera={{ position: [-0.5, 1, 4], fov: 45 }}
+        camera={{ position: [-0.5, 1, 4], fov: isTabletOrMobile ? 55 : 45 }}
         style={{
           height: '100vh',
           width: '100vw',
           zIndex: 2
-          // background:
-          //   'radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 0%, rgba(9,9,121,1) 87%)'
         }}
       >
         <group position-y={0}>
