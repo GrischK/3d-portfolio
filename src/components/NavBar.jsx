@@ -17,7 +17,7 @@ const NavBar = () => {
           to="/about"
           className={({ isActive }) => {
             const baseClass = isActive ? 'text-blue-500' : 'text-black';
-            return location.pathname === '/lab' || location.pathname === '/test' && !isActive ? 'text-white' : baseClass;
+            return (location.pathname === '/lab' || location.pathname === '/test') && !isActive ? 'text-white' : baseClass;
           }}
         >
           About
@@ -26,7 +26,7 @@ const NavBar = () => {
           to="/projects"
           className={({ isActive }) => {
             const baseClass = isActive ? 'text-blue-500' : 'text-black';
-            return location.pathname === '/lab' || location.pathname === '/test' && !isActive ? 'text-white' : baseClass;
+            return (location.pathname === '/lab' || location.pathname === '/test') && !isActive ? 'text-white' : baseClass;
           }}        >
           Projects
         </NavLink>
@@ -34,7 +34,7 @@ const NavBar = () => {
           to="/lab"
           className={({ isActive }) => {
             const baseClass = isActive ? 'text-blue-500' : 'text-black';
-            return location.pathname === '/lab' || location.pathname === '/test' && !isActive ? 'text-white' : baseClass;
+            return (location.pathname === '/lab' || location.pathname === '/test') && !isActive ? 'text-white' : baseClass;
           }}        >
           Lab
         </NavLink>
