@@ -23,7 +23,7 @@ export const BookContainer = () => {
         <group position-y={0}>
           <Suspense fallback={null}>
             <Float
-              rotation-x={-Math.PI / 4}
+              rotation-x={-Math.PI / 3.5}
               floatIntensity={1}
               speed={2}
               rotationIntensity={2}
@@ -33,7 +33,7 @@ export const BookContainer = () => {
             <OrbitControls />
             <Environment preset="studio"></Environment>
             <directionalLight
-              position={[2, 5, 5]}
+              position={[2, 6, 5]}
               intensity={10}
               castShadow
               shadow-mapSize-width={2040}

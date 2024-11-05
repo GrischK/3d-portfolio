@@ -5,6 +5,7 @@ import {
   BoxGeometry,
   Color,
   Float32BufferAttribute,
+  MathUtils,
   MeshStandardMaterial,
   Skeleton,
   SkinnedMesh,
@@ -13,7 +14,7 @@ import {
   Vector3
 } from 'three';
 import { useFrame } from '@react-three/fiber';
-import { useTexture } from '@react-three/drei';
+import { useCursor, useTexture } from '@react-three/drei';
 import { useAtom } from 'jotai';
 import { degToRad } from 'maath/misc';
 import { easing } from 'maath';
@@ -55,6 +56,7 @@ pageGeometry.setAttribute('skinIndex', new Uint16BufferAttribute(skinIndexes, 4)
 pageGeometry.setAttribute('skinWeight', new Float32BufferAttribute(skinWeights, 4));
 
 const whiteColor = new Color('white');
+const emissiveColor = new Color('orange');
 
 const pageMaterials = [
   new MeshStandardMaterial({
@@ -94,6 +96,8 @@ const Page = ({ number, front, back, page, opened, bookClosed, ...props }) => {
   const turnedAt = useRef(0);
   const lasOpened = useRef(opened);
   const skinnedMeshRef = useRef();
+  const [highLighted, setHighLighted] = useState(false);
+  const [_, setPage] = useAtom(pageAtom);
 
   const manualSkinnedMesh = useMemo(() => {
     const bones = [];
@@ -122,7 +126,9 @@ const Page = ({ number, front, back, page, opened, bookClosed, ...props }) => {
           ? {
               roughnessMap: pictureRoughness ? pictureRoughness : null
             }
-          : { roughness: 0.1 })
+          : { roughness: 0.1 }),
+        emissive: emissiveColor,
+        emissiveIntensity: 0
       }),
       new MeshStandardMaterial({
         color: whiteColor,
@@ -131,7 +137,9 @@ const Page = ({ number, front, back, page, opened, bookClosed, ...props }) => {
           ? {
               roughnessMap: pictureRoughness ? pictureRoughness : null
             }
-          : { roughness: 0.1 })
+          : { roughness: 0.1 }),
+        emissive: emissiveColor,
+        emissiveIntensity: 0
       })
     ];
 
@@ -151,6 +159,14 @@ const Page = ({ number, front, back, page, opened, bookClosed, ...props }) => {
     if (!skinnedMeshRef.current) {
       return;
     }
+
+    const emissiveIntensity = highLighted ? 0.22 : 0;
+    skinnedMeshRef.current.material[4].emissiveIntensity =
+      skinnedMeshRef.current.material[5].emissiveIntensity = MathUtils.lerp(
+        skinnedMeshRef.current.material[4].emissiveIntensity,
+        emissiveIntensity,
+        0.1
+      );
 
     if (lasOpened.current !== opened) {
       turnedAt.current = +new Date();
@@ -206,10 +222,25 @@ const Page = ({ number, front, back, page, opened, bookClosed, ...props }) => {
     }
   });
 
+  useCursor(highLighted);
+
   return (
     <group
       {...props}
       ref={group}
+      onPointerEnter={(e) => {
+        e.stopPropagation();
+        setHighLighted(true);
+      }}
+      onPointerLeave={(e) => {
+        e.stopPropagation();
+        setHighLighted(false);
+      }}
+      onClick={(e) => {
+        e.stopPropagation();
+        setPage(opened ? number : number + 1);
+        setHighLighted(false);
+      }}
     >
       <primitive
         object={manualSkinnedMesh}
@@ -253,7 +284,10 @@ export const Book = ({ ...props }) => {
   }, [page]);
 
   return (
-    <group {...props} rotation-y={-Math.PI / 2}>
+    <group
+      {...props}
+      rotation-y={-Math.PI / 2}
+    >
       {[...pages].map((pageData, index) => (
         <Page
           key={index}
