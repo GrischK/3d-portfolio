@@ -5,7 +5,6 @@ const Lab = () => {
     <>
       <HeroSection />
       {/*<div className={'h-screen w-screen bg-amber-300'}>Coucou</div>*/}
-      <BookContainer/>
     </>
   );
 };
