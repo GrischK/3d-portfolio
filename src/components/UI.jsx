@@ -2,10 +2,10 @@ import { atom, useAtom } from 'jotai';
 import { useEffect, useRef } from 'react';
 
 const pictures = [
-  'DSC00680',
-  'DSC00933',
-  'DSC00966',
-  'DSC00983',
+  '1',
+  '2',
+  '3',
+  '4',
   'DSC01011',
   'DSC01040',
   'DSC01064',
