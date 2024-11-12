@@ -4,6 +4,7 @@ import NavBar from './components/NavBar.jsx';
 import HeroSection from './components/HeroSection.jsx';
 import Lab from './pages/Lab.jsx';
 import { BookContainer } from './components/BookContainer.jsx';
+import Avatar from './components/Avatar.jsx';
 
 const App = () => {
   return (
@@ -34,6 +35,10 @@ const App = () => {
           <Route
             path="/test"
             element={<BookContainer />}
+          />
+          <Route
+            path="/avatar"
+            element={<Avatar />}
           />
         </Routes>
       </BrowserRouter>
