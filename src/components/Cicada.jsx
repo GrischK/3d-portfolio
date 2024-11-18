@@ -11,6 +11,7 @@ const Cicada = (props) => {
       ref={group}
       {...props}
       dispose={null}
+      position-y={-1.3}
     >
       <group name="Sketchfab_Scene">
         <group
