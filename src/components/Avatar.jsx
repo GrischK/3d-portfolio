@@ -1,18 +1,21 @@
 import { MeshReflectorMaterial, PresentationControls, Stage } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
-import { Car } from '../models/Car.jsx';
 import { Suspense } from 'react';
+import Cicada from './Cicada.jsx';
 
 const Avatar = () => {
   return (
-    <Canvas style={{ height: '100vh', width: '100vw', backgroundColor: 'black' }} camera={{ position: [-0.5, 1, 8]}}>
+    <Canvas
+      style={{ height: '100vh', width: '100vw', backgroundColor: 'black' }}
+      camera={{ position: [-0.5, 1, 4] }}
+    >
       <color
         attach="background"
-        args={['#213547']}
+        args={['#10191f']}
       />
       <fog
         attach="fog"
-        args={['#213547', 10, 30]}
+        args={['#10191f', 10, 30]}
       />
       <>
         <PresentationControls
@@ -23,12 +26,12 @@ const Avatar = () => {
         >
           <Stage
             environment="city"
-            intensity={0.6}
+            intensity={1.8}
             castShadow={false}
             adjustCamera={false}
           >
             <Suspense fallback={null}>
-              <Car />
+              <Cicada />
             </Suspense>
           </Stage>
           <mesh
