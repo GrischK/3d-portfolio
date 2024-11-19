@@ -1,11 +1,39 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useAnimations, useGLTF } from '@react-three/drei';
 import cicada from '../assets/3d/cicada.glb';
 
-const Cicada = (props) => {
+const Cicada = ({ playAnimation, ...props }) => {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF(cicada);
   const { actions } = useAnimations(animations, group);
+
+  useEffect(() => {
+    const action = actions['Take 001'];
+
+    if (playAnimation === true) {
+      if (action) {
+        action.reset()
+        action.time = 9.5;
+        action.play();
+
+        // Met en pause l'animation à la seconde 14
+        const stopAtTime = 14;
+
+        // Vérification avec requestAnimationFrame
+        const checkTime = () => {
+          if (action.time >= stopAtTime) {
+            action.paused = true;
+          } else {
+            requestAnimationFrame(checkTime); // Continue à vérifier
+          }
+        };
+        requestAnimationFrame(checkTime);
+      }
+    } else if (playAnimation === false) {
+      action.fadeOut(0.5);
+    }
+  }, [playAnimation]);
+
   return (
     <group
       ref={group}
