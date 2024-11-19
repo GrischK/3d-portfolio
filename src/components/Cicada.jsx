@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { useAnimations, useGLTF } from '@react-three/drei';
+import { useAnimations, useGLTF, useTexture } from '@react-three/drei';
 import cicada from '../assets/3d/cicada.glb';
 
 const Cicada = ({ playAnimation, ...props }) => {
@@ -7,12 +7,19 @@ const Cicada = ({ playAnimation, ...props }) => {
   const { nodes, materials, animations } = useGLTF(cicada);
   const { actions } = useAnimations(animations, group);
 
+  const leatherTextureProps = useTexture({
+    map: './car-textures/leather/Leather_008_Base Color.jpg',
+    normalMap: './car-textures/leather/Leather_008_Normal.jpg',
+    roughnessMap: './car-textures/leather/Leather_008_Roughness.jpg',
+    aoMap: './car-textures/leather/Leather_008_Ambient Occlusion.jpg'
+  });
+
   useEffect(() => {
     const action = actions['Take 001'];
 
     if (playAnimation === true) {
       if (action) {
-        action.reset()
+        action.reset();
         action.time = 9.5;
         action.play();
 
@@ -68,7 +75,9 @@ const Cicada = ({ playAnimation, ...props }) => {
                       receiveShadow
                       geometry={nodes.CICADA_PAINT_CICADA_PAINT_0.geometry}
                       material={materials.CICADA_PAINT}
-                    />
+                    >
+                      <meshStandardMaterial {...leatherTextureProps} />
+                    </mesh>
                   </group>
                   <group name="BODY">
                     <group
@@ -98,7 +107,9 @@ const Cicada = ({ playAnimation, ...props }) => {
                           receiveShadow
                           geometry={nodes.LEFT_DOOR_CICADA_PAINT_0.geometry}
                           material={materials.CICADA_PAINT}
-                        />
+                        >
+                          <meshStandardMaterial {...leatherTextureProps} />
+                        </mesh>
                       </group>
                       <group
                         name="left_door_glass"
@@ -164,7 +175,9 @@ const Cicada = ({ playAnimation, ...props }) => {
                           receiveShadow
                           geometry={nodes.RIGHT_DOOR_CICADA_PAINT_0.geometry}
                           material={materials.CICADA_PAINT}
-                        />
+                        >
+                          <meshStandardMaterial {...leatherTextureProps} />
+                        </mesh>
                       </group>
                       <group
                         name="right_door_glass"

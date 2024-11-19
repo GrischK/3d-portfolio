@@ -1,4 +1,4 @@
-import { MeshReflectorMaterial, PresentationControls, Stage } from '@react-three/drei';
+import { Loader, MeshReflectorMaterial, PresentationControls, Stage } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { Suspense, useState } from 'react';
 import Cicada from './Cicada.jsx';
@@ -13,9 +13,10 @@ const Avatar = () => {
           className={`w-[fit-content] border-transparent hover:border-white transition-all duration-300 px-4 py-3 rounded-full text-sm uppercase border ${action ? 'bg-white text-black' : 'text-white'}`}
           onClick={() => setAction((prevState) => !prevState)}
         >
-          Animate
+          let's see
         </button>
       </div>
+      <Loader />
       <Canvas
         style={{ height: '100vh', width: '100h', backgroundColor: 'black' }}
         camera={{ position: [0, 0, 2.5], fov: 90 }}
