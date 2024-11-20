@@ -6,6 +6,7 @@ import Cicada from './Cicada.jsx';
 const Avatar = () => {
   const [action, setAction] = useState(false);
   const [leather, setLeather] = useState(false);
+  const [wood, setWood] = useState(false);
 
   // console.log(action);
   return (
@@ -22,6 +23,12 @@ const Avatar = () => {
           onClick={() => setLeather((prevState) => !prevState)}
         >
           Leather
+        </button>
+        <button
+          className={`w-[fit-content] border-transparent hover:border-white transition-all duration-300 px-4 py-3 rounded-full text-sm uppercase border ${wood ? 'bg-white text-black' : 'text-white'}`}
+          onClick={() => setWood((prevState) => !prevState)}
+        >
+          Wood
         </button>
       </div>
       <Loader />
@@ -51,12 +58,16 @@ const Avatar = () => {
               adjustCamera={false}
             >
               <Suspense fallback={null}>
-                <Cicada playAnimation={action} leather={leather} />
+                <Cicada
+                  playAnimation={action}
+                  leather={leather}
+                  wood={wood}
+                />
               </Suspense>
             </Stage>
             <mesh
               rotation={[-Math.PI / 2, 0, 0]}
-              position-y={-0.5}
+              position-y={-1.3}
             >
               <planeGeometry args={[170, 170]} />
               <MeshReflectorMaterial

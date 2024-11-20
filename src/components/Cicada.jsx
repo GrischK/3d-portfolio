@@ -3,7 +3,7 @@ import { useAnimations, useGLTF, useTexture } from '@react-three/drei';
 import cicada from '../assets/3d/cicada.glb';
 import * as THREE from 'three';
 
-const Cicada = ({ playAnimation, leather, ...props }) => {
+const Cicada = ({ playAnimation, leather, wood, ...props }) => {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF(cicada);
   const { actions } = useAnimations(animations, group);
@@ -15,10 +15,18 @@ const Cicada = ({ playAnimation, leather, ...props }) => {
     aoMap: './car-textures/leather/Leather_008_Ambient Occlusion.jpg'
   });
 
+  const woodTextureProps = useTexture({
+    map: './car-textures/wood/Wood_025_basecolor.jpg',
+    normalMap: './car-textures/wood/Wood_025_normal.jpg',
+    roughnessMap: './car-textures/wood/Wood_025_roughness.jpg',
+    aoMap: './car-textures/wood/Wood_025_ambientOcclusion.jpg'
+  });
+
   leatherTextureProps.map.repeat.set(2, 2);
   leatherTextureProps.normalMap.repeat.set(2, 2);
   leatherTextureProps.roughnessMap.repeat.set(2, 2);
   leatherTextureProps.aoMap.repeat.set(2, 2);
+
   leatherTextureProps.map.wrapS = leatherTextureProps.map.wrapT =
     THREE.MirroredRepeatWrapping;
   leatherTextureProps.normalMap.wrapS = leatherTextureProps.normalMap.wrapT =
@@ -26,6 +34,20 @@ const Cicada = ({ playAnimation, leather, ...props }) => {
   leatherTextureProps.roughnessMap.wrapS =
     leatherTextureProps.roughnessMap.wrapT = THREE.MirroredRepeatWrapping;
   leatherTextureProps.aoMap.wrapS = leatherTextureProps.aoMap.wrapT =
+    THREE.RepeatWrapping;
+
+  woodTextureProps.map.repeat.set(10, 10);
+  woodTextureProps.normalMap.repeat.set(10, 10);
+  woodTextureProps.roughnessMap.repeat.set(10, 10);
+  woodTextureProps.aoMap.repeat.set(10, 10);
+
+  woodTextureProps.map.wrapS = woodTextureProps.map.wrapT =
+    THREE.MirroredRepeatWrapping;
+  woodTextureProps.normalMap.wrapS = woodTextureProps.normalMap.wrapT =
+    THREE.MirroredRepeatWrapping;
+  woodTextureProps.roughnessMap.wrapS =
+    woodTextureProps.roughnessMap.wrapT = THREE.MirroredRepeatWrapping;
+  woodTextureProps.aoMap.wrapS = woodTextureProps.aoMap.wrapT =
     THREE.RepeatWrapping;
 
   useEffect(() => {
@@ -91,6 +113,7 @@ const Cicada = ({ playAnimation, leather, ...props }) => {
                       material={materials.CICADA_PAINT}
                     >
                       {leather && <meshStandardMaterial {...leatherTextureProps} />}
+                      {wood && <meshStandardMaterial {...woodTextureProps} />}
                     </mesh>
                   </group>
                   <group name="BODY">
@@ -123,6 +146,7 @@ const Cicada = ({ playAnimation, leather, ...props }) => {
                           material={materials.CICADA_PAINT}
                         >
                           {leather && <meshStandardMaterial {...leatherTextureProps} />}
+                          {wood && <meshStandardMaterial {...woodTextureProps} />}
                         </mesh>
                       </group>
                       <group
@@ -191,6 +215,7 @@ const Cicada = ({ playAnimation, leather, ...props }) => {
                           material={materials.CICADA_PAINT}
                         >
                           {leather && <meshStandardMaterial {...leatherTextureProps} />}
+                          {wood && <meshStandardMaterial {...woodTextureProps} />}
                         </mesh>
                       </group>
                       <group
