@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import { useAnimations, useGLTF, useTexture } from '@react-three/drei';
 import cicada from '../assets/3d/cicada.glb';
+import * as THREE from 'three';
 
-const Cicada = ({ playAnimation, ...props }) => {
+const Cicada = ({ playAnimation, leather, ...props }) => {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF(cicada);
   const { actions } = useAnimations(animations, group);
@@ -13,6 +14,19 @@ const Cicada = ({ playAnimation, ...props }) => {
     roughnessMap: './car-textures/leather/Leather_008_Roughness.jpg',
     aoMap: './car-textures/leather/Leather_008_Ambient Occlusion.jpg'
   });
+
+  leatherTextureProps.map.repeat.set(2, 2);
+  leatherTextureProps.normalMap.repeat.set(2, 2);
+  leatherTextureProps.roughnessMap.repeat.set(2, 2);
+  leatherTextureProps.aoMap.repeat.set(2, 2);
+  leatherTextureProps.map.wrapS = leatherTextureProps.map.wrapT =
+    THREE.MirroredRepeatWrapping;
+  leatherTextureProps.normalMap.wrapS = leatherTextureProps.normalMap.wrapT =
+    THREE.MirroredRepeatWrapping;
+  leatherTextureProps.roughnessMap.wrapS =
+    leatherTextureProps.roughnessMap.wrapT = THREE.MirroredRepeatWrapping;
+  leatherTextureProps.aoMap.wrapS = leatherTextureProps.aoMap.wrapT =
+    THREE.RepeatWrapping;
 
   useEffect(() => {
     const action = actions['Take 001'];
@@ -76,7 +90,7 @@ const Cicada = ({ playAnimation, ...props }) => {
                       geometry={nodes.CICADA_PAINT_CICADA_PAINT_0.geometry}
                       material={materials.CICADA_PAINT}
                     >
-                      <meshStandardMaterial {...leatherTextureProps} />
+                      {leather && <meshStandardMaterial {...leatherTextureProps} />}
                     </mesh>
                   </group>
                   <group name="BODY">
@@ -108,7 +122,7 @@ const Cicada = ({ playAnimation, ...props }) => {
                           geometry={nodes.LEFT_DOOR_CICADA_PAINT_0.geometry}
                           material={materials.CICADA_PAINT}
                         >
-                          <meshStandardMaterial {...leatherTextureProps} />
+                          {leather && <meshStandardMaterial {...leatherTextureProps} />}
                         </mesh>
                       </group>
                       <group
@@ -176,7 +190,7 @@ const Cicada = ({ playAnimation, ...props }) => {
                           geometry={nodes.RIGHT_DOOR_CICADA_PAINT_0.geometry}
                           material={materials.CICADA_PAINT}
                         >
-                          <meshStandardMaterial {...leatherTextureProps} />
+                          {leather && <meshStandardMaterial {...leatherTextureProps} />}
                         </mesh>
                       </group>
                       <group
@@ -389,24 +403,6 @@ const Cicada = ({ playAnimation, ...props }) => {
                         />
                       </group>
                     </group>
-                  </group>
-                </group>
-                <group
-                  name="cicada_shadow"
-                  rotation={[0, -Math.PI / 2, 0]}
-                  scale={0.025}
-                >
-                  <group
-                    name="Object_65"
-                    rotation={[-Math.PI / 2, 0, Math.PI / 2]}
-                  >
-                    <mesh
-                      name="cicada_shadow_CICADA_SHADOW_0"
-                      castShadow
-                      receiveShadow
-                      geometry={nodes.cicada_shadow_CICADA_SHADOW_0.geometry}
-                      material={materials.CICADA_SHADOW}
-                    />
                   </group>
                 </group>
               </group>
