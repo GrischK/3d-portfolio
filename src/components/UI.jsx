@@ -57,7 +57,7 @@ export const UI = () => {
 
   return (
     <>
-      <main className=" pointer-events-none select-none z-10 fixed inset-0 flex justify-end flex-col">
+      <main className=" pointer-events-none select-none z-10 absolute inset-0 flex justify-end flex-col">
         <div className="w-full overflow-auto pointer-events-auto flex justify-center">
           <div
             className="overflow-auto flex items-center gap-4 max-w-full p-10"
