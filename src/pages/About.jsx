@@ -91,20 +91,19 @@ const About = () => {
                               href={project.url}
                               target="_blank"
                             >
-                              {' '}
                               {project.title}
                             </a>
                           ) : (
                             <span> {project.title}</span>
                           )}
 
-                          {project.projectLogo && (
-                            <img
-                              src={project.projectLogo}
-                              alt=""
-                              className={'h-6 w-6 rounded-xl'}
-                            />
-                          )}
+                          {/*{project.projectLogo && (*/}
+                          {/*  <img*/}
+                          {/*    src={project.projectLogo}*/}
+                          {/*    alt=""*/}
+                          {/*    className={'h-6 w-6 rounded-xl'}*/}
+                          {/*  />*/}
+                          {/*)}*/}
                         </div>
                         {project.projectTechnologies.length !== 0 && (
                           <div className={'flex gap-2 mt-2 mb-4'}>
