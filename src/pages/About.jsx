@@ -80,13 +80,50 @@ const About = () => {
                     {experience.company_name}
                   </p>
                   <ul className="my-5 list-disc ml-5 space-y-2">
-                    {experience.points.map((point, index) => (
-                      <li
-                        className="text-black-500/50 font-normal pl-1 text-sm"
-                        key={`experience-point-${index}`}
-                      >
-                        {point}
-                      </li>
+                    {experience.projects.map((project, index) => (
+                      <div key={index}>
+                        <div className={'flex gap-2'}>
+                          {project.url ? (
+                            <a
+                              href={project.url}
+                              target="_blank"
+                            >
+                              {' '}
+                              {project.title}
+                            </a>
+                          ) : (
+                            <span> {project.title}</span>
+                          )}
+
+                          {project.projectLogo && (
+                            <img
+                              src={project.projectLogo}
+                              alt=""
+                              className={'h-6 w-6 rounded-xl'}
+                            />
+                          )}
+                        </div>
+                        {project.points.map((point, index) => (
+                          <li
+                            className="text-black-500/50 font-normal pl-1 text-sm"
+                            key={`experience-point-${index}`}
+                          >
+                            {point}
+                          </li>
+                        ))}
+                        {project.projectTechnologies.length && (
+                          <div className={'flex gap-2'}>
+                            {project.projectTechnologies.map((projectTechnology, index) => (
+                                <img
+                                  key={index}
+                                  src={projectTechnology}
+                                  alt={projectTechnology}
+                                  className="w-6 h-6 object-contain"
+                                />
+                            ))}
+                          </div>
+                        )}
+                      </div>
                     ))}
                   </ul>
                 </div>

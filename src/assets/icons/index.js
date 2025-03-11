@@ -27,6 +27,8 @@ import consoneo from './consoneo.svg';
 import dice from './dice.webp';
 import soccer from './soccer.svg';
 import cities from './cities.svg';
+import flotto from './flotto.jpg';
+import cp from './cp.jpg';
 
 export {
   css,
@@ -57,5 +59,7 @@ export {
   consoneo,
   dice,
   soccer,
-  cities
+  cities,
+  flotto,
+  cp
 };

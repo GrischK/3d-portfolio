@@ -1,31 +1,26 @@
 // import { meta, shopify, starbucks, tesla } from '../assets/images';
 import {
+  amiltone,
+  apollo,
+  consoneo,
   contact,
-  css,
+  cp,
+  dice,
+  docker,
   express,
-  git,
+  flotto,
   github,
-  html,
-  javascript,
+  graphql,
   linkedin,
   motion,
-  mui,
-  nodejs,
-  react,
-  sass,
-  tailwindcss,
-  typescript,
-  apollo,
-  docker,
-  graphql,
   nestjs,
+  nodejs,
   postgresql,
-  typeorm,
-  amiltone,
-  consoneo,
-  dice,
+  react,
   soccer,
-  cities
+  tailwindcss,
+  typeorm,
+  typescript
 } from '../assets/icons';
 
 export const skills = [
@@ -133,19 +128,34 @@ export const experiences = [
     icon: amiltone,
     iconBg: '#e7ecf2',
     date: 'Oct 2023 - Present',
-    points: [
-      'Developing and maintaining Flotto, a fleet management application using Nest.js and other related technologies.',
-      'Implementing a user document management solution with Minio.',
-      'Configuring Keycloak for sending registration confirmation emails, password recovery, etc. Integrating custom' +
-        ' themes and creating templates. Deploying on the dedicated server.',
-      'Integrating Stripe for managing subscriptions with trial periods and payments.',
-      'CRUD operations and backend ticket resolution in Nest.js, including bug fixes, performance optimizations, and' +
-        ' functional enhancements.',
-      'Updating and maintaining Docker containers for the development environment.',
-      'Setting up a proof of concept (POC) with Apisix, including Docker container configuration.',
-      'Actively participating in code reviews to ensure code quality and adherence to best practices (DOD, Commit' +
-        ' trailer, etc.).',
-      'Preparing for a hackathon and conducting pentesting activities to identify and resolve vulnerabilities.'
+    projects: [
+      {
+        title: 'Flotto',
+        projectLogo: flotto,
+        projectTechnologies: [nestjs, docker, typeorm, typescript, postgresql],
+        url: 'https://www.flotto-app.com/',
+        points: [
+          'Developing and maintaining Flotto, a fleet management application using Nest.js and other related technologies.',
+          'Minio : Implementing a user document management solution with .',
+          'Keycloak : Registration, confirmation emails, password recovery, etc. Custom themes and templates.',
+          'Stripe :  Subscriptions with trial periods and payments.',
+          'Docker : Updating and maintaining containers for the development environment.',
+          'Nest.js : CRUD operations and backend ticket resolution, including bug fixes, performance optimizations, and' +
+            ' functional enhancements.',
+          'Code reviews : Ensure code quality and adherence to best practices (DOD, Commit, trailer, etc.).',
+          'POC : Apisix, including Docker container configuration.',
+          'Hackathon : Pentesting activities to identify and resolve vulnerabilities.'
+        ]
+      },
+      {
+        title: 'Cliquez-Postez',
+        projectLogo: cp,
+        projectTechnologies: [react],
+        url: 'https://www.cliquezpostez.com/',
+        points: [
+          'Developing and maintaining Cliquez-Postez website, which enable to send postal letters with few clicks.'
+        ]
+      }
     ]
   },
   {
@@ -154,14 +164,21 @@ export const experiences = [
     icon: consoneo,
     iconBg: '#e7f2eb',
     date: 'Sept 2022 - Sept 2023',
-    points: [
-      'Developing and maintaining web applications using React.js and other related technologies.',
-      'Redefining and improving the Design System using React, JavaScript, and Storybook to ensure visual consistency' +
-        ' across different components.',
-      'Enhancing an internal application by integrating the new components from the Design System.',
-      'Writing and executing unit tests using Jest.js.',
-      'Implementing containerization solutions with Docker to simplify POC deployment.',
-      'Developing full-stack POCs using various technologies such as Nest.js / Next.js / PHP / Symfony / MySQL / PostgreSQL'
+    projects: [
+      {
+        title: 'Consonéo',
+        projectLogo: '',
+        projectTechnologies: [],
+        points: [
+          'React.js : Developing and maintaining web applications using and other related technologies.',
+          'Redefining and improving the Design System using React, JavaScript, and Storybook to ensure visual consistency' +
+            ' across different components.',
+          'Enhancing an internal application by integrating the new components from the Design System.',
+          'Writing and executing unit tests using Jest.js.',
+          'Implementing containerization solutions with Docker to simplify POC deployment.',
+          'Developing full-stack POCs using various technologies such as Nest.js / Next.js / PHP / Symfony / MySQL / PostgreSQL'
+        ]
+      }
     ]
   }
 ];
