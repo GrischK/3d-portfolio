@@ -29,6 +29,10 @@ import soccer from './soccer.svg';
 import cities from './cities.svg';
 import flotto from './flotto.jpg';
 import cp from './cp.jpg';
+import aws from './aws.svg'
+import js from './js.svg'
+import python from './python.svg'
+import storybook from './storybook.svg';
 
 export {
   css,
@@ -61,5 +65,9 @@ export {
   soccer,
   cities,
   flotto,
-  cp
+  cp,
+  aws,
+  js,
+  python,
+  storybook
 };

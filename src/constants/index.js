@@ -2,6 +2,7 @@
 import {
   amiltone,
   apollo,
+  aws,
   consoneo,
   contact,
   cp,
@@ -11,13 +12,16 @@ import {
   flotto,
   github,
   graphql,
+  js,
   linkedin,
   motion,
   nestjs,
   nodejs,
   postgresql,
+  python,
   react,
   soccer,
+  storybook,
   tailwindcss,
   typeorm,
   typescript
@@ -135,14 +139,14 @@ export const experiences = [
         projectTechnologies: [nestjs, docker, typeorm, typescript, postgresql],
         url: 'https://www.flotto-app.com/',
         points: [
-          'Developing and maintaining Flotto, a fleet management application using Nest.js and other related technologies.',
-          'Minio : Implementing a user document management solution with .',
-          'Keycloak : Registration, confirmation emails, password recovery, etc. Custom themes and templates.',
-          'Stripe :  Subscriptions with trial periods and payments.',
-          'Docker : Updating and maintaining containers for the development environment.',
+          'Developed and maintained Flotto, a fleet management application using Nest.js and related technologies.',
+          'Minio : Implemented a user document management solution.',
+          'Keycloak : For user registration, confirmation emails, password recovery, etc. with custom themes and templates.',
+          'Stripe :  Subscriptions with trial periods and payment processing.',
+          'Docker : Updated and maintained containers for the development environment.',
           'Nest.js : CRUD operations and backend ticket resolution, including bug fixes, performance optimizations, and' +
             ' functional enhancements.',
-          'Code reviews : Ensure code quality and adherence to best practices (DOD, Commit, trailer, etc.).',
+          'Code reviews : To ensure code quality and adherence to best practices (DOD, Commit, trailer, etc.).',
           'POC : Apisix, including Docker container configuration.',
           'Hackathon : Pentesting activities to identify and resolve vulnerabilities.'
         ]
@@ -150,10 +154,14 @@ export const experiences = [
       {
         title: 'Cliquez-Postez',
         projectLogo: cp,
-        projectTechnologies: [react],
+        projectTechnologies: [react, aws, js, typescript, python, graphql],
         url: 'https://www.cliquezpostez.com/',
         points: [
-          'Developing and maintaining Cliquez-Postez website, which enable to send postal letters with few clicks.'
+          'Developed and maintained the Cliquez-Postez website, which enables users to send postal letters with just a few clicks.',
+          'AWS : Lambda, Amplify, DynamoDB, API Gateway, CloudFormation, S3, SNS... to build scalable solutions',
+          'JS & Python : Developed serverless functions using AWS Lambda with layers for efficient deployment.',
+          'Integrated the La Poste API to send registered letters and creating a CRON job to retrieve letter statuses.',
+          'Connected to an internal system to send other letters for printing'
         ]
       }
     ]
@@ -166,17 +174,23 @@ export const experiences = [
     date: 'Sept 2022 - Sept 2023',
     projects: [
       {
-        title: 'Consonéo',
+        title: 'Design System',
         projectLogo: '',
-        projectTechnologies: [],
+        projectTechnologies: [react, js, storybook],
         points: [
-          'React.js : Developing and maintaining web applications using and other related technologies.',
-          'Redefining and improving the Design System using React, JavaScript, and Storybook to ensure visual consistency' +
-            ' across different components.',
-          'Enhancing an internal application by integrating the new components from the Design System.',
-          'Writing and executing unit tests using Jest.js.',
-          'Implementing containerization solutions with Docker to simplify POC deployment.',
-          'Developing full-stack POCs using various technologies such as Nest.js / Next.js / PHP / Symfony / MySQL / PostgreSQL'
+          'React.js, JavaScript & Storybook : Redefined and enhanced the Design System to ensure visual consistency across components.',
+          'Jest.js : Wrote and executed unit tests using to ensure code reliability.'
+        ]
+      },
+      {
+        title: 'Other',
+        projectLogo: '',
+        projectTechnologies: [react, nestjs, docker, postgresql],
+        points: [
+          'React.js : Developed and maintained web applications using React.js and other related technologies.',
+          'Enhanced an internal application by integrating components from the updated Design System.',
+          'Implemented containerization solutions with Docker to streamline POC deployment.',
+          'Developed full-stack POCs using technologies such as Nest.js, Next.js, PHP, Symfony, MySQL, PostgreSQL'
         ]
       }
     ]

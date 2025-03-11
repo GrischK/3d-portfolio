@@ -81,7 +81,10 @@ const About = () => {
                   </p>
                   <ul className="my-5 list-disc ml-5 space-y-2">
                     {experience.projects.map((project, index) => (
-                      <div key={index}>
+                      <div
+                        key={index}
+                        className={`${index < experience.projects.length - 1 ? ' border-b-2 pb-4' : ''}`}
+                      >
                         <div className={'flex gap-2'}>
                           {project.url ? (
                             <a
@@ -103,6 +106,18 @@ const About = () => {
                             />
                           )}
                         </div>
+                        {project.projectTechnologies.length !== 0 && (
+                          <div className={'flex gap-2 mt-2 mb-4'}>
+                            {project.projectTechnologies.map((projectTechnology, index) => (
+                              <img
+                                key={index}
+                                src={projectTechnology}
+                                alt={projectTechnology}
+                                className="w-6 h-6 object-contain"
+                              />
+                            ))}
+                          </div>
+                        )}
                         {project.points.map((point, index) => (
                           <li
                             className="text-black-500/50 font-normal pl-1 text-sm"
@@ -111,18 +126,6 @@ const About = () => {
                             {point}
                           </li>
                         ))}
-                        {project.projectTechnologies.length && (
-                          <div className={'flex gap-2'}>
-                            {project.projectTechnologies.map((projectTechnology, index) => (
-                                <img
-                                  key={index}
-                                  src={projectTechnology}
-                                  alt={projectTechnology}
-                                  className="w-6 h-6 object-contain"
-                                />
-                            ))}
-                          </div>
-                        )}
                       </div>
                     ))}
                   </ul>
