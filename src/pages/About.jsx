@@ -82,7 +82,7 @@ const About = () => {
                   <ul className="my-5 list-disc ml-5 space-y-2">
                     {experience.projects.map((project, index) => (
                       <div
-                        key={index}
+                        key={`projects-${index}`}
                         className={`${index < experience.projects.length - 1 ? ' border-b-2 pb-4' : ''}`}
                       >
                         <div className={'flex gap-2'}>
@@ -106,21 +106,28 @@ const About = () => {
                           {/*)}*/}
                         </div>
                         {project.projectTechnologies.length !== 0 && (
-                          <div className={'flex gap-2 mt-2 mb-4'}>
+                          <div className={'block-container flex gap-2 mt-2 mb-4'}>
                             {project.projectTechnologies.map((projectTechnology, index) => (
-                              <img
-                                key={index}
-                                src={projectTechnology}
-                                alt={projectTechnology}
-                                className="w-6 h-6 object-contain"
-                              />
+                              <div
+                                className="block-container w-6 h-6"
+                                key={`projectTechnologies-${index}`}
+                              >
+                                <div className="btn-back" />
+                                <div className="btn-front flex justify-center items-center">
+                                  <img
+                                    src={projectTechnology}
+                                    alt={projectTechnology}
+                                    className="w-6 h-6 object-contain"
+                                  />
+                                </div>
+                              </div>
                             ))}
                           </div>
                         )}
                         {project.points.map((point, index) => (
                           <li
                             className="text-black-500/50 font-normal pl-1 text-sm"
-                            key={`experience-point-${index}`}
+                            key={`project-point-${index}`}
                           >
                             {point}
                           </li>
