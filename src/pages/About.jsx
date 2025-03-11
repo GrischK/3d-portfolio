@@ -2,6 +2,11 @@ import { experiences, skills } from '../constants/index.js';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
 import CTA from '../components/CTA.jsx';
+import { Canvas } from '@react-three/fiber';
+import { PerspectiveCamera } from '@react-three/drei';
+import HackerRoom from '../components/HackRoom.jsx';
+import SpinLoader from '../components/SpinLoader.jsx';
+import { Suspense } from 'react';
 
 const About = () => {
   return (
@@ -17,6 +22,19 @@ const About = () => {
       </div>
       <div className="py-10 flex flex-col">
         <h3 className="subhead-text">My Skills</h3>
+        <Canvas className={'w-full h-full'}>
+          <Suspense fallback={<SpinLoader />}>
+            <PerspectiveCamera
+              makeDefault
+              position={[0, 0, 30]}
+            />
+            <HackerRoom
+              scale={0.05}
+              position={[0, 0, 0]}
+              rotation={[0, -Math.PI / 2, 0]}
+            />
+          </Suspense>
+        </Canvas>
         <div className="mt-16 flex flex-wrap gap-12">
           {skills.map((skill, index) => (
             <div
