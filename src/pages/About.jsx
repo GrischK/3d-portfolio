@@ -7,8 +7,48 @@ import { PerspectiveCamera } from '@react-three/drei';
 import HackerRoom from '../components/HackRoom.jsx';
 import SpinLoader from '../components/SpinLoader.jsx';
 import { Suspense } from 'react';
+import { Leva, useControls } from 'leva';
 
 const About = () => {
+  const constrols = useControls('HackerRoom', {
+    scale: {
+      value: 0.1,
+      min: 0,
+      max: 1,
+      range: 0.1
+    },
+    positionX: {
+      value: 0.1,
+      min: -10,
+      max: 10
+    },
+    positionY: {
+      value: -3,
+      min: -10,
+      max: 10
+    },
+    positionZ: {
+      value: 5,
+      min: -10,
+      max: 10
+    },
+    rotationX: {
+      value: 0.4,
+      min: -10,
+      max: 10
+    },
+    rotationY: {
+      value: Math.PI,
+      min: -10,
+      max: 10
+    },
+    rotationZ: {
+      value: 0,
+      min: -10,
+      max: 10
+    }
+  });
+
   return (
     <section className="max-container">
       <h1 className="head-text">
@@ -22,17 +62,21 @@ const About = () => {
       </div>
       <div className="py-10 flex flex-col">
         <h3 className="subhead-text">My Skills</h3>
-        <Canvas className={'w-full h-full'}>
+        <Leva />
+        <Canvas className={'w-full h-[50vh]'} style={{ height: '50vh' }}>
           <Suspense fallback={<SpinLoader />}>
             <PerspectiveCamera
               makeDefault
               position={[0, 0, 30]}
             />
             <HackerRoom
-              scale={0.05}
-              position={[0, 0, 0]}
-              rotation={[0, -Math.PI / 2, 0]}
+              scale={constrols.scale}
+              position={[constrols.positionX, constrols.positionY, constrols.positionZ]}
+              rotation={[constrols.rotationX, constrols.rotationY, constrols.rotationZ]}
             />
+            <ambientLight intensity={1} />
+            <directionalLight position={[10, 10, 10]} intensity={1.5} />
+
           </Suspense>
         </Canvas>
         <div className="mt-16 flex flex-wrap gap-12">

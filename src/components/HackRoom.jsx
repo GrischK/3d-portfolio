@@ -1,9 +1,8 @@
-import { useGLTF, useTexture } from '@react-three/drei';
+import { useGLTF } from '@react-three/drei';
 import hackerRoom from '../assets/3d/hacker-room.glb';
 
 const HackerRoom = (props) => {
   const { nodes, materials } = useGLTF(hackerRoom);
-
 
   return (
     <group
