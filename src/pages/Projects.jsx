@@ -1,7 +1,8 @@
 import { projects } from '../constants/index.js';
 import { Link } from 'react-router-dom';
-import { arrow } from '../assets/icons/index.js';
+// import { ReactComponent as Arrow } from '../assets/icons/arrow.svg';
 import CTA from '../components/CTA.jsx';
+import Arrow from '../assets/icons/arrow.svg?react';
 
 const Projects = () => {
   return (
@@ -44,11 +45,7 @@ const Projects = () => {
                   >
                     Live link
                   </Link>
-                  <img
-                    src={arrow}
-                    alt="arrow"
-                    className="w-4 h-4 object-contain"
-                  />
+                  <Arrow className="blue-arrow"/>
                 </div>
               </div>
             </div>
