@@ -13,6 +13,7 @@ import ReactLogo from '../components/ReactLogo.jsx';
 import Cube from '../components/Cube.jsx';
 import Rings from '../components/Rings.jsx';
 import Husky from '../models/Husky.jsx';
+import HeroCamera from '../components/HeroCamera.jsx';
 
 const About = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
@@ -67,7 +68,12 @@ const About = () => {
       value: 5,
       min: -10,
       max: 10
-    }
+    },
+    huskyPositionY: {
+      value: -4.5,
+      min: -10,
+      max: 10
+    },
   });
 
   return (
@@ -89,16 +95,18 @@ const About = () => {
               makeDefault
               position={[0, 0, 29]}
             />
-            <HackerRoom
-              scale={isMobile ? 0.07 : 0.1}
-              position={[constrols.positionX, constrols.positionY, constrols.positionZ]}
-              rotation={[constrols.rotationX, constrols.rotationY, constrols.rotationZ]}
-            />
+            <HeroCamera>
+              <HackerRoom
+                scale={isMobile ? 0.07 : 0.1}
+                position={[constrols.positionX, constrols.positionY, constrols.positionZ]}
+                rotation={[constrols.rotationX, constrols.rotationY, constrols.rotationZ]}
+              />
+              <Husky position={[7.5, -5.9, 10]} scale={2} rotation={[Math.PI / 20, -Math.PI / 5, 0]} />
+            </HeroCamera>
             <group>
               <ReactLogo position={[8, 8, 0]} />
               <Cube />
               <Rings position={[-20, 15, 0]} />
-              <Husky position={[4.5, -2.2, 20]} scale={0.9} rotation={[0, -Math.PI / 5, 0]} />
             </group>
             <ambientLight intensity={1} />
             <directionalLight position={[10, 10, 10]} intensity={1.5} />
