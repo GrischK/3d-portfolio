@@ -73,7 +73,7 @@ const HeroSection = () => {
       }}
       style={{ height: '100vh', width: '100vw' }}
     >
-      <Suspense fallback={<SpinLoader />}>
+      <Suspense fallback={<SpinLoader/>}>
         <color
           attach="background"
           args={['#171720']}

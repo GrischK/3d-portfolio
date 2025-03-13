@@ -73,7 +73,7 @@ const About = () => {
       value: -4.5,
       min: -10,
       max: 10
-    },
+    }
   });
 
   return (
@@ -90,7 +90,7 @@ const About = () => {
       <div className="py-10 flex flex-col">
         <Leva />
         <Canvas className={'w-full h-[50vh]'} style={{ height: '80vh' }}>
-          <Suspense fallback={<SpinLoader />}>
+          <Suspense fallback={<SpinLoader bg={'white'} textColor={'black'} />}>
             <PerspectiveCamera
               makeDefault
               position={[0, 0, 29]}
