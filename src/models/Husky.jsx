@@ -3,52 +3,71 @@ import huskyScene from '../assets/3d/husky.glb';
 import React, { useEffect, useRef } from 'react';
 import { useGLTF, useAnimations } from '@react-three/drei';
 
-const Husky = (props) => {
+const Husky = ({ isAnimating, ...props }) => {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF(huskyScene);
   const { actions } = useAnimations(animations, group);
 
+
   useEffect(() => {
-    const actionsArray = [
-      actions['Walk'],
-      actions['Gallop'],
-      actions['Eating'],
-      actions['Idle_2_HeadLow'],
-      actions['Jump_ToIdle']
-    ];
-    let currentIndex = 0;
+    Object.values(materials).forEach((material) => {
+      material.metalness = 0;
+      material.roughness = 1;
+    });
+  }, [materials]);
 
-    const switchAction = () => {
-      const currentAction = actionsArray[currentIndex];
-      const nextAction = actionsArray[(currentIndex + 1) % actionsArray.length];
+  useEffect(() => {
+    if (isAnimating) {
+      const actionsArray = [
+        actions['Walk'],
+        actions['Gallop'],
+        actions['Eating'],
+        actions['Idle_2_HeadLow'],
+        actions['Jump_ToIdle']
+      ];
+      let currentIndex = 0;
 
-      currentAction.fadeOut(0.5);
-      nextAction.reset().fadeIn(0.5).play();
+      const switchAction = () => {
+        const currentAction = actionsArray[currentIndex];
+        const nextAction = actionsArray[(currentIndex + 1) % actionsArray.length];
 
-      currentIndex = (currentIndex + 1) % actionsArray.length;
+        currentAction.fadeOut(0.5);
+        nextAction.reset().fadeIn(0.5).play();
 
-      if (nextAction === actions['Jump_ToIdle']) {
-        setTimeout(() => {
-          nextAction.fadeOut(0.5);
-          const nextAfterJump = actionsArray[(currentIndex + 1) % actionsArray.length];
-          nextAfterJump.reset().fadeIn(0.5).play();
-          currentIndex = (currentIndex + 1) % actionsArray.length;
-        }, 1100); // 2,5 secondes
-      }
-    };
+        currentIndex = (currentIndex + 1) % actionsArray.length;
 
-    // Démarrer la première action
-    actionsArray[currentIndex].reset().fadeIn(0.5).play();
+        if (nextAction === actions['Jump_ToIdle']) {
+          setTimeout(() => {
+            nextAction.fadeOut(0.5);
+            const nextAfterJump = actionsArray[(currentIndex + 1) % actionsArray.length];
+            nextAfterJump.reset().fadeIn(0.5).play();
+            currentIndex = (currentIndex + 1) % actionsArray.length;
+          }, 1100); // 2,5 secondes
+        }
+      };
 
-    // Alterner toutes les 5 secondes
-    const interval = setInterval(switchAction, 5000);
+      // Démarrer la première action
+      actionsArray[currentIndex].reset().fadeIn(0.5).play();
 
-    // Nettoyage à la fin
-    return () => {
-      clearInterval(interval);
-      actionsArray.forEach((action) => action.stop());
-    };
-  }, [actions]);
+      // Alterner toutes les 5 secondes
+      const interval = setInterval(switchAction, 5000);
+
+      // Nettoyage à la fin
+      return () => {
+        clearInterval(interval);
+        actionsArray.forEach((action) => action.stop());
+      };
+    }
+    else {
+      // Jouer l'animation "Idle_2_HeadLow" si isAnimating est false
+      actions['Idle_2_HeadLow'].reset().fadeIn(0.5).play();
+
+      // Nettoyage à la fin
+      return () => {
+        actions['Idle_2_HeadLow'].stop();
+      };
+    }
+  }, [actions, isAnimating]);
 
   return (
     <group

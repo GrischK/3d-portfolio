@@ -128,6 +128,7 @@ const HeroSection = () => {
                     rotationIntensity={1}
                   >
                     <Husky
+                      isAnimating={true}
                       scale={0.8}
                       position={[0, -0.6, 1]}
                       rotation={[0, -5, 0]}

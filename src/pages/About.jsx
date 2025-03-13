@@ -8,8 +8,14 @@ import HackerRoom from '../components/HackRoom.jsx';
 import SpinLoader from '../components/SpinLoader.jsx';
 import { Suspense } from 'react';
 import { Leva, useControls } from 'leva';
+import { useMediaQuery } from 'react-responsive';
+import ReactLogo from '../components/ReactLogo.jsx';
+import Cube from '../components/Cube.jsx';
+import Rings from '../components/Rings.jsx';
+import Husky from '../models/Husky.jsx';
 
 const About = () => {
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
   const constrols = useControls('HackerRoom', {
     scale: {
       value: 0.1,
@@ -23,7 +29,7 @@ const About = () => {
       max: 10
     },
     positionY: {
-      value: -3,
+      value: -4.5,
       min: -10,
       max: 10
     },
@@ -33,7 +39,7 @@ const About = () => {
       max: 10
     },
     rotationX: {
-      value: 0.4,
+      value: 0.2,
       min: -10,
       max: 10
     },
@@ -44,6 +50,21 @@ const About = () => {
     },
     rotationZ: {
       value: 0,
+      min: -10,
+      max: 10
+    },
+    reactLogoPositionX: {
+      value: 0.1,
+      min: -10,
+      max: 10
+    },
+    reactLogoPositionY: {
+      value: -4.5,
+      min: -10,
+      max: 10
+    },
+    reactLogoPositionZ: {
+      value: 5,
       min: -10,
       max: 10
     }
@@ -61,24 +82,30 @@ const About = () => {
         </p>
       </div>
       <div className="py-10 flex flex-col">
-        <h3 className="subhead-text">My Skills</h3>
         <Leva />
-        <Canvas className={'w-full h-[50vh]'} style={{ height: '50vh' }}>
+        <Canvas className={'w-full h-[50vh]'} style={{ height: '80vh' }}>
           <Suspense fallback={<SpinLoader />}>
             <PerspectiveCamera
               makeDefault
-              position={[0, 0, 30]}
+              position={[0, 0, 29]}
             />
             <HackerRoom
-              scale={constrols.scale}
+              scale={isMobile ? 0.07 : 0.1}
               position={[constrols.positionX, constrols.positionY, constrols.positionZ]}
               rotation={[constrols.rotationX, constrols.rotationY, constrols.rotationZ]}
             />
+            <group>
+              <ReactLogo position={[8, 8, 0]} />
+              <Cube />
+              <Rings position={[-20, 15, 0]} />
+              <Husky position={[4.5, -2.2, 20]} scale={0.9} rotation={[0, -Math.PI / 5, 0]} />
+            </group>
             <ambientLight intensity={1} />
             <directionalLight position={[10, 10, 10]} intensity={1.5} />
 
           </Suspense>
         </Canvas>
+        <h3 className="subhead-text">My Skills</h3>
         <div className="mt-16 flex flex-wrap gap-12">
           {skills.map((skill, index) => (
             <div
