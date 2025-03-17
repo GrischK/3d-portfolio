@@ -2,7 +2,7 @@ import { Center, Float, useTexture } from '@react-three/drei';
 import { useCallback, useEffect, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 
-const Rings = ({ position = [0, 0, 0] }) => {
+const Rings = ({ position,scale}) => {
   const refList = useRef([]);
   const getRef = useCallback((mesh) => {
     if (mesh && !refList.current.includes(mesh)) {
@@ -79,7 +79,7 @@ const Rings = ({ position = [0, 0, 0] }) => {
   return (
     <Float floatIntensity={0.2}>
       <Center>
-        <group scale={0.7}>
+        <group scale={scale}>
           {Array.from({ length: 4 }, (_, index) => (
             <mesh key={index} ref={getRef}>
               <torusGeometry args={[(index + 1) * 0.5, 0.1]} />

@@ -17,60 +17,24 @@ import HeroCamera from '../components/HeroCamera.jsx';
 
 const About = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
-  const constrols = useControls('HackerRoom', {
-    scale: {
-      value: 0.1,
-      min: 0,
-      max: 1,
-      range: 0.1
-    },
-    positionX: {
-      value: 0.1,
-      min: -10,
-      max: 10
-    },
-    positionY: {
-      value: -4.5,
-      min: -10,
-      max: 10
-    },
-    positionZ: {
-      value: 5,
-      min: -10,
-      max: 10
-    },
-    rotationX: {
-      value: 0.2,
-      min: -10,
-      max: 10
-    },
-    rotationY: {
-      value: Math.PI,
-      min: -10,
-      max: 10
-    },
-    rotationZ: {
-      value: 0,
-      min: -10,
-      max: 10
-    },
-    reactLogoPositionX: {
-      value: 0.1,
-      min: -10,
-      max: 10
-    },
-    reactLogoPositionY: {
-      value: -4.5,
-      min: -10,
-      max: 10
-    },
-    reactLogoPositionZ: {
-      value: 5,
-      min: -10,
-      max: 10
+  const controls = useControls('HackerRoom', {
+    huskyPositionX: {
+      value: 7.5,
+      min: -50,
+      max: 50
     },
     huskyPositionY: {
-      value: -4.5,
+      value: -5.3,
+      min: -10,
+      max: 20
+    },
+    huskyPositionZ: {
+      value: 20,
+      min: -10,
+      max: 20
+    },
+    huskyScale: {
+      value: 2,
       min: -10,
       max: 10
     }
@@ -89,28 +53,54 @@ const About = () => {
       </div>
       <div className="py-10 flex flex-col">
         <Leva />
-        <Canvas className={'w-full h-[50vh]'} style={{ height: '80vh' }}>
-          <Suspense fallback={<SpinLoader bg={'white'} textColor={'black'} />}>
+        <Canvas
+          className={'w-full h-[50vh]'}
+          style={{ height: '80vh' }}
+        >
+          <Suspense
+            fallback={
+              <SpinLoader
+                bg={'white'}
+                textColor={'black'}
+              />
+            }
+          >
             <PerspectiveCamera
               makeDefault
               position={[0, 0, 29]}
             />
             <HeroCamera>
               <HackerRoom
-                scale={isMobile ? 0.07 : 0.1}
-                position={[constrols.positionX, constrols.positionY, constrols.positionZ]}
-                rotation={[constrols.rotationX, constrols.rotationY, constrols.rotationZ]}
+                scale={isMobile ? 0.06 : 0.1}
+                position={[isMobile ? 0.5 : 0.1, -4.5, 5]}
+                rotation={[0.2, Math.PI, 0]}
               />
-              <Husky position={[7.5, -5.9, 10]} scale={2} rotation={[Math.PI / 20, -Math.PI / 5, 0]} />
+              <Husky
+                position={[isMobile ? 5 : 7.5, -5.3, isMobile ? 10 : 20]}
+                scale={isMobile ? 1.35 : 2}
+                rotation={[Math.PI / 20, -Math.PI / 5, 0]}
+              />
             </HeroCamera>
             <group>
-              <ReactLogo position={[8, 8, 0]} />
-              <Cube />
-              <Rings position={[-20, 15, 0]} />
+              <ReactLogo
+                position={[isMobile ? 5.2 : 8, isMobile ? 5.4 : 8, 0]}
+                scale={isMobile ? 0.5 : 0.6}
+              />
+              <Cube
+                position={[isMobile ? -4 : -15, isMobile ? -6.1 : -4, isMobile ? 10 : 0]}
+                rotation={[2.6, 0.8, -1.8]}
+                scale={isMobile ? 0.3 : 0.74}
+              />
+              <Rings
+                position={[isMobile ? -12 : -20, isMobile ? 15.5 : 15, 0]}
+                scale={isMobile ? 0.5 : 0.7}
+              />
             </group>
             <ambientLight intensity={1} />
-            <directionalLight position={[10, 10, 10]} intensity={1.5} />
-
+            <directionalLight
+              position={[10, 10, 10]}
+              intensity={1.5}
+            />
           </Suspense>
         </Canvas>
         <h3 className="subhead-text">My Skills</h3>
