@@ -76,7 +76,7 @@ const About = () => {
                 rotation={[0.2, Math.PI, 0]}
               />
               <Husky
-                position={[isMobile ? 5 : 7.5, -5.3, isMobile ? 10 : 20]}
+                position={[isMobile ? 3.5 : 7.5, -5.3, 10]}
                 scale={isMobile ? 1.35 : 2}
                 rotation={[Math.PI / 20, -Math.PI / 5, 0]}
               />
