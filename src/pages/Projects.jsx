@@ -12,8 +12,8 @@ const Projects = () => {
       </h1>
       <div>
         <p className="mt-5 flex flex-col gap-3 text-slate-500">
-          I'v embarked on numerous projects throughout the years, but theses are the ones I hold
-          closest to my heart. Many of them are open-source, so if you come across something that
+          I'v embarked on numerous personal projects throughout the years, but theses are the ones I hold
+          closest to my heart. All of them are open-source, so if you come across something that
           piques your interest, feel free to explore the codebase and contribute your ideas for
           further enhancements. Your collaboration is highly valued!
         </p>
