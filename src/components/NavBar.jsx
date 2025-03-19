@@ -1,6 +1,9 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink,useLocation  } from 'react-router-dom';
 
 const NavBar = () => {
+  const location = useLocation();
+  // console.log(location.pathname);
+
   return (
     <header className="header">
       <NavLink
@@ -12,20 +15,27 @@ const NavBar = () => {
       <nav className="flex text-lg gap-7 font-medium">
         <NavLink
           to="/about"
-          className={({ isActive }) => (isActive ? 'text-blue-500' : 'text-black')}
+          className={({ isActive }) => {
+            const baseClass = isActive ? 'text-blue-500' : 'text-black';
+            return (location.pathname === '/lab' || location.pathname === '/test') && !isActive ? 'text-white' : baseClass;
+          }}
         >
           About
         </NavLink>
         <NavLink
           to="/projects"
-          className={({ isActive }) => (isActive ? 'text-blue-500' : 'text-black')}
-        >
+          className={({ isActive }) => {
+            const baseClass = isActive ? 'text-blue-500' : 'text-black';
+            return (location.pathname === '/lab' || location.pathname === '/test') && !isActive ? 'text-white' : baseClass;
+          }}        >
           Projects
         </NavLink>
         <NavLink
           to="/lab"
-          className={({ isActive }) => (isActive ? 'text-blue-500' : 'text-black')}
-        >
+          className={({ isActive }) => {
+            const baseClass = isActive ? 'text-blue-500' : 'text-black';
+            return (location.pathname === '/lab' || location.pathname === '/test') && !isActive ? 'text-white' : baseClass;
+          }}        >
           Lab
         </NavLink>
       </nav>

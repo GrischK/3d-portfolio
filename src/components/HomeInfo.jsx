@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import arrow from '../assets/icons/arrow.svg';
+import Arrow from '../assets/icons/arrow.svg?react';
 
 const InfoBox = ({ text, link, btnText }) => (
   <div className="info-box">
@@ -10,11 +10,7 @@ const InfoBox = ({ text, link, btnText }) => (
       className="neo-brutalism-white neo-btn sm:text-xl text-lg"
     >
       {btnText}
-      <img
-        src={arrow}
-        alt="rigth arrow"
-        className="w4 h4 object-contain"
-      />
+      <Arrow className="green-arrow"/>
     </Link>
   </div>
 );

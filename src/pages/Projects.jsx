@@ -1,7 +1,8 @@
 import { projects } from '../constants/index.js';
 import { Link } from 'react-router-dom';
-import { arrow } from '../assets/icons/index.js';
+// import { ReactComponent as Arrow } from '../assets/icons/arrow.svg';
 import CTA from '../components/CTA.jsx';
+import Arrow from '../assets/icons/arrow.svg?react';
 
 const Projects = () => {
   return (
@@ -11,8 +12,8 @@ const Projects = () => {
       </h1>
       <div>
         <p className="mt-5 flex flex-col gap-3 text-slate-500">
-          I'v embarked on numerous projects throughout the years, but theses are the ones I hold
-          closest to my heart. Many of them are open-source, so if you come across something that
+          I'v embarked on numerous personal projects throughout the years, but theses are the ones I hold
+          closest to my heart. All of them are open-source, so if you come across something that
           piques your interest, feel free to explore the codebase and contribute your ideas for
           further enhancements. Your collaboration is highly valued!
         </p>
@@ -44,11 +45,7 @@ const Projects = () => {
                   >
                     Live link
                   </Link>
-                  <img
-                    src={arrow}
-                    alt="arrow"
-                    className="w-4 h-4 object-contain"
-                  />
+                  <Arrow className="blue-arrow"/>
                 </div>
               </div>
             </div>

@@ -26,7 +26,14 @@ import amiltone from './amiltone.svg';
 import consoneo from './consoneo.svg';
 import dice from './dice.webp';
 import soccer from './soccer.svg';
-import cities from './cities.svg';
+import map from './map.png';
+import flotto from './flotto.jpg';
+import cp from './cp.jpg';
+import aws from './aws.svg'
+import js from './js.svg'
+import python from './python.svg'
+import storybook from './storybook.svg';
+import threejs from './threejs.svg';
 
 export {
   css,
@@ -57,5 +64,12 @@ export {
   consoneo,
   dice,
   soccer,
-  cities
+  map,
+  flotto,
+  cp,
+  aws,
+  js,
+  python,
+  storybook,
+  threejs
 };
