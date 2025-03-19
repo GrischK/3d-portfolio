@@ -14,7 +14,6 @@ import {
   graphql,
   js,
   linkedin,
-  motion,
   nestjs,
   nodejs,
   postgresql,
@@ -23,26 +22,12 @@ import {
   soccer,
   storybook,
   tailwindcss,
+  threejs,
   typeorm,
   typescript
 } from '../assets/icons';
 
 export const skills = [
-  // {
-  //   imageUrl: css,
-  //   name: 'CSS',
-  //   type: 'Frontend'
-  // },
-  // {
-  //   imageUrl: html,
-  //   name: 'HTML',
-  //   type: 'Frontend'
-  // },
-  // {
-  //   imageUrl: javascript,
-  //   name: 'JavaScript',
-  //   type: 'Frontend'
-  // },
   {
     imageUrl: typescript,
     name: 'TypeScript',
@@ -59,13 +44,8 @@ export const skills = [
     type: 'Backend'
   },
   {
-    imageUrl: express,
-    name: 'Express',
-    type: 'Backend'
-  },
-  {
     imageUrl: nestjs,
-    name: 'NestJs',
+    name: 'NestJS',
     type: 'Backend'
   },
   {
@@ -94,35 +74,25 @@ export const skills = [
     type: 'Database'
   },
   {
-    imageUrl: motion,
-    name: 'Motion',
-    type: 'Animation'
+    imageUrl: threejs,
+    name: 'Three.js',
+    type: '3D'
   },
-  // {
-  //   imageUrl: mui,
-  //   name: 'Material-UI',
-  //   type: 'Frontend'
-  // },
-  // {
-  //   imageUrl: sass,
-  //   name: 'Sass',
-  //   type: 'Frontend'
-  // },
   {
     imageUrl: tailwindcss,
-    name: 'Tailwind CSS',
+    name: 'Tailwind',
     type: 'Frontend'
   },
-  // {
-  //   imageUrl: git,
-  //   name: 'Git',
-  //   type: 'Version Control'
-  // },
   {
     imageUrl: github,
     name: 'GitHub',
     type: 'Version Control'
-  }
+  },
+  {
+    imageUrl: aws,
+    name: 'AWS',
+    type: 'Backend'
+  },
 ];
 
 export const experiences = [

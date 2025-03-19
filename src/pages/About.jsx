@@ -7,7 +7,7 @@ import { PerspectiveCamera } from '@react-three/drei';
 import HackerRoom from '../components/HackRoom.jsx';
 import SpinLoader from '../components/SpinLoader.jsx';
 import { Suspense } from 'react';
-import { Leva, useControls } from 'leva';
+import { Leva } from 'leva';
 import { useMediaQuery } from 'react-responsive';
 import ReactLogo from '../components/ReactLogo.jsx';
 import Cube from '../components/Cube.jsx';
@@ -17,28 +17,28 @@ import HeroCamera from '../components/HeroCamera.jsx';
 
 const About = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
-  const controls = useControls('HackerRoom', {
-    huskyPositionX: {
-      value: 7.5,
-      min: -50,
-      max: 50
-    },
-    huskyPositionY: {
-      value: -5.3,
-      min: -10,
-      max: 20
-    },
-    huskyPositionZ: {
-      value: 20,
-      min: -10,
-      max: 20
-    },
-    huskyScale: {
-      value: 2,
-      min: -10,
-      max: 10
-    }
-  });
+  // const controls = useControls('HackerRoom', {
+  //   huskyPositionX: {
+  //     value: 7.5,
+  //     min: -50,
+  //     max: 50
+  //   },
+  //   huskyPositionY: {
+  //     value: -5.3,
+  //     min: -10,
+  //     max: 20
+  //   },
+  //   huskyPositionZ: {
+  //     value: 20,
+  //     min: -10,
+  //     max: 20
+  //   },
+  //   huskyScale: {
+  //     value: 2,
+  //     min: -10,
+  //     max: 10
+  //   }
+  // });
 
   return (
     <section className="max-container">
@@ -107,17 +107,22 @@ const About = () => {
         <div className="mt-16 flex flex-wrap gap-12">
           {skills.map((skill, index) => (
             <div
-              className="block-container w-20 h-20"
+              className="relative group"
               key={`skill-${index}`}
             >
-              <div className="btn-back rounded-xl" />
-              <div className="btn-front rounded-xl flex justify-center items-center">
-                <img
-                  src={skill.imageUrl}
-                  alt={skill.name}
-                  className="w-1/2 h-1/2 object-contain"
-                />
+              <div className="block-container w-20 h-20">
+                <div className="btn-back rounded-xl" />
+                <div className="btn-front rounded-xl flex justify-center items-center">
+                  <img
+                    src={skill.imageUrl}
+                    alt={skill.name}
+                    className="w-1/2 h-1/2 object-contain"
+                  />
+                </div>
               </div>
+              <span className="absolute bottom-[-1.5rem] left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                {skill.name}
+              </span>
             </div>
           ))}
         </div>

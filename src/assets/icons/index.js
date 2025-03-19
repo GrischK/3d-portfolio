@@ -33,6 +33,7 @@ import aws from './aws.svg'
 import js from './js.svg'
 import python from './python.svg'
 import storybook from './storybook.svg';
+import threejs from './threejs.svg';
 
 export {
   css,
@@ -69,5 +70,6 @@ export {
   aws,
   js,
   python,
-  storybook
+  storybook,
+  threejs
 };
