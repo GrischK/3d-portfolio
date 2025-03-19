@@ -26,7 +26,7 @@ import amiltone from './amiltone.svg';
 import consoneo from './consoneo.svg';
 import dice from './dice.webp';
 import soccer from './soccer.svg';
-import cities from './cities.svg';
+import map from './map.png';
 import flotto from './flotto.jpg';
 import cp from './cp.jpg';
 import aws from './aws.svg'
@@ -64,7 +64,7 @@ export {
   consoneo,
   dice,
   soccer,
-  cities,
+  map,
   flotto,
   cp,
   aws,

@@ -8,7 +8,6 @@ import {
   cp,
   dice,
   docker,
-  express,
   flotto,
   github,
   graphql,
@@ -24,7 +23,8 @@ import {
   tailwindcss,
   threejs,
   typeorm,
-  typescript
+  typescript,
+  map
 } from '../assets/icons';
 
 export const skills = [
@@ -196,7 +196,7 @@ export const projects = [
     link: 'https://github.com/GrischK/Pronos-euro-des-potos'
   },
   {
-    iconUrl: soccer,
+    iconUrl: map,
     theme: 'btn-back-green',
     name: 'Mapado',
     description:
