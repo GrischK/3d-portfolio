@@ -69,7 +69,7 @@ const About = () => {
               makeDefault
               position={[0, 0, 29]}
             />
-            <HeroCamera>
+            <HeroCamera isMobile={isMobile}>
               <HackerRoom
                 scale={isMobile ? 0.06 : 0.1}
                 position={[isMobile ? 0.5 : 0.1, -4.5, 5]}
@@ -99,7 +99,7 @@ const About = () => {
             <ambientLight intensity={1} />
             <directionalLight
               position={[10, 10, 10]}
-              intensity={1.5}
+              intensity={2}
             />
           </Suspense>
         </Canvas>
@@ -175,7 +175,9 @@ const About = () => {
                     {experience.projects.map((project, index) => (
                       <div
                         key={`projects-${index}`}
-                        className={`${index < experience.projects.length - 1 ? ' border-b-2 pb-4' : ''}`}
+                        className={`${
+                          index < experience.projects.length - 1 ? ' border-b-2 pb-4' : ''
+                        }`}
                       >
                         <div className={'flex gap-2'}>
                           {project.url ? (
