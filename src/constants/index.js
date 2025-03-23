@@ -92,7 +92,7 @@ export const skills = [
     imageUrl: aws,
     name: 'AWS',
     type: 'Backend'
-  },
+  }
 ];
 
 export const experiences = [
@@ -131,7 +131,8 @@ export const experiences = [
           'AWS : Lambda, Amplify, DynamoDB, API Gateway, CloudFormation, S3, SNS... to build scalable solutions',
           'JS & Python : Developed serverless functions using AWS Lambda with layers for efficient deployment.',
           'Integrated the La Poste API to send registered letters and creating a CRON job to retrieve letter statuses.',
-          'Connected to an internal system to send other letters for printing'
+          'Connected to an internal system to send other letters for printing',
+          'Implemented SMS notifications using AWS SNS to keep users informed about their letter statuses and delivery updates.'
         ]
       }
     ]
