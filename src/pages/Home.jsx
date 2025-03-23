@@ -140,7 +140,11 @@ const Home = () => {
         isPlaying={() => setIsPlayingMusic(true)}
       />
       <div
-        className={`absolute ${isTabletOrMobile ? 'bottom-20 left-1 opacity-50 hover:opacity-100' : 'bottom-2 left-2'}`}
+        className={`absolute ${
+          isTabletOrMobile
+            ? 'bottom-20 left-1 opacity-50 hover:opacity-100 transition-opacity duration-300'
+            : 'bottom-2' + ' left-2'
+        }`}
       >
         <img
           className="w-10 h-10 cursor-pointer object-contain"
