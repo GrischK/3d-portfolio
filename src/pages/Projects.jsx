@@ -4,6 +4,7 @@ import CTA from '../components/CTA.jsx';
 import Arrow from '../assets/icons/arrow.svg?react';
 import { useState } from 'react';
 import { BookContainer } from '../components/BookContainer.jsx';
+import { animated, useSpring } from '@react-spring/web';
 
 const Projects = () => {
   const [step, setStep] = useState(1);
@@ -11,6 +12,19 @@ const Projects = () => {
   const handelChangeStep = () => {
     setStep(2);
   };
+
+  const transitionToStep2 = useSpring({
+    opacity: step === 2 ? 1 : 0,
+    transform: step === 2 ? 'translateY(0px)' : 'translateY(20px)',
+    immediate: step === 1,
+    config: {
+      tension: 220,
+      friction: 20,
+      mass: 1
+    },
+    // Ajout d'un délai pour laisser le temps au DOM de se mettre à jour
+    delay: step === 2 ? 50 : 0
+  });
 
   return (
     <>
@@ -21,7 +35,10 @@ const Projects = () => {
         />
       )}
       {step === 2 && (
-        <section className="max-container">
+        <animated.section
+          className="max-container"
+          style={transitionToStep2}
+        >
           <h1 className="head-text">
             My <span className="blue-gradient_text font-semibold drop-shadow">Projects</span>
           </h1>
@@ -77,7 +94,7 @@ const Projects = () => {
           </div>
           <hr className="border-slate-200 " />
           <CTA />
-        </section>
+        </animated.section>
       )}
     </>
   );
