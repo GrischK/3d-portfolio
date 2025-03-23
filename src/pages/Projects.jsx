@@ -67,12 +67,14 @@ const Projects = () => {
               ))}{' '}
             </div>
           </div>
-          <button
-            onClick={() => setStep(1)}
-            className={`border-transparent hover:border-white transition-all duration-300 px-4 py-3 rounded-full text-lg uppercase shrink-0 border bg-black/30 text-white ml-3`}
-          >
-            Look at the book
-          </button>
+          <div className={'flex justify-center mb-16'}>
+            <button
+              onClick={() => setStep(1)}
+              className={`font-medium border-transparent hover:border-white transition-all duration-300 px-4 py-3 rounded-full text-lg uppercase shrink-0 border text-white ml-3 bg-gradient-to-r from-[#00c6ff] to-[#0072ff] bg-[length:200%_200%] bg-left hover:bg-right transition-[background-position] duration-500`}
+            >
+              Look at the book
+            </button>
+          </div>
           <hr className="border-slate-200 " />
           <CTA />
         </section>
