@@ -4,29 +4,45 @@ import { Canvas } from '@react-three/fiber';
 import { Suspense, useState } from 'react';
 import { UI } from './UI.jsx';
 import { useMediaQuery } from 'react-responsive';
-import CTA from './CTA.jsx';
 
-export const BookContainer = () => {
+export const BookContainer = ({ handelChangeStep, displayButton }) => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
   const [isMoving, setIsMoving] = useState(true);
+
+  // TODO Gérer style pour le responsvie
 
   return (
     <>
       <Loader />
-      <button
-        onClick={() => setIsMoving((prevState) => !prevState)}
-        className={`z-10 fixed border-transparent hover:border-white transition-all duration-300 px-4 py-3 rounded-full text-lg uppercase shrink-0 border bg-black/30 text-white ml-3 ${isTabletOrMobile ? 'mt-20' : 'mt-3'} `}
+      <div
+        className={`z-10 fixed flex gap-6 mt-24 left-1/2 transform -translate-x-1/2 -translate-y-1/2`}
       >
-        {isMoving ? 'stop floating' : 'float'}
-      </button>
-      <div className={"relative"}>
+        <button
+          onClick={() => setIsMoving((prevState) => !prevState)}
+          className={`border-transparent hover:border-white transition-all duration-300 px-4 py-3 rounded-full text-lg uppercase shrink-0 border bg-black/30 text-white ml`}
+        >
+          {isMoving ? 'stop floating' : 'float'}
+        </button>
+        {displayButton && (
+          <button
+            onClick={handelChangeStep}
+            className={`border-transparent hover:border-white transition-all duration-300 px-4 py-3 rounded-full text-lg uppercase shrink-0 border bg-black/30 text-white`}
+          >
+            More details
+          </button>
+        )}
+      </div>
+
+      <div className={'relative'}>
         <UI />
         <Canvas
           shadows
-          camera={{ position: [-0.5, 1, 4], fov: isTabletOrMobile ? 55 : 45 }}
+          camera={{
+            position: [-0.5, 1, 4],
+            fov: isTabletOrMobile ? 55 : 45
+          }}
           style={{
             height: '100vh',
-            width: '100vw',
             zIndex: 2
           }}
         >
@@ -69,7 +85,6 @@ export const BookContainer = () => {
           </group>
         </Canvas>
       </div>
-      <CTA />
     </>
   );
 };
