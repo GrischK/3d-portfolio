@@ -6,7 +6,7 @@ import { UI } from './UI.jsx';
 import { useMediaQuery } from 'react-responsive';
 
 export const BookContainer = ({ handelChangeStep, displayButton }) => {
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 768px)' });
   const [isMoving, setIsMoving] = useState(true);
 
   // TODO Gérer style pour le responsvie
@@ -15,7 +15,7 @@ export const BookContainer = ({ handelChangeStep, displayButton }) => {
     <>
       <Loader />
       <div
-        className={`z-10 fixed flex gap-6 mt-24 left-1/2 transform -translate-x-1/2 -translate-y-1/2`}
+        className={`z-10 fixed flex   mt-24 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-center ${isTabletOrMobile ? 'flex-col mt-28 gap-2' : 'gap-6'}`}
       >
         <button
           onClick={() => setIsMoving((prevState) => !prevState)}
