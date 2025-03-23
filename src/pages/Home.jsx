@@ -9,7 +9,7 @@ import Forest from '../models/Forest.jsx';
 import Eagle from '../models/Eagle.jsx';
 import GermanShepard from '../models/GermanShepard.jsx';
 import GrabAnimation from '../components/GrabAnimation.jsx';
-import { useMediaQuery } from 'react-responsive'
+import { useMediaQuery } from 'react-responsive';
 
 const Home = () => {
   const audioRef = useRef(new Audio(acoustic));
@@ -22,7 +22,7 @@ const Home = () => {
   const [isPlayingMusic, setIsPlayingMusic] = useState(false);
   const [speed, setSpeed] = useState(0);
   const [showGrabAnimation, setShowGrabAnimation] = useState(true);
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
 
   // TODO: commented for test, uncomment when deploying
   useEffect(() => {
@@ -139,7 +139,9 @@ const Home = () => {
         onStarted={() => setStart(true)}
         isPlaying={() => setIsPlayingMusic(true)}
       />
-      <div className={`absolute ${isTabletOrMobile ? 'bottom-8 left-4' : 'bottom-2 left-2'}`}>
+      <div
+        className={`absolute ${isTabletOrMobile ? 'bottom-20 left-1 opacity-50 hover:opacity-100' : 'bottom-2 left-2'}`}
+      >
         <img
           className="w-10 h-10 cursor-pointer object-contain"
           src={!isPlayingMusic ? soundoff : soundon}
