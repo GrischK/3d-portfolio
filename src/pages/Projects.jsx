@@ -1,6 +1,5 @@
 import { projects } from '../constants/index.js';
 import { Link } from 'react-router-dom';
-// import { ReactComponent as Arrow } from '../assets/icons/arrow.svg';
 import CTA from '../components/CTA.jsx';
 import Arrow from '../assets/icons/arrow.svg?react';
 
@@ -12,9 +11,9 @@ const Projects = () => {
       </h1>
       <div>
         <p className="mt-5 flex flex-col gap-3 text-slate-500">
-          I'v embarked on numerous personal projects throughout the years, but theses are the ones I hold
-          closest to my heart. All of them are open-source, so if you come across something that
-          piques your interest, feel free to explore the codebase and contribute your ideas for
+          I'v embarked on numerous personal projects throughout the years, but theses are the ones I
+          hold closest to my heart. All of them are open-source, so if you come across something
+          that piques your interest, feel free to explore the codebase and contribute your ideas for
           further enhancements. Your collaboration is highly valued!
         </p>
         <div className="flex flex-wrap my-20 gap-16">
@@ -45,7 +44,7 @@ const Projects = () => {
                   >
                     Live link
                   </Link>
-                  <Arrow className="blue-arrow"/>
+                  <Arrow className="blue-arrow" />
                 </div>
               </div>
             </div>
