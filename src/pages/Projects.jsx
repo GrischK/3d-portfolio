@@ -51,16 +51,16 @@ const Projects = () => {
                   <div className="mt-5 flex flex-col gap-4">
                     <h4 className="text-2xl font-poppins font-semibold">{project.name}</h4>
                     <p className="mt2 text-slate-500">{project.description}</p>
-                    <div className="mt5 flex items-center gap-2 font-poppins">
+                    <div className="mt5 flex items-center font-poppins group hover:cursor-pointer relative block w-14">
                       <Link
                         to={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="font-semibold text-blue-600"
+                        className="font-semibold text-blue-600 absolute w-full"
                       >
-                        Live link
+                        Link
                       </Link>
-                      <Arrow className="blue-arrow" />
+                      <Arrow className="blue-arrow transition-transform duration-300 group-hover:translate-x-2 absolute right-0" />
                     </div>
                   </div>
                 </div>
