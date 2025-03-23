@@ -1,24 +1,7 @@
 import { atom, useAtom } from 'jotai';
 import { useEffect, useRef } from 'react';
 
-const pictures = [
-  '1',
-  '2',
-  '3',
-  '4',
-  '5',
-  '6',
-  '7',
-  '8',
-  'DSC01103',
-  'DSC01145',
-  'DSC01420',
-  'DSC01461',
-  'DSC01489',
-  'DSC02031',
-  'DSC02064',
-  'DSC02069'
-];
+const pictures = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
 
 export const pageAtom = atom(0);
 export const pages = [
