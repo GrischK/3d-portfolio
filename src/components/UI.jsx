@@ -1,5 +1,6 @@
 import { atom, useAtom } from 'jotai';
 import { useEffect, useRef } from 'react';
+import { useMediaQuery } from 'react-responsive';
 
 const pictures = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
 
@@ -25,6 +26,7 @@ pages.push({
 export const UI = () => {
   const [page, setPage] = useAtom(pageAtom);
   const scrollRef = useRef();
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
   useEffect(() => {
     const audio = new Audio('/audio/turning-book-page.mp3');
@@ -50,18 +52,18 @@ export const UI = () => {
             {[...pages].map((_, index) => (
               <button
                 key={index}
-                className={`border-transparent hover:border-white transition-all duration-300 px-4 py-3 rounded-full text-lg uppercase shrink-0 border ${
+                className={`border-transparent hover:border-white transition-all duration-300 rounded-full uppercase shrink-0 border ${
                   index === page ? 'bg-white/90 text-black' : 'bg-black/30 text-white'
-                }`}
+                } ${isTabletOrMobile ? 'text-base px-2 py-2' : 'text-lg px-4 py-3'}`}
                 onClick={() => setPage(index)}
               >
                 {index === 0 ? 'Cover' : `Page ${index}`}
               </button>
             ))}
             <button
-              className={`border-transparent hover:border-white transition-all duration-300 px-4 py-3 rounded-full text-lg uppercase shrink-0 border ${
+              className={`border-transparent hover:border-white transition-all duration-300 rounded-full uppercase shrink-0 border ${
                 page === pages.length ? 'bg-white/90 text-black' : 'bg-black/30 text-white'
-              }`}
+              } ${isTabletOrMobile ? 'text-base px-2 py-2' : 'text-lg px-4 py-3'}`}
               onClick={() => setPage(pages.length)}
             >
               Back Cover
