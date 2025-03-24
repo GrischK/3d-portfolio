@@ -15,18 +15,18 @@ export const BookContainer = ({ handelChangeStep, displayButton }) => {
     <>
       <Loader />
       <div
-        className={`z-10 fixed flex   mt-24 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-center ${isTabletOrMobile ? 'flex-col mt-28 gap-2' : 'gap-6'}`}
+        className={`z-10 fixed flex mt-24 left-1/2 transform -translate-x-1/2 -translate-y-1/2 justify-center ${isTabletOrMobile ? 'mt-28 gap-2' : 'gap-6'}`}
       >
         <button
           onClick={() => setIsMoving((prevState) => !prevState)}
-          className={`border-transparent hover:border-white transition-all duration-300 px-4 py-3 rounded-full text-lg uppercase shrink-0 border bg-black/30 text-white ml`}
+          className={`border-transparent hover:border-white transition-all duration-300 rounded-full uppercase shrink-0 border bg-black/30 text-white ml ${isTabletOrMobile ? 'text-base px-2 py-2' : 'text-lg px-4 py-3'}`}
         >
           {isMoving ? 'stop floating' : 'float'}
         </button>
         {displayButton && (
           <button
             onClick={handelChangeStep}
-            className={`border-transparent hover:border-white transition-all duration-300 px-4 py-3 rounded-full text-lg uppercase shrink-0 border bg-black/30 text-white`}
+            className={`border-transparent hover:border-white transition-all duration-300 rounded-full uppercase shrink-0 border bg-black/30 text-white ${isTabletOrMobile ? 'text-base px-2 py-2' : 'text-lg px-4 py-3'}`}
           >
             More details
           </button>
@@ -42,7 +42,7 @@ export const BookContainer = ({ handelChangeStep, displayButton }) => {
             fov: isTabletOrMobile ? 55 : 45
           }}
           style={{
-            height: '100vh',
+            height: isTabletOrMobile ? '100dvh' : '100vh',
             zIndex: 2
           }}
         >
