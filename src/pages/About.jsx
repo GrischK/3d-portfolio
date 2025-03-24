@@ -2,44 +2,78 @@ import { experiences, skills } from '../constants/index.js';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
 import CTA from '../components/CTA.jsx';
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
 import { PerspectiveCamera } from '@react-three/drei';
 import HackerRoom from '../components/HackRoom.jsx';
 import SpinLoader from '../components/SpinLoader.jsx';
-import { Suspense } from 'react';
-import { Leva } from 'leva';
+import { Suspense, useRef } from 'react';
+import { Leva, useControls } from 'leva';
 import { useMediaQuery } from 'react-responsive';
 import ReactLogo from '../components/ReactLogo.jsx';
 import Cube from '../components/Cube.jsx';
 import Rings from '../components/Rings.jsx';
 import Husky from '../models/Husky.jsx';
 import HeroCamera from '../components/HeroCamera.jsx';
+import { Dev } from '../models/Dev.jsx';
 
 const About = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
-  // const controls = useControls('HackerRoom', {
-  //   huskyPositionX: {
-  //     value: 7.5,
-  //     min: -50,
-  //     max: 50
-  //   },
-  //   huskyPositionY: {
-  //     value: -5.3,
-  //     min: -10,
-  //     max: 20
-  //   },
-  //   huskyPositionZ: {
-  //     value: 20,
-  //     min: -10,
-  //     max: 20
-  //   },
-  //   huskyScale: {
-  //     value: 2,
-  //     min: -10,
-  //     max: 10
-  //   }
-  // });
+  const controls = useControls('Dev', {
+    devPositionX: {
+      value: 0,
+      min: -50,
+      max: 50
+    },
+    devPositionY: {
+      value: 0,
+      min: -10,
+      max: 20
+    },
+    devPositionZ: {
+      value: 0,
+      min: -10,
+      max: 20
+    },
 
+    devRotationX: {
+      value: 0,
+      min: -50,
+      max: 50
+    },
+    devRotationY: {
+      value: 0,
+      min: -10,
+      max: 20
+    },
+    devRotationZ: {
+      value: 0,
+      min: -10,
+      max: 20
+    },
+    devScale: {
+      value: 1,
+      min: -10,
+      max: 10
+    }
+  });
+  const cameraRef = useRef();
+
+  // Animation de la caméra avec useFrame
+  useFrame(({ clock }) => {
+    if (cameraRef.current) {
+      const t = clock.getElapsedTime(); // Temps écoulé
+      const radius = 29; // Distance de la caméra au centre (basée sur votre position initiale)
+      const speed = 0.5; // Vitesse de rotation (ajustez selon vos besoins)
+
+      // Calculer les nouvelles coordonnées en orbite
+      cameraRef.current.position.x = radius * Math.sin(t * speed);
+      cameraRef.current.position.z = radius * Math.cos(t * speed);
+      cameraRef.current.position.y = 0; // Hauteur fixe (ajustez si besoin)
+
+      // Faire en sorte que la caméra regarde toujours le centre (votre modèle)
+      cameraRef.current.lookAt(controls.devPositionX, controls.devPositionY, controls.devPositionZ);
+    }
+  });
   return (
     <section className="max-container">
       <h1 className="head-text">
@@ -52,7 +86,6 @@ const About = () => {
         </p>
       </div>
       <div className="py-10 flex flex-col">
-        <Leva />
         <Canvas
           className={'w-full h-[50vh]'}
           style={{ height: '80vh' }}
@@ -190,14 +223,6 @@ const About = () => {
                           ) : (
                             <span> {project.title}</span>
                           )}
-
-                          {/*{project.projectLogo && (*/}
-                          {/*  <img*/}
-                          {/*    src={project.projectLogo}*/}
-                          {/*    alt=""*/}
-                          {/*    className={'h-6 w-6 rounded-xl'}*/}
-                          {/*  />*/}
-                          {/*)}*/}
                         </div>
                         {project.projectTechnologies.length !== 0 && (
                           <div className={'block-container flex gap-2 mt-2 mb-4'}>
@@ -234,6 +259,36 @@ const About = () => {
             ))}
           </VerticalTimeline>
         </div>
+        <Leva />
+        <Canvas
+          className={'w-full h-[50vh]'}
+          style={{ height: '80vh' }}
+        >
+          <Suspense
+            fallback={
+              <SpinLoader
+                bg={'white'}
+                textColor={'black'}
+              />
+            }
+          >
+            <PerspectiveCamera
+              ref={cameraRef}
+              makeDefault
+              position={[0, 0, 29]}
+            />
+            <Dev
+              position={[controls.devPositionX, controls.devPositionY, controls.devPositionZ]}
+              scale={controls.devScale}
+              rotation={[0.2, 2.1, controls.devRotationZ]}
+            />
+            <ambientLight intensity={2} />
+            <directionalLight
+              position={[10, 10, 10]}
+              intensity={1.5}
+            />
+          </Suspense>
+        </Canvas>
       </div>
       <hr className="border-slate-200" />
       <CTA />
