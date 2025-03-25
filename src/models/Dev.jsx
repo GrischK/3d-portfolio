@@ -7,7 +7,7 @@ const DevScene = (props) => {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF(dev);
   const { actions } = useAnimations(animations, group);
-
+  console.log(actions);
   useEffect(() => {
     const currentAction = actions['Animation'];
 
