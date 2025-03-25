@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { PerspectiveCamera, useAnimations, useGLTF } from '@react-three/drei';
 import dev from '../assets/3d/dev.glb';
-import { useControls } from 'leva';
 import { useFrame } from '@react-three/fiber';
 
 const DevScene = (props) => {
@@ -472,44 +471,6 @@ const DevScene = (props) => {
 
 export function Dev(props) {
   const cameraRef = useRef();
-  const controls = useControls('Dev', {
-    devPositionX: {
-      value: 0,
-      min: -50,
-      max: 50
-    },
-    devPositionY: {
-      value: 0,
-      min: -10,
-      max: 20
-    },
-    devPositionZ: {
-      value: 0,
-      min: -10,
-      max: 20
-    },
-
-    devRotationX: {
-      value: 0,
-      min: -50,
-      max: 50
-    },
-    devRotationY: {
-      value: 0,
-      min: -10,
-      max: 20
-    },
-    devRotationZ: {
-      value: 0,
-      min: -10,
-      max: 20
-    },
-    devScale: {
-      value: 1,
-      min: -10,
-      max: 10
-    }
-  });
 
   // Animation de la caméra avec useFrame
   useFrame(({ clock }) => {
@@ -540,11 +501,7 @@ export function Dev(props) {
         makeDefault
         position={[0, 0, 29]}
       />
-      <DevScene
-      // position={[-2, 0, 0]}
-      // scale={controls.devScale}
-      // rotation={[0.2, 2.1, controls.devRotationZ]}
-      />
+      <DevScene />
       <ambientLight intensity={2} />
       <directionalLight
         position={[10, 10, 10]}
