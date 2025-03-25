@@ -1,11 +1,27 @@
-import React, { useRef } from 'react';
-import { useAnimations, useGLTF } from '@react-three/drei';
+import React, { useEffect, useRef } from 'react';
+import { PerspectiveCamera, useAnimations, useGLTF } from '@react-three/drei';
 import dev from '../assets/3d/dev.glb';
+import { useControls } from 'leva';
+import { useFrame } from '@react-three/fiber';
 
-export function Dev(props) {
+const DevScene = (props) => {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF(dev);
   const { actions } = useAnimations(animations, group);
+
+  useEffect(() => {
+    const currentAction = actions['Animation'];
+
+    if (currentAction) {
+      // Lancement de l'animation
+      currentAction.reset().fadeIn(0.5).play();
+    }
+
+    return () => {
+      // Arrêt de l'animation de manière propre lors du démontage du composant
+      if (currentAction) currentAction.fadeOut(0.5);
+    };
+  }, [actions]);
 
   return (
     <group
@@ -451,6 +467,90 @@ export function Dev(props) {
         </group>
       </group>
     </group>
+  );
+};
+
+export function Dev(props) {
+  const cameraRef = useRef();
+  const controls = useControls('Dev', {
+    devPositionX: {
+      value: 0,
+      min: -50,
+      max: 50
+    },
+    devPositionY: {
+      value: 0,
+      min: -10,
+      max: 20
+    },
+    devPositionZ: {
+      value: 0,
+      min: -10,
+      max: 20
+    },
+
+    devRotationX: {
+      value: 0,
+      min: -50,
+      max: 50
+    },
+    devRotationY: {
+      value: 0,
+      min: -10,
+      max: 20
+    },
+    devRotationZ: {
+      value: 0,
+      min: -10,
+      max: 20
+    },
+    devScale: {
+      value: 1,
+      min: -10,
+      max: 10
+    }
+  });
+
+  // Animation de la caméra avec useFrame
+  useFrame(({ clock }) => {
+    if (cameraRef.current) {
+      const t = clock.getElapsedTime();
+      const radius = 29;
+      const speed = 0.5;
+
+      // Centre de l'orbite = position du modèle
+      const centerX = -1; // position X du modèle
+      const centerY = 0; // position Y du modèle
+      const centerZ = 2; // position Z du modèle
+
+      // Calcule de la position de la caméra en orbite autour du centre
+      cameraRef.current.position.x = centerX + radius * Math.sin(t * speed);
+      cameraRef.current.position.z = centerZ + radius * Math.cos(t * speed);
+      cameraRef.current.position.y = 5; // Hauteur ajustée pour mieux voir
+
+      // La caméra regarde le centre du modèle
+      cameraRef.current.lookAt(centerX, centerY, centerZ);
+    }
+  });
+
+  return (
+    <>
+      <PerspectiveCamera
+        ref={cameraRef}
+        makeDefault
+        position={[0, 0, 29]}
+      />
+      <DevScene
+      // position={[-2, 0, 0]}
+      // scale={controls.devScale}
+      // rotation={[0.2, 2.1, controls.devRotationZ]}
+      />
+      <ambientLight intensity={2} />
+      <directionalLight
+        position={[10, 10, 10]}
+        intensity={1.5}
+      />
+    </>
   );
 }
 
