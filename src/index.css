@@ -70,7 +70,7 @@ body:has(.card[data-color="green"]:hover) {
     }
 
     .info-box {
-        @apply mx-5 relative flex text-white flex-col gap-3 max-w-2xl neo-brutalism-green pt-4 pb-12 px-8;
+        @apply mx-5 relative flex text-white flex-col gap-3 max-w-2xl neo-brutalism-gradient pt-4 pb-12 px-8;
     }
 
     .neo-btn {
@@ -184,6 +184,14 @@ body:has(.card[data-color="green"]:hover) {
 
 .neo-brutalism-green {
     background: #368122;
+    position: relative;
+    border-radius: 10px;
+    border: #368122;
+    box-shadow: 0.6vmin 0.6vmin #1d3b16;
+}
+
+.neo-brutalism-gradient {
+    background: linear-gradient(135deg, #368122 0%, #7ab648 100%);
     position: relative;
     border-radius: 10px;
     border: #368122;
