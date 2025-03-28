@@ -2,6 +2,7 @@ import huskyScene from '../assets/3d/husky.glb';
 import React, { useEffect, useRef } from 'react';
 import { useAnimations, useGLTF } from '@react-three/drei';
 import { clone } from 'three/examples/jsm/utils/SkeletonUtils';
+import { useFrame } from '@react-three/fiber';
 
 const Husky = ({ isAnimating, animation, ...props }) => {
   const group = useRef();
@@ -79,6 +80,13 @@ const Husky = ({ isAnimating, animation, ...props }) => {
       }
     }
   }, [actions, isAnimating, animation]);
+
+  // useFrame(() => {
+  //   if (animation === 'Walk' && actions['Walk']?.isRunning()) {
+  //     group.current.position.z += 0.08; // Vitesse d'avancement (ajuste selon tes besoins)
+  //     console.log("Position Z en temps réel :", group.current.position.z); // Log en temps réel
+  //   }
+  // });
 
   return (
     <group

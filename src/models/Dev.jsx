@@ -3,6 +3,9 @@ import { PerspectiveCamera, useAnimations, useGLTF } from '@react-three/drei';
 import dev from '../assets/3d/dev.glb';
 import { useFrame } from '@react-three/fiber';
 import Husky from './Husky.jsx';
+import UmbrellaPalmTree from './UmbrellaPalmTree.jsx';
+import SoccerBall from './SoccerBall.jsx';
+import Guitar from './Guitar.jsx';
 
 const DevScene = (props) => {
   const group = useRef();
@@ -505,11 +508,17 @@ export function Dev(props) {
       <DevScene />
       <Husky
         key="husky-sleep"
-        position={[0, 0, 0]}
-        scale={2}
-        rotation={[Math.PI / 20, -Math.PI / 5, 0]}
-        animation={'Death'}
+        position={[8, 0, 0]}
+        scale={1.7}
+        // rotation={[Math.PI / 20, -Math.PI / 5, 0]}
+        animation={'Walk'}
       />
+      <UmbrellaPalmTree
+        position={[-8, 0, -2]}
+        scale={0.8}
+      />
+      <SoccerBall position={[0, 0.5, -7]} scale={1.1}/>
+      <Guitar position={[7, 3.6, -7]} scale={5} rotation={[-Math.PI /10,0,0]}/>
       <ambientLight intensity={2} />
       <directionalLight
         position={[10, 10, 10]}
