@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { PerspectiveCamera, useAnimations, useGLTF } from '@react-three/drei';
 import dev from '../assets/3d/dev.glb';
 import { useFrame } from '@react-three/fiber';
+import Husky from './Husky.jsx';
 
 const DevScene = (props) => {
   const group = useRef();
@@ -502,6 +503,13 @@ export function Dev(props) {
         position={[0, 0, 29]}
       />
       <DevScene />
+      <Husky
+        key="husky-sleep"
+        position={[0, 0, 0]}
+        scale={2}
+        rotation={[Math.PI / 20, -Math.PI / 5, 0]}
+        animation={'Death'}
+      />
       <ambientLight intensity={2} />
       <directionalLight
         position={[10, 10, 10]}

@@ -53,9 +53,11 @@ const About = () => {
                 rotation={[0.2, Math.PI, 0]}
               />
               <Husky
+                key="husky-headlow"
                 position={[isMobile ? 3.5 : 7.5, -5.3, 10]}
                 scale={isMobile ? 1.35 : 2}
                 rotation={[Math.PI / 20, -Math.PI / 5, 0]}
+                animation={'Idle_2_HeadLow'}
               />
             </HeroCamera>
             <group>
@@ -120,7 +122,7 @@ const About = () => {
               style={{
                 height: '80vh',
                 width: '50%',
-                top: '200px',
+                top: '400px',
                 right: 0,
                 position: 'absolute'
               }}
