@@ -13,6 +13,7 @@ import {
   graphql,
   js,
   linkedin,
+  map,
   nestjs,
   nodejs,
   postgresql,
@@ -23,8 +24,7 @@ import {
   tailwindcss,
   threejs,
   typeorm,
-  typescript,
-  map
+  typescript
 } from '../assets/icons';
 
 export const skills = [
@@ -104,6 +104,20 @@ export const experiences = [
     date: 'Oct 2023 - Present',
     projects: [
       {
+        title: 'Cliquez-Postez',
+        projectLogo: cp,
+        projectTechnologies: [react, aws, js, typescript, python, graphql],
+        url: 'https://www.cliquezpostez.com/',
+        points: [
+          'Developed and maintained the Cliquez-Postez website, which enables users to send postal letters with just a few clicks.',
+          'AWS : Lambda, Amplify, DynamoDB, API Gateway, CloudFormation, S3, SNS... to build scalable solutions',
+          'JS & Python : Developed serverless functions using AWS Lambda with layers for efficient deployment.',
+          'Integrated the La Poste API to send registered letters and creating a CRON job to retrieve letter statuses.',
+          'Connected to an internal system to send other letters for printing',
+          'Implemented SMS notifications using AWS SNS to keep users informed about their letter statuses and delivery updates.'
+        ]
+      },
+      {
         title: 'Flotto',
         projectLogo: flotto,
         projectTechnologies: [nestjs, docker, typeorm, typescript, postgresql],
@@ -119,20 +133,6 @@ export const experiences = [
           'Code reviews : To ensure code quality and adherence to best practices (DOD, Commit, trailer, etc.).',
           'POC : Apisix, including Docker container configuration.',
           'Hackathon : Pentesting activities to identify and resolve vulnerabilities.'
-        ]
-      },
-      {
-        title: 'Cliquez-Postez',
-        projectLogo: cp,
-        projectTechnologies: [react, aws, js, typescript, python, graphql],
-        url: 'https://www.cliquezpostez.com/',
-        points: [
-          'Developed and maintained the Cliquez-Postez website, which enables users to send postal letters with just a few clicks.',
-          'AWS : Lambda, Amplify, DynamoDB, API Gateway, CloudFormation, S3, SNS... to build scalable solutions',
-          'JS & Python : Developed serverless functions using AWS Lambda with layers for efficient deployment.',
-          'Integrated the La Poste API to send registered letters and creating a CRON job to retrieve letter statuses.',
-          'Connected to an internal system to send other letters for printing',
-          'Implemented SMS notifications using AWS SNS to keep users informed about their letter statuses and delivery updates.'
         ]
       }
     ]

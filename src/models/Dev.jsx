@@ -518,7 +518,7 @@ export function Dev(props) {
         scale={0.8}
       />
       <SoccerBall position={[0, 0.5, -7]} scale={1.1}/>
-      <Guitar position={[7, 3.6, -7]} scale={5} rotation={[-Math.PI /10,0,0]}/>
+      <Guitar position={[7, 3.6, -7]} scale={4.6} rotation={[-Math.PI /10,0,0]}/>
       <ambientLight intensity={2} />
       <directionalLight
         position={[10, 10, 10]}
