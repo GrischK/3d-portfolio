@@ -116,29 +116,29 @@ const About = () => {
           </p>
         </div>
         <div className="mt12 flex relative">
-          {!isMobile && (
-            <Canvas
-              className="w-1/2 h-[full]"
-              style={{
-                height: '80vh',
-                width: '50%',
-                top: '400px',
-                right: 0,
-                position: 'absolute'
-              }}
-            >
-              <Suspense
-                fallback={
-                  <SpinLoader
-                    bg={'white'}
-                    textColor={'black'}
-                  />
-                }
-              >
-                <Dev />
-              </Suspense>
-            </Canvas>
-          )}
+          {/*{!isMobile && (*/}
+          {/*  <Canvas*/}
+          {/*    className="w-1/2 h-[full]"*/}
+          {/*    style={{*/}
+          {/*      height: '80vh',*/}
+          {/*      width: '50%',*/}
+          {/*      top: '400px',*/}
+          {/*      right: 0,*/}
+          {/*      position: 'absolute'*/}
+          {/*    }}*/}
+          {/*  >*/}
+          {/*    <Suspense*/}
+          {/*      fallback={*/}
+          {/*        <SpinLoader*/}
+          {/*          bg={'white'}*/}
+          {/*          textColor={'black'}*/}
+          {/*        />*/}
+          {/*      }*/}
+          {/*    >*/}
+          {/*      <Dev />*/}
+          {/*    </Suspense>*/}
+          {/*  </Canvas>*/}
+          {/*)}*/}
           <VerticalTimeline>
             {experiences.map((experience, index) => (
               <VerticalTimelineElement

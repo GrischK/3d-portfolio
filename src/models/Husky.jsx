@@ -4,7 +4,7 @@ import { useAnimations, useGLTF } from '@react-three/drei';
 import { clone } from 'three/examples/jsm/utils/SkeletonUtils';
 import { useFrame } from '@react-three/fiber';
 
-const Husky = ({ isAnimating, animation, ...props }) => {
+const Husky = ({ isAnimating, animation, devHusky, ...props }) => {
   const group = useRef();
   const { scene, materials, animations } = useGLTF(huskyScene);
   const clonedScene = clone(scene);
@@ -68,8 +68,20 @@ const Husky = ({ isAnimating, animation, ...props }) => {
       };
     }
     if (animation) {
-      console.log("Husky animation reçue :", animation);
+      console.log('Husky animation reçue :', animation);
       const action = actions[animation];
+      if (action) {
+        action.reset().fadeIn(0.5).play();
+        return () => {
+          action.stop();
+        };
+      } else {
+        console.error(`L'animation ${animation} n'est pas disponible.`);
+      }
+    }
+    if (devHusky) {
+      console.log('Husky animation reçue :', animation);
+      const action = actions['Walk'];
       if (action) {
         action.reset().fadeIn(0.5).play();
         return () => {
@@ -81,12 +93,16 @@ const Husky = ({ isAnimating, animation, ...props }) => {
     }
   }, [actions, isAnimating, animation]);
 
-  // useFrame(() => {
-  //   if (animation === 'Walk' && actions['Walk']?.isRunning()) {
-  //     group.current.position.z += 0.08; // Vitesse d'avancement (ajuste selon tes besoins)
-  //     console.log("Position Z en temps réel :", group.current.position.z); // Log en temps réel
-  //   }
-  // });
+  useFrame(() => {
+    if (devHusky && actions['Walk']?.isRunning()) {
+      group.current.position.z += 0.08; // Vitesse d'avancement (ajuste selon tes besoins)
+      console.log('Position Z en temps réel :', group.current.position.z); // Log en temps réel
+      if(group.current.position.z >= 15){
+        actions['Walk'].fadeOut(0.5).stop();
+        actions['Eating'].reset().fadeIn(0.5).play();
+      }
+    }
+  });
 
   return (
     <group
