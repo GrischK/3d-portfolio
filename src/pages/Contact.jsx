@@ -5,22 +5,25 @@ import Loader from '../components/Loader.jsx';
 import Fox from '../models/Fox.jsx';
 import useAlert from '../hooks/useAlert.js';
 import Alert from '../components/Alert.jsx';
+import GermanShepard from '../models/GermanShepard.jsx';
+import Husky from '../models/Husky.jsx';
+import Husky2 from '../models/Husky2.jsx';
 
 const Contact = () => {
   const formRef = useRef(null);
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [isLoading, setIsLoading] = useState(false);
-  const [currentAnimation, setCurrentAnimation] = useState('idle');
+  const [currentAnimation, setCurrentAnimation] = useState('Idle_2_HeadLow');
   const { alert, showAlert, hideAlert } = useAlert();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
   const handleFocus = () => {
-    setCurrentAnimation('walk');
+    setCurrentAnimation('Walk');
   };
   const handleBlur = () => {
-    setCurrentAnimation('idle');
+    setCurrentAnimation('Idle_2_HeadLow');
   };
 
   const handleSubmit = (e) => {
@@ -129,11 +132,11 @@ const Contact = () => {
           />
           <ambientLight intensity={0.5} />
           <Suspense fallback={<Loader />}>
-            <Fox
+            <Husky2
               currentAnimation={currentAnimation}
-              position={[0.5, 0.35, 0]}
+              position={[0.5, -2, 0]}
               rotation={[12.6, -0.6, 0]}
-              scale={[0.5, 0.5, 0.5]}
+              scale={1}
             />
           </Suspense>
         </Canvas>
