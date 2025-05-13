@@ -7,38 +7,16 @@ import { PerspectiveCamera } from '@react-three/drei';
 import HackerRoom from '../components/HackRoom.jsx';
 import SpinLoader from '../components/SpinLoader.jsx';
 import { Suspense } from 'react';
-import { Leva } from 'leva';
 import { useMediaQuery } from 'react-responsive';
 import ReactLogo from '../components/ReactLogo.jsx';
 import Cube from '../components/Cube.jsx';
 import Rings from '../components/Rings.jsx';
 import Husky from '../models/Husky.jsx';
 import HeroCamera from '../components/HeroCamera.jsx';
+import { Dev } from '../models/Dev.jsx';
 
 const About = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
-  // const controls = useControls('HackerRoom', {
-  //   huskyPositionX: {
-  //     value: 7.5,
-  //     min: -50,
-  //     max: 50
-  //   },
-  //   huskyPositionY: {
-  //     value: -5.3,
-  //     min: -10,
-  //     max: 20
-  //   },
-  //   huskyPositionZ: {
-  //     value: 20,
-  //     min: -10,
-  //     max: 20
-  //   },
-  //   huskyScale: {
-  //     value: 2,
-  //     min: -10,
-  //     max: 10
-  //   }
-  // });
 
   return (
     <section className="max-container">
@@ -52,7 +30,6 @@ const About = () => {
         </p>
       </div>
       <div className="py-10 flex flex-col">
-        <Leva />
         <Canvas
           className={'w-full h-[50vh]'}
           style={{ height: '80vh' }}
@@ -76,9 +53,11 @@ const About = () => {
                 rotation={[0.2, Math.PI, 0]}
               />
               <Husky
+                key="husky-headlow"
                 position={[isMobile ? 3.5 : 7.5, -5.3, 10]}
                 scale={isMobile ? 1.35 : 2}
                 rotation={[Math.PI / 20, -Math.PI / 5, 0]}
+                animation={'Idle_2_HeadLow'}
               />
             </HeroCamera>
             <group>
@@ -136,7 +115,30 @@ const About = () => {
             people. Here's the rundown:
           </p>
         </div>
-        <div className="mt12 flex">
+        <div className="mt12 flex relative">
+          {/*{!isMobile && (*/}
+          {/*  <Canvas*/}
+          {/*    className="w-1/2 h-[full]"*/}
+          {/*    style={{*/}
+          {/*      height: '80vh',*/}
+          {/*      width: '50%',*/}
+          {/*      top: '400px',*/}
+          {/*      right: 0,*/}
+          {/*      position: 'absolute'*/}
+          {/*    }}*/}
+          {/*  >*/}
+          {/*    <Suspense*/}
+          {/*      fallback={*/}
+          {/*        <SpinLoader*/}
+          {/*          bg={'white'}*/}
+          {/*          textColor={'black'}*/}
+          {/*        />*/}
+          {/*      }*/}
+          {/*    >*/}
+          {/*      <Dev />*/}
+          {/*    </Suspense>*/}
+          {/*  </Canvas>*/}
+          {/*)}*/}
           <VerticalTimeline>
             {experiences.map((experience, index) => (
               <VerticalTimelineElement
@@ -190,14 +192,6 @@ const About = () => {
                           ) : (
                             <span> {project.title}</span>
                           )}
-
-                          {/*{project.projectLogo && (*/}
-                          {/*  <img*/}
-                          {/*    src={project.projectLogo}*/}
-                          {/*    alt=""*/}
-                          {/*    className={'h-6 w-6 rounded-xl'}*/}
-                          {/*  />*/}
-                          {/*)}*/}
                         </div>
                         {project.projectTechnologies.length !== 0 && (
                           <div className={'block-container flex gap-2 mt-2 mb-4'}>

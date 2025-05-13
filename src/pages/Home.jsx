@@ -69,7 +69,7 @@ const Home = () => {
   const [dogScale, dogPosition] = adjustDogForScreenSize();
 
   return (
-    <section className="w-full h-screen relative bg-[#dfd6c6]">
+    <section className={`w-full ${isTabletOrMobile ? 'h-[100dvh]' : 'h-screen'} relative bg-[#dfd6c6]`}>
       {showGrabAnimation && start && <GrabAnimation />}
       <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center ">
         {currentStage && <HomeInfo currentStage={currentStage} />}
@@ -142,7 +142,7 @@ const Home = () => {
       <div
         className={`absolute ${
           isTabletOrMobile
-            ? 'bottom-20 left-1 opacity-50 hover:opacity-100 transition-opacity duration-300'
+            ? 'bottom-8 left-1 opacity-50 hover:opacity-100 transition-opacity duration-300'
             : 'bottom-2' + ' left-2'
         }`}
       >
