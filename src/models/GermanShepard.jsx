@@ -2,11 +2,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useGLTF, useAnimations } from '@react-three/drei';
 import germanShepardScene from '../assets/3d/german_shepard.glb';
 import { useFrame } from '@react-three/fiber';
+import { useMediaQuery } from 'react-responsive';
 
 export function GermanShepard({ isRotating, speed, ...props }) {
   const germanShepardRef = useRef();
   const { nodes, materials, animations } = useGLTF(germanShepardScene);
   const { actions } = useAnimations(animations, germanShepardRef);
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
 
   useEffect(() => {
     const walkAction = actions['Walk'];
@@ -31,11 +33,11 @@ export function GermanShepard({ isRotating, speed, ...props }) {
     const runAction = actions['Run'];
 
     if (isRotating) {
-      if (speed < -0.03) {
+      if (speed < -0.03 && !isTabletOrMobile) {
         if (!runAction.isRunning()) {
-          runAction.reset().fadeIn(0.4).play();
-          idleAction.fadeOut(0.4);
-          walkAction.fadeOut(0.4);
+          runAction.reset().fadeIn(isTabletOrMobile ? 0.05 : 0.4).play();
+          idleAction.fadeOut(isTabletOrMobile ? 0.05 : 0.4);
+          walkAction.fadeOut(isTabletOrMobile ? 0.05 : 0.4);
         }
       } else if (speed > -0.03 && speed < 0) {
         walkAction.timeScale = 1;
