@@ -1,4 +1,4 @@
-import { NavLink,useLocation  } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 const NavBar = () => {
   const location = useLocation();
@@ -17,7 +17,9 @@ const NavBar = () => {
           to="/about"
           className={({ isActive }) => {
             const baseClass = isActive ? 'text-blue-500' : 'text-black';
-            return (location.pathname === '/lab' || location.pathname === '/test') && !isActive ? 'text-white' : baseClass;
+            return (location.pathname === '/lab' || location.pathname === '/test') && !isActive
+              ? 'text-white'
+              : baseClass;
           }}
         >
           About
@@ -26,17 +28,26 @@ const NavBar = () => {
           to="/projects"
           className={({ isActive }) => {
             const baseClass = isActive ? 'text-blue-500' : 'text-black';
-            return (location.pathname === '/lab' || location.pathname === '/test') && !isActive ? 'text-white' : baseClass;
-          }}        >
+            return (location.pathname === '/lab' || location.pathname === '/test') && !isActive
+              ? 'text-white'
+              : baseClass;
+          }}
+        >
           Projects
         </NavLink>
         <NavLink
-          to="/lab"
-          className={({ isActive }) => {
-            const baseClass = isActive ? 'text-blue-500' : 'text-black';
-            return (location.pathname === '/lab' || location.pathname === '/test') && !isActive ? 'text-white' : baseClass;
-          }}        >
-          Lab
+          to="/contact"
+          className={({ isActive }) => (isActive ? 'text-blue-500' : 'text-white')}
+        >
+          {({ isActive }) => (
+            <button
+              className={`font-medium border-transparent hover:border-white transition-all duration-300 px-4 py-3 rounded-full text-lg uppercase shrink-0 border text-white ml-3 bg-gradient-to-r ${
+                isActive ? 'from-[#00c6ff] to-[#0072ff]' : 'from-[#368122] to-[#7ab648]'
+              } bg-[length:200%_200%] bg-left hover:bg-right transition-[background-position] duration-500`}
+            >
+              Contact
+            </button>
+          )}
         </NavLink>
       </nav>
     </header>
