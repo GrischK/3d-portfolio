@@ -5,13 +5,15 @@ const NavBar = () => {
   // console.log(location.pathname);
 
   return (
-    <header className="header">
-      <NavLink
-        to="/"
-        className="w-12 h-12 rounded-lg bg-white items-center justify-center flex font-bold shadow-md"
-      >
-        <p className="blue-gradient_text">GG</p>
-      </NavLink>
+    <header className={`${location.pathname !== '/' ? "header" : "header-home"}`}>
+      {location.pathname !== '/' && (
+        <NavLink
+          to="/"
+          className="w-12 h-12 rounded-lg bg-white items-center justify-center flex font-bold shadow-md"
+        >
+          <p className="blue-gradient_text">GG</p>
+        </NavLink>
+      )}
       <nav className="flex text-lg gap-7 font-medium items-center justify-center">
         <NavLink
           to="/about"
@@ -41,8 +43,10 @@ const NavBar = () => {
         >
           {({ isActive }) => (
             <button
-              className={`font-medium hover:border-white transition-all duration-300 px-2 py-2 rounded-full text-lg shrink-0 border text-white bg-gradient-to-r ${
-                isActive ? 'from-[#00c6ff] to-[#0072ff]' : 'from-[#368122] to-[#7ab648]'
+              className={`font-medium hover:border-white transition-all duration-300 px-2 py-2 rounded-full text-lg shrink-0 text-white bg-gradient-to-r ${
+                location.pathname !== '/'
+                  ? 'from-[#00c6ff] to-[#0072ff]'
+                  : 'from-[#368122] to-[#7ab648]'
               } bg-[length:200%_200%] bg-left hover:bg-right transition-[background-position] duration-500`}
             >
               Contact
