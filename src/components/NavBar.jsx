@@ -12,7 +12,7 @@ const NavBar = () => {
       >
         <p className="blue-gradient_text">GG</p>
       </NavLink>
-      <nav className="flex text-lg gap-7 font-medium">
+      <nav className="flex text-lg gap-7 font-medium items-center justify-center">
         <NavLink
           to="/about"
           className={({ isActive }) => {
@@ -41,7 +41,7 @@ const NavBar = () => {
         >
           {({ isActive }) => (
             <button
-              className={`font-medium border-transparent hover:border-white transition-all duration-300 px-4 py-3 rounded-full text-lg uppercase shrink-0 border text-white ml-3 bg-gradient-to-r ${
+              className={`font-medium hover:border-white transition-all duration-300 px-2 py-2 rounded-full text-lg shrink-0 border text-white bg-gradient-to-r ${
                 isActive ? 'from-[#00c6ff] to-[#0072ff]' : 'from-[#368122] to-[#7ab648]'
               } bg-[length:200%_200%] bg-left hover:bg-right transition-[background-position] duration-500`}
             >
