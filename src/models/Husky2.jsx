@@ -10,8 +10,12 @@ const Husky2 = ({ currentAnimation, ...props }) => {
   const { actions } = useAnimations(animations, group);
   const previousAnimation = useRef();
 
-  console.log(currentAnimation);
-  console.log(previousAnimation);
+  useEffect(() => {
+    Object.values(materials).forEach((material) => {
+      material.metalness = 0;
+      material.roughness = 1;
+    });
+  }, [materials]);
 
   useEffect(() => {
     if (previousAnimation.current && previousAnimation.current !== currentAnimation) {
