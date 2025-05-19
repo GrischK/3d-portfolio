@@ -21,32 +21,37 @@ const Loader = ({ started, onStarted, isPlaying }) => {
           Welcome to my
           <br /> <span className={'green-gradient_text'}>little universe!</span>
         </h1>
-        <Canvas style={{ position:'absolute', top:'50%', left:'50%', transform: 'translate(-50%, -50%)', zIndex:"1" }}>
-          <Suspense
-            fallback={
-              <SpinLoader
-                bg={'white'}
-                textColor={'black'}
-              />
-            }
+
+        {!started && (
+          <Canvas
+            style={{
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              position: 'absolute',
+              zIndex: 1
+            }}
           >
-            <PerspectiveCamera
-              makeDefault
-              position={[0, 0, 29]}
-            />
-            <HeroCamera isMobile={isMobile}>
-              <Rings
-                position={[isMobile ? 0 : 25, isMobile ? 14.5 : 10, 0]}
-                scale={isMobile ? 0.5 : 0.7}
+            <Suspense fallback={null}>
+              <PerspectiveCamera
+                makeDefault
+                position={[0, 0, 29]}
               />
-            </HeroCamera>
-            <ambientLight intensity={1} />
-            <directionalLight
-              position={[10, 10, 10]}
-              intensity={2}
-            />
-          </Suspense>
-        </Canvas>
+              <HeroCamera isMobile={isMobile}>
+                <Rings
+                  position={[isMobile ? 0 : 25, isMobile ? 14.5 : 10, 0]}
+                  scale={isMobile ? 0.5 : 0.7}
+                />
+              </HeroCamera>
+              <ambientLight intensity={1} />
+              <directionalLight
+                position={[10, 10, 10]}
+                intensity={2}
+              />
+            </Suspense>
+          </Canvas>
+        )}
+
         <p className="sm:text-4xl text-lg pt-4 px-8 text-black mx-5 font-semibold sm:text-right text-center">
           I'm Grischka, a full-stack developer passionate about building efficient and intuitive
           applications.
