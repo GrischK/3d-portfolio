@@ -95,7 +95,7 @@ const Husky = ({ isAnimating, animation, devHusky, ...props }) => {
 
   useFrame(() => {
     if (devHusky && actions['Walk']?.isRunning()) {
-      group.current.position.z += 0.08; // Vitesse d'avancement (ajuste selon tes besoins)
+      group.current.position.z += 0.08; // Vitesse d'avancement
       console.log('Position Z en temps réel :', group.current.position.z); // Log en temps réel
       if(group.current.position.z >= 15){
         actions['Walk'].fadeOut(0.5).stop();

@@ -14,12 +14,6 @@ export function Eagle(props) {
   }, []);
 
   useFrame(({ clock, camera }) => {
-    // console.log(eagleRef.current.position.z);
-    // console.log('X POSITION ', eagleRef.current.position.x);
-    // console.log('Z POSITION ', eagleRef.current.position.z);
-    // console.log('Y POSITION ', eagleRef.current.position.y);
-    // console.log('ROTATION ', eagleRef.current.rotation.y);
-
     // Update the Y position to simulate bird-like motion using a sine wave
     eagleRef.current.position.y = Math.sin(clock.elapsedTime) * 0.2 + 2;
 
