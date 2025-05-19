@@ -8,6 +8,7 @@ import {
   cp,
   dice,
   docker,
+  express,
   flotto,
   github,
   graphql,
@@ -24,7 +25,23 @@ import {
   tailwindcss,
   threejs,
   typeorm,
-  typescript
+  typescript,
+  wildCodeSchool,
+  figma,
+  framer,
+  leaflet,
+  materialUi,
+  reactNative,
+  jest,
+  playwright,
+  typeGraphQL,
+  githubactions,
+  nginx,
+  caddy,
+  alrj,
+  prisma,
+  nodemailer,
+  mysql,
 } from '../assets/icons';
 
 export const skills = [
@@ -149,7 +166,7 @@ export const experiences = [
         projectLogo: '',
         projectTechnologies: [react, js, storybook],
         points: [
-          'React.js, JavaScript & Storybook : Redefined and enhanced the Design System to ensure visual consistency across components.',
+          'React, JavaScript & Storybook : Redefined and enhanced the Design System to ensure visual consistency across components.',
           'Jest.js : Wrote and executed unit tests using to ensure code reliability.'
         ]
       },
@@ -158,10 +175,114 @@ export const experiences = [
         projectLogo: '',
         projectTechnologies: [react, nestjs, docker, postgresql],
         points: [
-          'React.js : Developed and maintained web applications using React.js and other related technologies.',
+          'React : Developed and maintained web applications using React.js and other related technologies.',
           'Enhanced an internal application by integrating components from the updated Design System.',
           'Implemented containerization solutions with Docker to streamline POC deployment.',
           'Developed full-stack POCs using technologies such as Nest.js, Next.js, PHP, Symfony, MySQL, PostgreSQL'
+        ]
+      }
+    ]
+  },
+  {
+    title: 'Full-Stack Developer',
+    company_name: 'Wild Code School',
+    icon: wildCodeSchool,
+    iconBg: '#faf1ff',
+    date: 'Sept 2022 - Sept 2023',
+    projects: [
+      {
+        title: 'Mapado – City Exploration App',
+        projectLogo: '',
+        projectTechnologies: [
+          react,
+          reactNative,
+          typescript,
+          graphql,
+          apollo,
+          figma,
+          materialUi,
+          framer,
+          leaflet
+        ],
+        points: [
+          'React, React Native (Expo) & TypeScript: Built responsive and interactive user interfaces for both web and mobile platforms.',
+          'Apollo Client & GraphQL: Managed client-side data efficiently with type-safe queries and caching.',
+          'React Router & React Navigation: Implemented smooth navigation across platforms.',
+          'Figma: Created interactive mockups and prototypes for feature previews.',
+          'UI Libraries: Integrated Material UI, Framer Motion, and Leaflet for engaging UI/UX and interactive maps.'
+        ]
+      },
+      {
+        title: 'Backend & DevOps',
+        projectLogo: '',
+        projectTechnologies: [
+          nodejs,
+          express,
+          apollo,
+          typeGraphQL,
+          typeorm,
+          postgresql,
+          docker,
+          githubactions,
+          nginx,
+          caddy
+        ],
+        points: [
+          'GraphQL API: Designed and implemented a robust backend using Node.js, Express, Apollo Server, and TypeGraphQL.',
+          'Database: Modeled complex relationships with TypeORM and PostgreSQL.',
+          'Security: Applied authentication rules with @Authorized and hashed passwords using Argon2.',
+          'External APIs: Integrated third-party services (geolocation, city images) to enrich content.',
+          'Docker & CI/CD: Dockerized all services and set up CI/CD pipelines with GitHub Actions, deployed on VPS using Nginx, Caddy, and DockerHub webhooks.'
+        ]
+      },
+      {
+        title: 'Testing, Security & Collaboration',
+        projectLogo: '',
+        projectTechnologies: [jest, playwright],
+        points: [
+          'Testing: Wrote unit (Jest), integration, and end-to-end (Playwright) tests in isolated environments using mocks.',
+          'Security: Secured server access (SSH, fail2ban, custom ports), implemented protections against XSS, CSRF, and SQL injections.',
+          'Agile & Git Workflow: Worked in Agile Scrum sprints, managed tasks in a backlog, used advanced Git flows (feature/dev/staging/main), and enforced 2-person PR validation.'
+        ]
+      }
+    ]
+  },
+  {
+    title: 'Full-Stack Developer',
+    company_name: 'Alrj',
+    icon: alrj,
+    iconBg: '#fff3e6',
+    date: 'May 2022 - July 2022',
+    projects: [
+      {
+        title: 'Allergy-Friendly Product Search',
+        projectLogo: '',
+        projectTechnologies: [react, tailwindcss],
+        points: [
+          'React & Tailwind CSS: Built a responsive user interface with Tailwind, Flowbite components, and Heroicons.',
+          'User Journeys: Implemented flows for sign-up, family profile management, allergy input, and product search/consultation.',
+          'Favorites & Product Details: Enabled saving favorites and visualizing detailed product data, including label display.'
+        ]
+      },
+      {
+        title: 'REST API & Backend Logic',
+        projectLogo: '',
+        projectTechnologies: [nodejs, express, prisma, mysql, nodemailer],
+        points: [
+          'API Design: Created a secure REST API using Node.js, Express, and Prisma for MySQL database access.',
+          'Authentication: Secured user authentication using Argon2 and managed user/family profile accounts.',
+          'Data Validation: Validated input data with Joi and handled transactional emails with Nodemailer and Mustache templates.',
+          'Advanced Search: Developed allergy-aware product filtering logic based on user profiles.'
+        ]
+      },
+      {
+        title: 'Collaboration, Security & Best Practices',
+        projectLogo: '',
+        projectTechnologies: [],
+        points: [
+          'Agile Collaboration: Worked closely in a two-person team with Agile practices (regular meetings, task sharing, progress tracking).',
+          'Security: Ensured sensitive data protection (password hashing, controlled access).',
+          'Clean Code: Followed best practices in code structure, modularity, and input validation.'
         ]
       }
     ]
