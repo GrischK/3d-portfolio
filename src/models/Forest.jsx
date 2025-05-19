@@ -33,8 +33,6 @@ export function Forest({
   const rotationSpeed = useRef(0);
   const dampingFactor = 0.95;
 
-  console.log();
-
   useEffect(() => {
     const currentAction = actions['Take 001'];
 

@@ -1,11 +1,12 @@
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useSearchParams } from 'react-router-dom';
 
 const NavBar = () => {
   const location = useLocation();
-  // console.log(location.pathname);
+  const [searchParams] = useSearchParams();
+  const step = parseInt(searchParams.get('step') || '1');
 
   return (
-    <header className={`${location.pathname !== '/' ? "header" : "header-home"}`}>
+    <header className={`${location.pathname !== '/' ? 'header' : 'header-home'}`}>
       {location.pathname !== '/' && (
         <NavLink
           to="/"
@@ -14,11 +15,15 @@ const NavBar = () => {
           <p className="blue-gradient_text">GG</p>
         </NavLink>
       )}
-      <nav className="flex text-lg gap-7 font-medium items-center justify-center">
+      <nav className={'flex text-lg gap-3 md:gap-7 font-medium items-center justify-center'}>
         <NavLink
           to="/about"
           className={({ isActive }) => {
             const baseClass = isActive ? 'text-blue-500' : 'text-black';
+            // Si on est sur  la page projects et step === 1, le lien About devient blanc
+            if (location.pathname === '/projects' && step === 1 && !isActive) {
+              return 'text-white';
+            }
             return (location.pathname === '/lab' || location.pathname === '/test') && !isActive
               ? 'text-white'
               : baseClass;

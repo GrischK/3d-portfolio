@@ -8,7 +8,6 @@ const Avatar = () => {
   const [leather, setLeather] = useState(false);
   const [wood, setWood] = useState(false);
 
-  // console.log(action);
   return (
     <div>
       <div className="select-none z-10 fixed inset-x-0 bottom-2 flex justify-end items-center flex-col h-[fit-content]">
