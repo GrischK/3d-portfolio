@@ -13,7 +13,6 @@ import Cube from '../components/Cube.jsx';
 import Rings from '../components/Rings.jsx';
 import Husky from '../models/Husky.jsx';
 import HeroCamera from '../components/HeroCamera.jsx';
-import { Dev } from '../models/Dev.jsx';
 
 const About = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
