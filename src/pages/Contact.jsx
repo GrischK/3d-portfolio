@@ -29,7 +29,7 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setCurrentAnimation('hit');
+    setCurrentAnimation('Gallop');
 
     emailjs
       .send(
@@ -49,7 +49,7 @@ const Contact = () => {
         showAlert({ show: true, text: 'Message send succesfully', type: 'success' });
         setTimeout(() => {
           hideAlert();
-          setCurrentAnimation('idle');
+          setCurrentAnimation('Idle_2_HeadLow');
           setForm({ name: '', email: '', message: '' });
         }, 3000);
       })
