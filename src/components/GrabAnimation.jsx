@@ -1,9 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import grabHand from '../assets/icons/cursor-grab.svg';
 import grabbingHand from '../assets/icons/cursor-grabbed.svg';
 
 const GrabAnimation = () => {
   const [isGrabbing, setIsGrabbing] = useState(false);
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    setShow(true);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -23,7 +28,13 @@ const GrabAnimation = () => {
       <div
         className={`handIcon_circle transform translate-x-[-50%] left-1/2 top-0 ${isGrabbing ? 'handIcon_circle--displaying' : ''}`}
       />
-      <span className="absolute top-10">Drag to explore</span>
+      <span
+        className={`absolute top-10 text-white custom-shadow font-semibold transition-opacity duration-1000 ${
+          show ? 'opacity-100' : 'opacity-0'
+        }`}
+      >
+        Drag to explore
+      </span>
     </div>
   );
 };
