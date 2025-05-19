@@ -5,7 +5,7 @@ const NavBar = () => {
   // console.log(location.pathname);
 
   return (
-    <header className={`${location.pathname !== '/' ? "header" : "header-home"}`}>
+    <header className={`${location.pathname !== '/' ? 'header' : 'header-home'}`}>
       {location.pathname !== '/' && (
         <NavLink
           to="/"
@@ -14,7 +14,7 @@ const NavBar = () => {
           <p className="blue-gradient_text">GG</p>
         </NavLink>
       )}
-      <nav className="flex text-lg gap-7 font-medium items-center justify-center">
+      <nav className={'flex text-lg gap-3 md:gap-7 font-medium items-center justify-center'}>
         <NavLink
           to="/about"
           className={({ isActive }) => {
