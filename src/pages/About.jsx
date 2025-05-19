@@ -6,13 +6,99 @@ import { Canvas } from '@react-three/fiber';
 import { PerspectiveCamera } from '@react-three/drei';
 import HackerRoom from '../components/HackRoom.jsx';
 import SpinLoader from '../components/SpinLoader.jsx';
-import { Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import ReactLogo from '../components/ReactLogo.jsx';
 import Cube from '../components/Cube.jsx';
 import Rings from '../components/Rings.jsx';
 import Husky from '../models/Husky.jsx';
 import HeroCamera from '../components/HeroCamera.jsx';
+
+const TimelineElement = React.memo(({ experience }) => (
+  <VerticalTimelineElement
+    animate={false}
+    key={`experience-${experience.title}`}
+    date={experience.date}
+    icon={
+      <div className="flex justify-center items-center w-full h-full">
+        <img
+          src={experience.icon}
+          alt={experience.company_name}
+          className="w-[60%] h-[60%] object-contain"
+          loading="lazy" // Ajout du lazy loading
+        />
+      </div>
+    }
+    contentStyle={{
+      borderBottom: '8px',
+      borderStyle: 'solid',
+      borderBottomColor: experience.iconBg,
+      boxShadow: 'none'
+    }}
+    iconStyle={{
+      background: experience.iconBg
+    }}
+  >
+    <div>
+      <h3 className="text-black text-xl font-poppins font-semibold">{experience.title}</h3>
+      <p
+        className="text-black-500 font-medium font-base"
+        style={{ margin: 0 }}
+      >
+        {experience.company_name}
+      </p>
+      <ul className="my-5 list-disc ml-5 space-y-2">
+        {experience.projects.map((project, index) => (
+          <div
+            key={`projects-${index}`}
+            className={`${index < experience.projects.length - 1 ? 'border-b-2 pb-4' : ''}`}
+          >
+            <div className="flex gap-2">
+              {project.url ? (
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {project.title}
+                </a>
+              ) : (
+                <span>{project.title}</span>
+              )}
+            </div>
+            {project.projectTechnologies.length !== 0 && (
+              <div className="block-container flex gap-2 mt-2 mb-4">
+                {project.projectTechnologies.map((projectTechnology, index) => (
+                  <div
+                    className="block-container w-6 h-6"
+                    key={`projectTechnologies-${index}`}
+                  >
+                    <div className="btn-front flex justify-center items-center">
+                      <img
+                        src={projectTechnology}
+                        alt={projectTechnology}
+                        className="w-6 h-6 object-contain"
+                        loading="lazy" // Ajout du lazy loading
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+            {project.points.map((point, index) => (
+              <li
+                className="text-black-500/50 font-normal pl-1 text-sm"
+                key={`project-point-${index}`}
+              >
+                {point}
+              </li>
+            ))}
+          </div>
+        ))}
+      </ul>
+    </div>
+  </VerticalTimelineElement>
+));
 
 const About = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
@@ -117,90 +203,10 @@ const About = () => {
         <div className="mt12 flex relative">
           <VerticalTimeline>
             {experiences.map((experience, index) => (
-              <VerticalTimelineElement
+              <TimelineElement
                 key={`experience-${index}`}
-                date={experience.date}
-                icon={
-                  <div className="flex justify-center items-center w-full h-full">
-                    <img
-                      src={experience.icon}
-                      alt={experience.company_name}
-                      className="w-[60%] h-[60%] object-contain"
-                    />
-                  </div>
-                }
-                contentStyle={{
-                  borderBottom: '8px',
-                  borderStyle: 'solid',
-                  borderBottomColor: experience.iconBg,
-                  boxShadow: 'none'
-                }}
-                iconStyle={{
-                  background: experience.iconBg
-                }}
-              >
-                <div>
-                  <h3 className="text-black text-xl font-poppins font-semibold">
-                    {experience.title}
-                  </h3>
-                  <p
-                    className="text-black-500 font-medium font-base"
-                    style={{ margin: 0 }}
-                  >
-                    {experience.company_name}
-                  </p>
-                  <ul className="my-5 list-disc ml-5 space-y-2">
-                    {experience.projects.map((project, index) => (
-                      <div
-                        key={`projects-${index}`}
-                        className={`${
-                          index < experience.projects.length - 1 ? ' border-b-2 pb-4' : ''
-                        }`}
-                      >
-                        <div className={'flex gap-2'}>
-                          {project.url ? (
-                            <a
-                              href={project.url}
-                              target="_blank"
-                            >
-                              {project.title}
-                            </a>
-                          ) : (
-                            <span> {project.title}</span>
-                          )}
-                        </div>
-                        {project.projectTechnologies.length !== 0 && (
-                          <div className={'block-container flex gap-2 mt-2 mb-4'}>
-                            {project.projectTechnologies.map((projectTechnology, index) => (
-                              <div
-                                className="block-container w-6 h-6"
-                                key={`projectTechnologies-${index}`}
-                              >
-                                <div className="btn-back" />
-                                <div className="btn-front flex justify-center items-center">
-                                  <img
-                                    src={projectTechnology}
-                                    alt={projectTechnology}
-                                    className="w-6 h-6 object-contain"
-                                  />
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                        {project.points.map((point, index) => (
-                          <li
-                            className="text-black-500/50 font-normal pl-1 text-sm"
-                            key={`project-point-${index}`}
-                          >
-                            {point}
-                          </li>
-                        ))}
-                      </div>
-                    ))}
-                  </ul>
-                </div>
-              </VerticalTimelineElement>
+                experience={experience}
+              />
             ))}
           </VerticalTimeline>
         </div>
