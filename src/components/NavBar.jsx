@@ -1,8 +1,9 @@
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useSearchParams } from 'react-router-dom';
 
 const NavBar = () => {
   const location = useLocation();
-  // console.log(location.pathname);
+  const [searchParams] = useSearchParams();
+  const step = parseInt(searchParams.get('step') || '1');
 
   return (
     <header className={`${location.pathname !== '/' ? 'header' : 'header-home'}`}>
@@ -19,6 +20,10 @@ const NavBar = () => {
           to="/about"
           className={({ isActive }) => {
             const baseClass = isActive ? 'text-blue-500' : 'text-black';
+            // Si on est sur  la page projects et step === 1, le lien About devient blanc
+            if (location.pathname === '/projects' && step === 1 && !isActive) {
+              return 'text-white';
+            }
             return (location.pathname === '/lab' || location.pathname === '/test') && !isActive
               ? 'text-white'
               : baseClass;

@@ -1,16 +1,16 @@
 import { projects } from '../constants/index.js';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import CTA from '../components/CTA.jsx';
 import Arrow from '../assets/icons/arrow.svg?react';
-import { useState } from 'react';
 import { BookContainer } from '../components/BookContainer.jsx';
 import { animated, useSpring } from '@react-spring/web';
 
 const Projects = () => {
-  const [step, setStep] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const step = parseInt(searchParams.get('step') || '1');
 
-  const handelChangeStep = () => {
-    setStep(2);
+  const handleChangeStep = () => {
+    setSearchParams({ step: '2' });
   };
 
   const transitionToStep2 = useSpring({
@@ -30,7 +30,7 @@ const Projects = () => {
     <>
       {step === 1 && (
         <BookContainer
-          handelChangeStep={handelChangeStep}
+          handelChangeStep={handleChangeStep}
           displayButton={true}
         />
       )}
