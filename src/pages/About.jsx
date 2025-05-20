@@ -13,6 +13,7 @@ import Cube from '../components/Cube.jsx';
 import Rings from '../components/Rings.jsx';
 import Husky from '../models/Husky.jsx';
 import HeroCamera from '../components/HeroCamera.jsx';
+import Husky2 from '../models/Husky2.jsx';
 
 const TimelineElement = React.memo(({ experience }) => (
   <VerticalTimelineElement
@@ -137,12 +138,12 @@ const About = () => {
                 position={[isMobile ? 0.5 : 0.1, -4.5, 5]}
                 rotation={[0.2, Math.PI, 0]}
               />
-              <Husky
+              <Husky2
                 key="husky-headlow"
                 position={[isMobile ? 3.5 : 7.5, -5.3, 10]}
                 scale={isMobile ? 1.35 : 2}
                 rotation={[Math.PI / 20, -Math.PI / 5, 0]}
-                animation={'Idle_2_HeadLow'}
+                currentAnimation={'Idle_2_HeadLow'}
               />
             </HeroCamera>
             <group>
