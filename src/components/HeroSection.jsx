@@ -16,17 +16,17 @@ import SpinLoader from './SpinLoader.jsx';
 
 const HeroSection = () => {
   const controls = useRef();
-  const [isActive, setIsActive] = useState(true); // True for testing
+  const [isActive, setIsActive] = useState(false); // True for testing
   const meshFitCameraHeroSection = useRef();
 
   // Comment for testing
-  // const intro = async () => {
-  //   controls.current.dolly(-42);
-  //   controls.current.smoothTime = 1.6;
+  const intro = async () => {
+    controls.current.dolly(-42);
+    controls.current.smoothTime = 1.6;
 
-  // controls.current.dolly(22, true);
-  // fitCamera();
-  // };
+  controls.current.dolly(22, true);
+  fitCamera();
+  };
 
   useEffect(() => {
     setTimeout(() => {
