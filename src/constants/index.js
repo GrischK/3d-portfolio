@@ -155,7 +155,7 @@ export const experiences = [
     ]
   },
   {
-    title: 'Web Developer',
+    title: 'Full-Stack Developer',
     company_name: 'Consoneo',
     icon: consoneo,
     iconBg: '#e7f2eb',
