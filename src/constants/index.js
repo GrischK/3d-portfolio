@@ -274,16 +274,6 @@ export const experiences = [
           'Data Validation: Validated input data with Joi and handled transactional emails with Nodemailer and Mustache templates.',
           'Advanced Search: Developed allergy-aware product filtering logic based on user profiles.'
         ]
-      },
-      {
-        title: 'Collaboration, Security & Best Practices',
-        projectLogo: '',
-        projectTechnologies: [],
-        points: [
-          'Agile Collaboration: Worked closely in a two-person team with Agile practices (regular meetings, task sharing, progress tracking).',
-          'Security: Ensured sensitive data protection (password hashing, controlled access).',
-          'Clean Code: Followed best practices in code structure, modularity, and input validation.'
-        ]
       }
     ]
   }
