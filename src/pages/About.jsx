@@ -4,16 +4,15 @@ import 'react-vertical-timeline-component/style.min.css';
 import CTA from '../components/CTA.jsx';
 import { Canvas } from '@react-three/fiber';
 import { PerspectiveCamera } from '@react-three/drei';
-import HackerRoom from '../components/HackRoom.jsx';
-import SpinLoader from '../components/SpinLoader.jsx';
 import React, { Suspense } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import ReactLogo from '../components/ReactLogo.jsx';
-import Cube from '../components/Cube.jsx';
-import Rings from '../components/Rings.jsx';
-import Husky from '../models/Husky.jsx';
-import HeroCamera from '../components/HeroCamera.jsx';
-import Husky2 from '../models/Husky2.jsx';
+const HeroCamera = React.lazy(() => import('../components/HeroCamera.jsx'));
+const Husky2 = React.lazy(() => import('../models/Husky2.jsx'));
+const ReactLogo = React.lazy(() => import('../components/ReactLogo.jsx'));
+const Cube = React.lazy(() => import('../components/Cube.jsx'));
+const Rings = React.lazy(() => import('../components/Rings.jsx'));
+const SpinLoader = React.lazy(() => import('../components/SpinLoader.jsx'));
+const HackerRoom = React.lazy(() => import('../components/HackRoom.jsx'));
 
 const TimelineElement = React.memo(({ experience }) => (
   <VerticalTimelineElement
