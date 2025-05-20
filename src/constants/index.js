@@ -156,6 +156,39 @@ export const experiences = [
   },
   {
     title: 'Full-Stack Developer',
+    company_name: 'Personal project',
+    icon: soccer,
+    iconBg: '#fff3e6',
+    date: 'Apr 2024 - May 2024',
+    projects: [
+      {
+        title: 'Pronos des potos – Euro 2024 Prediction App',
+        url:'https://pronosdespotos.com/',
+        projectLogo: soccer,
+        projectTechnologies: [react, tailwindcss, typescript],
+        points: [
+          'Built a responsive web app for group predictions on all Euro 2024 matches using React, TypeScript, and Tailwind CSS.',
+          'Implemented user flows for entering predictions, viewing all users’ bets, and a real-time dynamic leaderboard.',
+          'Developed a unique points system rewarding both accuracy and originality (bonus for unique correct predictions).',
+          'Admin panel to lock predictions at each tournament phase and manage game progression.',
+          'Tested and validated app logic with Champions League data to ensure reliability before launch.'
+        ]
+      },
+      {
+        title: 'Backend & DevOps',
+        projectLogo: '',
+        projectTechnologies: [nodejs, graphql, postgresql, typeorm, docker, nginx, apollo],
+        points: [
+          'Developed a RESTful backend with Node.js and NestJS, using PostgreSQL for data storage.',
+          'Implemented secure authentication and user management.',
+          'Containerized the application with Docker for streamlined deployment and local development.',
+          'Designed backend logic for points calculation and leaderboard updates in real-time.'
+        ]
+      }
+    ]
+  },
+  {
+    title: 'Full-Stack Developer',
     company_name: 'Consoneo',
     icon: consoneo,
     iconBg: '#e7f2eb',
