@@ -3,7 +3,6 @@ import Rings from './Rings.jsx';
 import { useMediaQuery } from 'react-responsive';
 import { Canvas } from '@react-three/fiber';
 import { Suspense } from 'react';
-import SpinLoader from './SpinLoader.jsx';
 import HeroCamera from './HeroCamera.jsx';
 
 const Loader = ({ started, onStarted, isPlaying }) => {
