@@ -6,6 +6,7 @@ import { Canvas } from '@react-three/fiber';
 import { PerspectiveCamera } from '@react-three/drei';
 import React, { Suspense } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import { useInView } from '@react-spring/web';
 const HeroCamera = React.lazy(() => import('../components/HeroCamera.jsx'));
 const Husky2 = React.lazy(() => import('../models/Husky2.jsx'));
 const ReactLogo = React.lazy(() => import('../components/ReactLogo.jsx'));
@@ -102,6 +103,62 @@ const TimelineElement = React.memo(({ experience }) => (
 
 const About = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+  const [ref, inView] = useInView({ rootMargin: '1000px 0px', threshold: 0, triggerOnce: false });
+
+  const Scene = React.memo(() => (
+    <Canvas
+      className={'w-full'}
+      style={{ height: '80vh' }}
+    >
+      <Suspense
+        fallback={
+          <SpinLoader
+            bg={'white'}
+            textColor={'black'}
+          />
+        }
+      >
+        <PerspectiveCamera
+          makeDefault
+          position={[0, 0, 29]}
+        />
+        <HeroCamera isMobile={isMobile}>
+          <HackerRoom
+            scale={isMobile ? 0.06 : 0.1}
+            position={[isMobile ? 0.5 : 0.1, -4.5, 5]}
+            rotation={[0.2, Math.PI, 0]}
+          />
+          <Husky2
+            key="husky-headlow"
+            position={[isMobile ? 3.5 : 7.5, -5.3, 10]}
+            scale={isMobile ? 1.35 : 2}
+            rotation={[Math.PI / 20, -Math.PI / 5, 0]}
+            currentAnimation={'Idle_2_HeadLow'}
+          />
+        </HeroCamera>
+        <group>
+          <ReactLogo
+            position={[isMobile ? 5.2 : 8, isMobile ? 5.4 : 8, 0]}
+            scale={isMobile ? 0.5 : 0.6}
+          />
+          <Cube
+            position={[isMobile ? -4 : -15, isMobile ? -6.1 : -4, isMobile ? 10 : 0]}
+            rotation={[2.6, 0.8, -1.8]}
+            scale={isMobile ? 0.3 : 0.74}
+          />
+          <Rings
+            position={[isMobile ? -12 : -20, isMobile ? 15.5 : 15, 0]}
+            scale={isMobile ? 0.5 : 0.7}
+          />
+        </group>
+        <ambientLight intensity={1} />
+        <directionalLight
+          position={[10, 10, 10]}
+          intensity={2}
+        />
+      </Suspense>
+    </Canvas>
+  ));
 
   return (
     <section className="max-container">
@@ -115,58 +172,12 @@ const About = () => {
         </p>
       </div>
       <div className="py-10 flex flex-col">
-        <Canvas
-          className={'w-full h-[50vh]'}
-          style={{ height: '80vh' }}
+        <div
+          ref={ref}
+          className={`w-full transition-opacity duration-700 ease-out ${inView ? 'opacity-100' : 'opacity-0'}`}
         >
-          <Suspense
-            fallback={
-              <SpinLoader
-                bg={'white'}
-                textColor={'black'}
-              />
-            }
-          >
-            <PerspectiveCamera
-              makeDefault
-              position={[0, 0, 29]}
-            />
-            <HeroCamera isMobile={isMobile}>
-              <HackerRoom
-                scale={isMobile ? 0.06 : 0.1}
-                position={[isMobile ? 0.5 : 0.1, -4.5, 5]}
-                rotation={[0.2, Math.PI, 0]}
-              />
-              <Husky2
-                key="husky-headlow"
-                position={[isMobile ? 3.5 : 7.5, -5.3, 10]}
-                scale={isMobile ? 1.35 : 2}
-                rotation={[Math.PI / 20, -Math.PI / 5, 0]}
-                currentAnimation={'Idle_2_HeadLow'}
-              />
-            </HeroCamera>
-            <group>
-              <ReactLogo
-                position={[isMobile ? 5.2 : 8, isMobile ? 5.4 : 8, 0]}
-                scale={isMobile ? 0.5 : 0.6}
-              />
-              <Cube
-                position={[isMobile ? -4 : -15, isMobile ? -6.1 : -4, isMobile ? 10 : 0]}
-                rotation={[2.6, 0.8, -1.8]}
-                scale={isMobile ? 0.3 : 0.74}
-              />
-              <Rings
-                position={[isMobile ? -12 : -20, isMobile ? 15.5 : 15, 0]}
-                scale={isMobile ? 0.5 : 0.7}
-              />
-            </group>
-            <ambientLight intensity={1} />
-            <directionalLight
-              position={[10, 10, 10]}
-              intensity={2}
-            />
-          </Suspense>
-        </Canvas>
+          {inView && <Scene />}
+        </div>
         <h3 className="subhead-text">My Skills</h3>
         <div className="mt-16 flex flex-wrap gap-12">
           {skills.map((skill, index) => (
@@ -191,7 +202,6 @@ const About = () => {
           ))}
         </div>
       </div>
-
       <div className="py-16">
         <h3 className="subhead-text">Work Experience</h3>
         <div>
