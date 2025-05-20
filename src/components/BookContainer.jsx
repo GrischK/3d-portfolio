@@ -1,9 +1,10 @@
 import { Book } from './Book.jsx';
-import { Environment, Float, Loader, OrbitControls } from '@react-three/drei';
+import { Environment, Float, OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
-import { Suspense, useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import { UI } from './UI.jsx';
 import { useMediaQuery } from 'react-responsive';
+import SpinLoader from './SpinLoader.jsx';
 
 export const BookContainer = ({ handelChangeStep, displayButton }) => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 768px)' });
@@ -13,7 +14,6 @@ export const BookContainer = ({ handelChangeStep, displayButton }) => {
 
   return (
     <>
-      <Loader />
       <div
         className={`z-10 fixed flex mt-24 left-1/2 transform -translate-x-1/2 -translate-y-1/2 justify-center ${isTabletOrMobile ? 'mt-28 gap-2' : 'gap-6'}`}
       >
@@ -47,7 +47,14 @@ export const BookContainer = ({ handelChangeStep, displayButton }) => {
           }}
         >
           <group position-y={0}>
-            <Suspense fallback={null}>
+            <Suspense
+              fallback={
+                <SpinLoader
+                  bg={'white'}
+                  textColor={'black'}
+                />
+              }
+            >
               <Float
                 rotation-x={isMoving ? -Math.PI / 3.5 : 0}
                 floatIntensity={isMoving ? 1 : 0}
@@ -61,7 +68,7 @@ export const BookContainer = ({ handelChangeStep, displayButton }) => {
                 preset="warehouse"
                 intensity={0.5}
                 background={false}
-              ></Environment>
+              />
               <directionalLight
                 position={[2, 6, 5]}
                 intensity={0.5}
