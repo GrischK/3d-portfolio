@@ -74,7 +74,7 @@ const Avatar = ({setPage}) => {
             </Stage>
             <mesh
               rotation={[-Math.PI / 2, 0, 0]}
-              position-y={-1.3}
+              position-y={-0.5}
             >
               <planeGeometry args={[170, 170]} />
               <MeshReflectorMaterial
