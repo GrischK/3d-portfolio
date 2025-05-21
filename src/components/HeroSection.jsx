@@ -36,7 +36,8 @@ const HeroSection = ({ setPage }) => {
         console.log('Controls:', controls.current);
         setIsActive(true);
         intro();
-      } else {
+      }
+      else {
         console.log('controls.current est toujours undefined');
       }
     }, 400);
@@ -89,92 +90,91 @@ const HeroSection = ({ setPage }) => {
           />
           <fog
             attach="fog"
-            args={['#171720', 10, 30]}
+            args={['#171720', isMobile ? 20 : 10, isMobile ? 45 : 30]}
           />
-
           <CameraControls
             ref={controls}
             minPolarAngle={degToRad(20)}
             maxPolarAngle={degToRad(90)}
           />
-          {isActive && (
-            <>
-              <mesh
-                ref={meshFitCameraHeroSection}
-                position-x={-0.3}
-                visible={false}
-              >
-                <boxGeometry
-                  color="orange"
-                  transparent
-                  opacity={0.5}
-                  args={[10.5, 2, 2]}
-                />
-              </mesh>
-              <Text
-                font="fonts/Poppins-Black.ttf"
-                fontSize={0.8}
-                position={[-2.3, -0.5, 1]}
-                lineHeight={0.8}
-                textAlign="center"
-                color="white"
-                rotation-y={degToRad(30)}
-                // anchorY={'bottom'}
-              >
-                DIVE INTO{'\n'}MY LAB
-                <meshBasicMaterial
-                  color={'#fff'}
-                  toneMapped={false}
+            {isActive && (
+              <>
+                <mesh
+                  ref={meshFitCameraHeroSection}
+                  position-x={isMobile ? 0.5 :-0.3}
+                  visible={false}
                 >
-                  <RenderTexture attach={'map'}>
-                    <color
-                      attach="background"
-                      args={['#fff']}
-                    />
-                    <Environment preset="forest" />
-                    <Float
-                      floatIntensity={8}
-                      rotationIntensity={1}
-                    >
-                      <Husky
-                        isAnimating={true}
-                        scale={0.8}
-                        position={[0, -0.6, 1]}
-                        rotation={[0, -5, 0]}
+                  <boxGeometry
+                    color="orange"
+                    transparent
+                    opacity={0.5}
+                    args={[10.5, 2, 2]}
+                  />
+                </mesh>
+                <Text
+                  font="fonts/Poppins-Black.ttf"
+                  fontSize={0.8}
+                  position={[-2.3, -0.5, 1]}
+                  lineHeight={0.8}
+                  textAlign="center"
+                  color="white"
+                  rotation-y={degToRad(30)}
+                  // anchorY={'bottom'}
+                >
+                  DIVE INTO{'\n'}MY LAB
+                  <meshBasicMaterial
+                    color={'#fff'}
+                    toneMapped={false}
+                  >
+                    <RenderTexture attach={'map'}>
+                      <color
+                        attach="background"
+                        args={['#fff']}
                       />
-                    </Float>
-                  </RenderTexture>
-                </meshBasicMaterial>
-              </Text>
-              <group
-                rotation-y={degToRad(160)}
-                position-x={3}
-              >
-                <Winter scale={0.9} />
-              </group>
-              <mesh
-                position-y={-1.2}
-                rotation-x={-Math.PI / 2}
-              >
-                <planeGeometry args={[100, 100]} />
-                <MeshReflectorMaterial
-                  // mirror={1}
-                  blur={[100, 50]}
-                  resolution={2048}
-                  mixBlur={1}
-                  mixStrength={10}
-                  roughness={1}
-                  depthScale={1}
-                  opacity={0.5}
-                  transparent
-                  minDepthThreshold={0.4}
-                  maxDepthThreshold={1.4}
-                  color="#333"
-                  metalness={0.5}
-                />
-              </mesh>
-            </>
-          )}
+                      <Environment preset="forest" />
+                      <Float
+                        floatIntensity={8}
+                        rotationIntensity={1}
+                      >
+                        <Husky
+                          isAnimating={true}
+                          scale={0.8}
+                          position={[0, -0.6, 1]}
+                          rotation={[0, -5, 0]}
+                        />
+                      </Float>
+                    </RenderTexture>
+                  </meshBasicMaterial>
+                </Text>
+                <group
+                  rotation-y={degToRad(160)}
+                  position-x={3}
+                >
+                  <Winter scale={0.9} />
+                </group>
+                <mesh
+                  position-y={-1.2}
+                  rotation-x={-Math.PI / 2}
+                >
+                  <planeGeometry args={[100, 100]} />
+                  <MeshReflectorMaterial
+                    // mirror={1}
+                    blur={[100, 50]}
+                    resolution={2048}
+                    mixBlur={1}
+                    mixStrength={10}
+                    roughness={1}
+                    depthScale={1}
+                    opacity={0.5}
+                    transparent
+                    minDepthThreshold={0.4}
+                    maxDepthThreshold={1.4}
+                    color="#333"
+                    metalness={0.5}
+                  />
+                </mesh>
+              </>
+            )}
           <Environment preset="sunset" />
         </Suspense>
       </Canvas>
