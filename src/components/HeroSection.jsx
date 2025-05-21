@@ -13,11 +13,13 @@ import { degToRad } from 'maath/misc';
 import React, { Suspense, useEffect, useRef, useState } from 'react';
 import Husky from '../models/Husky.jsx';
 import SpinLoader from './SpinLoader.jsx';
+import { useMediaQuery } from 'react-responsive';
 
 const HeroSection = ({ setPage }) => {
   const controls = useRef();
   const [isActive, setIsActive] = useState(false); // True for testing
   const meshFitCameraHeroSection = useRef();
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
   // Comment for testing
   const intro = async () => {
@@ -67,7 +69,7 @@ const HeroSection = ({ setPage }) => {
   return (
     <>
       <button
-        className={`z-10 w-[fit-content] border-transparent hover:bg-gradient-to-r from-[#00c6ff] to-[#0072ff] hover:text-white transition-all duration-300 px-4 py-3 rounded-full text-sm uppercase border bg-white text-black fixed transform:translateX(-50%) left-1/2 top-10 '}`}
+        className={`z-10 w-[fit-content] border-transparent hover:bg-gradient-to-r from-[#00c6ff] to-[#0072ff] hover:text-white transition-all duration-300 px-4 py-3 rounded-full text-sm uppercase border bg-white text-black fixed transform -translate-x-1/2 left-1/2 ${isMobile ? 'top-20' : 'top-10'} '}`}
         onClick={() => setPage(null)}
       >
         Back
