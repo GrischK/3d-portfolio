@@ -9,24 +9,23 @@ const Lab = () => {
   return (
     <>
       {page === null && (
-        <div className="bg-black pt-20 flex items-center justify-center text-center gap-2">
+        <div className="min-h-[100vh] flex flex-col items-center justify-center text-center gap-8 bg-[#171720]">
           <button
-            className={`w-[fit-content] border-transparent hover:border-white transition-all duration-300 px-4 py-3 rounded-full text-sm uppercase border ${action ? 'bg-white text-black' : 'text-white'}`}
+            className={`w-[fit-content] border-transparent hover:bg-gradient-to-r from-[#00c6ff] to-[#0072ff] hover:text-white transition-all duration-300 px-4 py-3 rounded-full text-sm uppercase border bg-white text-black'}`}
             onClick={() => setPage(0)}
           >
-            Hero Section
+            3D Hero Section
           </button>
           <button
-            className={`w-[fit-content] border-transparent hover:border-white transition-all duration-300 px-4 py-3 rounded-full text-sm uppercase border ${action ? 'bg-white text-black' : 'text-white'}`}
+            className={`w-[fit-content] border-transparent hover:bg-gradient-to-r from-[#00c6ff] to-[#0072ff] hover:text-white transition-all duration-300 px-4 py-3 rounded-full text-sm uppercase border bg-white text-black'}`}
             onClick={() => setPage(1)}
           >
-            Avatar
+            Custom my car
           </button>
         </div>
       )}
       <Suspense fallback={<div className="text-white text-center hidden">Chargement...</div>}>
         <>
-          <button onClick={() => setPage(null)}>Back</button>
           {page === 0 && <HeroSection />}
           {page === 1 && <Avatar />}
         </>
