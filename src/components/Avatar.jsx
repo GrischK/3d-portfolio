@@ -1,16 +1,22 @@
 import { Loader, MeshReflectorMaterial, PresentationControls, Stage } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
-import { Suspense, useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import Cicada from './Cicada.jsx';
 
-const Avatar = () => {
+const Avatar = ({setPage}) => {
   const [action, setAction] = useState(false);
   const [leather, setLeather] = useState(false);
   const [wood, setWood] = useState(false);
 
   return (
     <div>
-      <div className="select-none z-10 fixed inset-x-0 bottom-2 flex justify-end items-center flex-col h-[fit-content]">
+      <button
+        className={`z-10 w-[fit-content] border-transparent hover:bg-gradient-to-r from-[#00c6ff] to-[#0072ff] hover:text-white transition-all duration-300 px-4 py-3 rounded-full text-sm uppercase border bg-white text-black fixed transform:translateX(-50%) left-1/2 top-10 '}`}
+        onClick={() => setPage(null)}
+      >
+        Back
+      </button>
+      <div className="select-none z-10 fixed inset-x-0 bottom-2 flex justify-center items-center h-[fit-content] gap-4">
         <button
           className={`w-[fit-content] border-transparent hover:border-white transition-all duration-300 px-4 py-3 rounded-full text-sm uppercase border ${action ? 'bg-white text-black' : 'text-white'}`}
           onClick={() => setAction((prevState) => !prevState)}

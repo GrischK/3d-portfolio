@@ -26,8 +26,8 @@ const Lab = () => {
       )}
       <Suspense fallback={<div className="text-white text-center hidden">Chargement...</div>}>
         <>
-          {page === 0 && <HeroSection />}
-          {page === 1 && <Avatar />}
+          {page === 0 && <HeroSection setPage={setPage} />}
+          {page === 1 && <Avatar setPage={setPage} />}
         </>
       </Suspense>
     </>
