@@ -174,7 +174,7 @@ const About = () => {
       <div className="py-10 flex flex-col">
         <div
           ref={ref}
-          className={`w-full transition-opacity duration-700 ease-out ${inView ? 'opacity-100' : 'opacity-0'}`}
+          className={`h-[80vh] w-full transition-opacity duration-700 ease-out ${inView ? 'opacity-100' : 'opacity-0'}`}
         >
           {inView && <Scene />}
         </div>
