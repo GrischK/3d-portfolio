@@ -34,6 +34,22 @@ import js from './js.svg'
 import python from './python.svg'
 import storybook from './storybook.svg';
 import threejs from './threejs.svg';
+import wildCodeSchool from './wild_code_school.png';
+import figma from './figma.png';
+import framer from './framer.svg';
+import leaflet from './leaflet.png';
+import materialUi from './material_ui.png';
+import reactNative from './react_native.png';
+import jest from './jest.png';
+import playwright from './playwright.png';
+import typeGraphQL from './type_graphql.png';
+import githubactions from './githubactions.png';
+import nginx from './nginx.png';
+import caddy from './caddy.png';
+import alrj from './alrj.png';
+import prisma from './prisma.svg';
+import nodemailer from './node_mailer.png';
+import mysql from './mysql.png';
 
 export {
   css,
@@ -71,5 +87,21 @@ export {
   js,
   python,
   storybook,
-  threejs
+  threejs,
+  wildCodeSchool,
+  figma,
+  framer,
+  leaflet,
+  materialUi,
+  reactNative,
+  jest,
+  playwright,
+  typeGraphQL,
+  githubactions,
+  nginx,
+  caddy,
+  alrj,
+  prisma,
+  nodemailer,
+  mysql,
 };

@@ -1,8 +1,6 @@
 import huskyScene from '../assets/3d/husky.glb';
 import React, { useEffect, useRef } from 'react';
 import { useAnimations, useGLTF } from '@react-three/drei';
-import { clone } from 'three/examples/jsm/utils/SkeletonUtils';
-import { useFrame } from '@react-three/fiber';
 
 const Husky2 = ({ currentAnimation, ...props }) => {
   const group = useRef();

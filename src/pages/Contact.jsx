@@ -2,11 +2,8 @@ import { Suspense, useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { Canvas } from '@react-three/fiber';
 import Loader from '../components/Loader.jsx';
-import Fox from '../models/Fox.jsx';
 import useAlert from '../hooks/useAlert.js';
 import Alert from '../components/Alert.jsx';
-import GermanShepard from '../models/GermanShepard.jsx';
-import Husky from '../models/Husky.jsx';
 import Husky2 from '../models/Husky2.jsx';
 
 const Contact = () => {
