@@ -3,6 +3,7 @@ import { Home, About, Projects, Contact } from './pages';
 import NavBar from './components/NavBar.jsx';
 import Lab from './pages/Lab.jsx';
 import Avatar from './components/Avatar.jsx';
+import HeroSection from './components/HeroSection.jsx';
 
 const App = () => {
   return (
@@ -31,8 +32,12 @@ const App = () => {
             element={<Lab />}
           />
           <Route
-            path="/avatar"
+            path="/custom-my-car"
             element={<Avatar />}
+          />{' '}
+          <Route
+            path="/hero-section"
+            element={<HeroSection />}
           />
         </Routes>
       </BrowserRouter>
