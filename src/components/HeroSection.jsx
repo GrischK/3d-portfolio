@@ -66,7 +66,7 @@ const HeroSection = ({ setPage }) => {
     return () => {
       window.removeEventListener('resize', fitCamera);
     };
-  }, []);
+  }, [meshFitCameraHeroSection.current, controls.current]);
 
   return (
     <>
