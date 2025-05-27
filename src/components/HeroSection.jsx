@@ -14,6 +14,7 @@ import React, { Suspense, useEffect, useRef, useState } from 'react';
 import Husky from '../models/Husky.jsx';
 import SpinLoader from './SpinLoader.jsx';
 import { useMediaQuery } from 'react-responsive';
+import { NavLink } from 'react-router-dom';
 
 const HeroSection = ({ setPage }) => {
   const controls = useRef();
@@ -69,12 +70,16 @@ const HeroSection = ({ setPage }) => {
 
   return (
     <>
-      <button
-        className={`z-10 w-[fit-content] hover:bg-gradient-to-r from-[#00c6ff] to-[#0072ff] hover:text-white transition-all duration-300 px-4 py-3 rounded-full text-sm uppercase bg-white text-black fixed transform -translate-x-1/2 left-1/2 ${isMobile ? 'top-20' : 'top-10'} '}`}
-        onClick={() => setPage(null)}
+      <NavLink
+        to={'/lab'}
+        className={'z-10'}
       >
-        Back
-      </button>
+        <button
+          className={`z-10 w-[fit-content] hover:bg-gradient-to-r from-[#00c6ff] to-[#0072ff] hover:text-white transition-all duration-300 px-4 py-3 rounded-full text-sm uppercase bg-white text-black fixed transform -translate-x-1/2 left-1/2 ${isMobile ? 'top-20' : 'top-10'} '}`}
+        >
+          Back
+        </button>
+      </NavLink>
       <Canvas
         shadows
         camera={{

@@ -3,8 +3,9 @@ import { Canvas } from '@react-three/fiber';
 import React, { Suspense, useState } from 'react';
 import Cicada from './Cicada.jsx';
 import { useMediaQuery } from 'react-responsive';
+import { NavLink } from 'react-router-dom';
 
-const Avatar = ({setPage}) => {
+const Avatar = ({ setPage }) => {
   const [action, setAction] = useState(false);
   const [leather, setLeather] = useState(false);
   const [wood, setWood] = useState(false);
@@ -12,12 +13,16 @@ const Avatar = ({setPage}) => {
 
   return (
     <div>
-      <button
-        className={`z-10 w-[fit-content] hover:bg-gradient-to-r from-[#00c6ff] to-[#0072ff] hover:text-white transition-all duration-300 px-4 py-3 rounded-full text-sm uppercase bg-white text-black fixed transform -translate-x-1/2 left-1/2 ${isMobile ? 'top-20' : 'top-10'} '}`}
-        onClick={() => setPage(null)}
+      <NavLink
+        to={'/lab'}
+        className={'z-10'}
       >
-        Back
-      </button>
+        <button
+          className={`z-10 w-[fit-content] hover:bg-gradient-to-r from-[#00c6ff] to-[#0072ff] hover:text-white transition-all duration-300 px-4 py-3 rounded-full text-sm uppercase bg-white text-black fixed transform -translate-x-1/2 left-1/2 ${isMobile ? 'top-20' : 'top-10'} '}`}
+        >
+          Back
+        </button>
+      </NavLink>
       <div className="select-none z-10 fixed inset-x-0 bottom-2 flex justify-center items-center h-[fit-content] gap-4">
         <button
           className={`w-[fit-content] border-transparent hover:border-white transition-all duration-300 px-4 py-3 rounded-full text-sm uppercase border ${action ? 'bg-white text-black' : 'text-white'}`}
