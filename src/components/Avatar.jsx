@@ -50,11 +50,11 @@ const Avatar = ({ setPage }) => {
       >
         <color
           attach="background"
-          args={['#10191f']}
+          args={['#30709b']}
         />
         <fog
           attach="fog"
-          args={['#10191f', 10, 30]}
+          args={['#30709b', 10, 30]}
         />
         <>
           <PresentationControls
